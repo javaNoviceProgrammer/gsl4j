@@ -26,6 +26,10 @@ public class TestMathConstants {
 		System.out.println("GSL_NEGINF = " + MathConstants.GSL_NEGINF);
 		System.out.println("GSL_NAN = " + MathConstants.GSL_NAN);
 		System.out.println("Double.isNaN(GSL_NAN) = " + Double.isNaN(MathConstants.GSL_NAN));
+		System.out.println("MathConstants.isInf(GSL_POSINF) = " + MathConstants.isInf(MathConstants.GSL_POSINF));
+		System.out.println("MathConstants.isPositiveInf(GSL_POSINF) = " + MathConstants.isPositiveInf(MathConstants.GSL_POSINF));
+		System.out.println("MathConstants.isNegativeInf(GSL_POSINF) = " + MathConstants.isNegativeInf(MathConstants.GSL_POSINF));
+		System.out.println("MathConstants.isNegativeInf(GSL_NEGINF) = " + MathConstants.isNegativeInf(MathConstants.GSL_NEGINF));
 		System.out.println("Double.isInfinite(GSL_POSINF) = " + Double.isInfinite(MathConstants.GSL_POSINF));
 		System.out.println("Double.isInfinite(GSL_NEGINF) = " + Double.isInfinite(MathConstants.GSL_NEGINF));
 	}

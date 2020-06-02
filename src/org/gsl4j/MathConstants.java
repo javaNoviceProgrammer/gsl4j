@@ -54,5 +54,11 @@ public class MathConstants {
 	private static native double gslneginf() ;
 	private static native double gslnan() ;
 
+	public static native boolean isNaN(double x) ;
+	public static native boolean isInf(double x) ;
+	public static native boolean isPositiveInf(double x) ;
+	public static native boolean isNegativeInf(double x) ;
+	public static native boolean isFinite(double x) ;
+
 
 }
