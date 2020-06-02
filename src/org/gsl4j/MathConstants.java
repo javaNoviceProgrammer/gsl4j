@@ -29,7 +29,9 @@ public class MathConstants {
 	public static double M_LN2 = mln2() ;
 	public static double M_LNPI = mlnpi() ;
 	public static double M_EULER = meuler() ;
-
+	public static double GSL_POSINF = gslposinf() ;
+	public static double GSL_NEGINF = gslneginf() ;
+	public static double GSL_NAN = gslnan() ;
 
 	private static native double me() ;
 	private static native double mlog2e() ;
@@ -48,4 +50,9 @@ public class MathConstants {
 	private static native double mln2() ;
 	private static native double mlnpi() ;
 	private static native double meuler() ;
+	private static native double gslposinf() ;
+	private static native double gslneginf() ;
+	private static native double gslnan() ;
+
+
 }

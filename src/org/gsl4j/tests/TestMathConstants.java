@@ -22,6 +22,12 @@ public class TestMathConstants {
 		System.out.println("M_LN2 = " + MathConstants.M_LN2);
 		System.out.println("M_LNPI = " + MathConstants.M_LNPI);
 		System.out.println("M_EULER = " + MathConstants.M_EULER);
+		System.out.println("GSL_POSINF = " + MathConstants.GSL_POSINF);
+		System.out.println("GSL_NEGINF = " + MathConstants.GSL_NEGINF);
+		System.out.println("GSL_NAN = " + MathConstants.GSL_NAN);
+		System.out.println("Double.isNaN(GSL_NAN) = " + Double.isNaN(MathConstants.GSL_NAN));
+		System.out.println("Double.isInfinite(GSL_POSINF) = " + Double.isInfinite(MathConstants.GSL_POSINF));
+		System.out.println("Double.isInfinite(GSL_NEGINF) = " + Double.isInfinite(MathConstants.GSL_NEGINF));
 	}
 
 	public static void main(String[] args) {
