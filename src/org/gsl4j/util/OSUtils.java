@@ -1,6 +1,6 @@
 package org.gsl4j.util;
 
-public class OSUtils {
+class OSUtils {
 
 	private static String OS = System.getProperty("os.name") ;
 

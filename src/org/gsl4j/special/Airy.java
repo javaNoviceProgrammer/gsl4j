@@ -2,10 +2,14 @@ package org.gsl4j.special;
 
 import org.gsl4j.util.NativeLibraryLoader;
 
-public class AiryFunction {
+public class Airy {
 
 	static {
 		NativeLibraryLoader.loadLibraries();
+	}
+
+	private Airy() {
+
 	}
 
 	public static native double ai(double x) ;
