@@ -64,7 +64,6 @@ public class TestComplexMath {
 		System.out.println(result);
 	}
 
-
 	public static void main(String[] args) {
 		test1() ;
 		test2() ;
