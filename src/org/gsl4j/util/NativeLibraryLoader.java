@@ -31,13 +31,13 @@ public class NativeLibraryLoader {
 	private static void loadMacLibraries() {
 		// load core gsl library
 		try {
-			NativeUtils.loadLibraryFromJar("/libgsl.25.dylib");
+			NativeUtils.loadLibraryFromJar("/libgslmac.dylib");
 		} catch (IOException e) {
 			System.err.println("Could not load GSL dynamic library");
 		}
 		// load gsl cblas library
 		try {
-			NativeUtils.loadLibraryFromJar("/libgslcblas.0.dylib");
+			NativeUtils.loadLibraryFromJar("/libgslcblasmac.dylib");
 		} catch (IOException e) {
 			System.err.println("Could not load GSL CBLAS dynamic library");
 		}
