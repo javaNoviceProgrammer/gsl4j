@@ -94,6 +94,12 @@ public class Complex {
 		return new double[] {re, im} ;
 	}
 
+	public double[] toArrayPolar() {
+		double r = ComplexMath.abs(re, im) ;
+		double theta = ComplexMath.arg(re, im) ;
+		return new double[] {r, theta} ;
+	}
+
 	public static void setDisplayAccuracy(int decimals) {
 		DISPLAY_ACCURACY = decimals ;
 	}

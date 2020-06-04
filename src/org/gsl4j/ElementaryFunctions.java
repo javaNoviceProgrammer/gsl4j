@@ -43,4 +43,7 @@ public class ElementaryFunctions {
 
 	public static native int fcmp(double x, double y, double epsilon) ;
 
+	public static native double multiply(double x, double y) ;
+	public static native double multiplyError(double x, double dx, double y, double dy) ;
+
 }
