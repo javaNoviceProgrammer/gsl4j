@@ -12,26 +12,26 @@ public class MathConstants {
 
 	}
 
-	public static double M_E = me() ;
-	public static double M_LOG2E = mlog2e() ;
-	public static double M_LOG10E = mlog10e() ;
-	public static double M_SQRT2 = msqrt2() ;
-	public static double M_SQRT1_2 = msqrt12() ;
-	public static double M_SQRT3 = msqrt3() ;
-	public static double M_PI = mpi() ;
-	public static double M_PI_2 = mpi2() ;
-	public static double M_PI_4 = mpi4() ;
-	public static double M_SQRTPI = msqrtpi() ;
-	public static double M_2_SQRTPI = m2sqrtpi() ;
-	public static double M_1_PI = m1pi() ;
-	public static double M_2_PI = m2pi() ;
-	public static double M_LN10 = mln10() ;
-	public static double M_LN2 = mln2() ;
-	public static double M_LNPI = mlnpi() ;
-	public static double M_EULER = meuler() ;
-	public static double GSL_POSINF = gslposinf() ;
-	public static double GSL_NEGINF = gslneginf() ;
-	public static double GSL_NAN = gslnan() ;
+	public static final double M_E = me() ;
+	public static final double M_LOG2E = mlog2e() ;
+	public static final double M_LOG10E = mlog10e() ;
+	public static final double M_SQRT2 = msqrt2() ;
+	public static final double M_SQRT1_2 = msqrt12() ;
+	public static final double M_SQRT3 = msqrt3() ;
+	public static final double M_PI = mpi() ;
+	public static final double M_PI_2 = mpi2() ;
+	public static final double M_PI_4 = mpi4() ;
+	public static final double M_SQRTPI = msqrtpi() ;
+	public static final double M_2_SQRTPI = m2sqrtpi() ;
+	public static final double M_1_PI = m1pi() ;
+	public static final double M_2_PI = m2pi() ;
+	public static final double M_LN10 = mln10() ;
+	public static final double M_LN2 = mln2() ;
+	public static final double M_LNPI = mlnpi() ;
+	public static final double M_EULER = meuler() ;
+	public static final double GSL_POSINF = gslposinf() ;
+	public static final double GSL_NEGINF = gslneginf() ;
+	public static final double GSL_NAN = gslnan() ;
 
 	private static native double me() ;
 	private static native double mlog2e() ;
@@ -60,5 +60,9 @@ public class MathConstants {
 	public static native boolean isNegativeInf(double x) ;
 	public static native boolean isFinite(double x) ;
 
+	// precision for special functions
+	public static final int GSL_PREC_DOUBLE = 0 ;
+	public static final int GSL_PREC_SINGLE = 0 ;
+	public static final int GSL_PREC_APPROX = 0 ;
 
 }

@@ -3,6 +3,7 @@ package org.gsl4j.tests;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.gsl4j.special.Bessel;
+import org.gsl4j.util.MathUtils;
 
 class TestBessel {
 
@@ -41,6 +42,24 @@ class TestBessel {
 		System.out.println(Arrays.toString(y));
 	}
 
+	private static void test6() {
+		double[] x = MathUtils.linspace(0.001, 10.0, 20) ;
+		double[] y = Bessel.Jv(1.0, x) ;
+		System.out.println(Arrays.toString(y));
+	}
+
+	private static void test7() {
+		int[] n = {1, 2, 3, 4, 5, 6, 7, 8 , 9, 10} ;
+		double[] zeros = Arrays.stream(n).mapToDouble(m -> Bessel.zeroJ0(m)).toArray() ;
+		System.out.println("J0(x)=0 --> x = " + Arrays.toString(zeros));
+	}
+
+	private static void test8() {
+		double order = 3.1 ;
+		int[] n = {1, 2, 3, 4, 5, 6, 7, 8 , 9, 10} ;
+		double[] zeros = Arrays.stream(n).mapToDouble(m -> Bessel.zeroJv(order, m)).toArray() ;
+		System.out.printf("J%.2f(x)=0 --> x = %s\n", order, Arrays.toString(zeros));
+	}
 
 	public static void main(String[] args) {
 		test1() ;
@@ -48,6 +67,9 @@ class TestBessel {
 		test3() ;
 		test4() ;
 		test5() ;
+		test6() ;
+		test7() ;
+		test8() ;
 	}
 
 }
