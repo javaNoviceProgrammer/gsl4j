@@ -18,9 +18,9 @@ class OSUtils {
 
 	public static void main(String[] args) {
 		System.out.println(OS);
-		System.out.println(isMac());
-		System.out.println(isWindows()); ;
-		System.out.println(isLinux()); ;
+		System.out.println("is Mac     : " + isMac());
+		System.out.println("is Windows : " +isWindows()); ;
+		System.out.println("is Linux   : " +isLinux()); ;
 	}
 
 }
