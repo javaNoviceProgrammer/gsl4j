@@ -1,5 +1,8 @@
 package org.gsl4j.complex;
 
+import java.io.Serializable;
+
+import org.gsl4j.OperatorOverloading;
 import org.gsl4j.util.NativeLibraryLoader;
 
 /**
@@ -10,11 +13,13 @@ import org.gsl4j.util.NativeLibraryLoader;
  * @author Meisam
  *
  */
-public class Complex {
+public class Complex implements Serializable, OperatorOverloading<Complex> {
 
 	static {
 		NativeLibraryLoader.loadLibraries();
 	}
+
+	private static final long serialVersionUID = -5423139577060070132L;
 
 	public static final Complex ZERO = new Complex(0.0, 0.0) ;
 	public static final Complex j = new Complex(0.0, 1.0) ;
@@ -118,6 +123,93 @@ public class Complex {
 		if (im < 0)
 			return stReal + "-" + "j" + stImag;
 		return stReal + "+" + "j" + stImag;
+	}
+
+	//*********** support for operator overloading *************
+
+	@Override
+	public Complex add(double v) {
+		return ofRect(re+v, im) ;
+	}
+
+	@Override
+	public Complex addRev(double v) {
+		return ofRect(v+re, im) ;
+	}
+
+	@Override
+	public Complex add(Complex v) {
+		return ofRect(this.re+v.re, this.im+v.im) ;
+	}
+
+	@Override
+	public Complex addRev(Complex v) {
+		return ofRect(v.re+this.re, v.im+this.im) ;
+	}
+
+	@Override
+	public Complex subtract(double v) {
+		return ofRect(re-v, im) ;
+	}
+
+	@Override
+	public Complex subtractRev(double v) {
+		return ofRect(v-re, -im) ;
+	}
+
+	@Override
+	public Complex subtract(Complex v) {
+		return ofRect(this.re-v.re, this.im-v.im) ;
+	}
+
+	@Override
+	public Complex subtractRev(Complex v) {
+		return ofRect(v.re-this.re, v.im-this.im) ;
+	}
+
+	@Override
+	public Complex multiply(double v) {
+		return ofRect(v*re, v*im) ;
+	}
+
+	@Override
+	public Complex multiplyRev(double v) {
+		return ofRect(v*re, v*im) ;
+	}
+
+	@Override
+	public Complex multiply(Complex v) {
+		return ofArray(ComplexMath.mul(re, im, v.re, v.im)) ;
+	}
+
+	@Override
+	public Complex multiplyRev(Complex v) {
+		return ofArray(ComplexMath.mul(v.re, v.im, re, im)) ;
+	}
+
+	@Override
+	public Complex divide(double v) {
+		return ofRect(re/v, im/v) ;
+	}
+
+	@Override
+	public Complex divideRev(double v) {
+		return ofArray(ComplexMath.div(v, 0.0, re, im)) ;
+	}
+
+	@Override
+	public Complex divide(Complex v) {
+		return ofArray(ComplexMath.div(this.re, this.im, v.re, v.im)) ;
+	}
+
+	@Override
+	public Complex divideRev(Complex v) {
+		return ofArray(ComplexMath.div(v.re, v.im, this.re, this.im)) ;
+	}
+
+	@Override
+	public Complex negate() {
+		return ofRect(-re, -im) ;
 	}
 
 

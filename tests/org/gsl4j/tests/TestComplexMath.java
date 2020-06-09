@@ -3,6 +3,7 @@ package org.gsl4j.tests;
 import java.util.Arrays;
 import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexMath;
+import static org.gsl4j.complex.Complex.j ;
 
 public class TestComplexMath {
 
@@ -64,6 +65,15 @@ public class TestComplexMath {
 		System.out.println(result);
 	}
 
+	private static void test7() {
+		Complex z = 1.0+2.0*j ;
+		System.out.println("z = " + z);
+		Complex w = -3.0/j ;
+		System.out.println("w = " + w);
+		System.out.println("z/w = " + z/w);
+		System.out.println("z*w = " + z*w);
+	}
+
 	public static void main(String[] args) {
 		test1() ;
 		test2() ;
@@ -71,6 +81,7 @@ public class TestComplexMath {
 		test4() ;
 		test5() ;
 		test6() ;
+		test7() ;
 	}
 
 }
