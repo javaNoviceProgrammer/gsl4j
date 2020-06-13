@@ -10,6 +10,7 @@ import org.gsl4j.util.NativeLibraryLoader;
  * The internal representation of this type may vary across platforms
  * and should not be accessed directly. The functions and macros described
  * below allow complex numbers to be manipulated in a portable way.
+ *
  * @author Meisam
  *
  */
@@ -77,6 +78,24 @@ public class Complex implements Serializable, OperatorOverloading<Complex> {
 		if(realAndImag.length != 2)
 			throw new IllegalArgumentException("Number of array elements must be exactly 2") ;
 		return ofRect(realAndImag[0], realAndImag[1]) ;
+	}
+
+	public static Complex ofArrayRect(double...realAndImag) {
+		if(realAndImag.length != 2)
+			throw new IllegalArgumentException("Number of array elements must be exactly 2") ;
+		return ofRect(realAndImag[0], realAndImag[1]) ;
+	}
+
+	public static Complex ofArrayPolar(double...magAndPhase) {
+		if(magAndPhase.length != 2)
+			throw new IllegalArgumentException("Number of array elements must be exactly 2") ;
+		return ofPolar(magAndPhase[0], magAndPhase[1]) ;
+	}
+
+	public static Complex ofArrayPolarDegree(double...magAndPhaseDegree) {
+		if(magAndPhaseDegree.length != 2)
+			throw new IllegalArgumentException("Number of array elements must be exactly 2") ;
+		return ofPolarDegree(magAndPhaseDegree[0], magAndPhaseDegree[1]) ;
 	}
 
 	/**
