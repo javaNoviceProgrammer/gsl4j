@@ -8,6 +8,54 @@ public class MathUtils {
 
 	}
 
+	public static int[] range(int start, int end) {
+		int len = end-start+1 ;
+		int[] values = new int[len] ;
+		for(int i=0; i<len; i++)
+			values[i] = start+i ;
+		return values ;
+	}
+
+	public static int[] rangeExcludeEnd(int start, int end) {
+		int len = end-start+1 ;
+		int[] values = new int[len] ;
+		for(int i=0; i<len-1; i++)
+			values[i] = start+i ;
+		return values ;
+	}
+
+	public static int[] rangeExcludeBeginning(int start, int end) {
+		int len = end-start+1 ;
+		int[] values = new int[len] ;
+		for(int i=0; i<len-1; i++)
+			values[i] = start+1+i ;
+		return values ;
+	}
+
+	public static long[] range(long start, long end) {
+		long len = end-start+1 ;
+		long[] values = new long[(int)len] ;
+		for(int i=0; i<len; i++)
+			values[i] = start+i ;
+		return values ;
+	}
+
+	public static long[] rangeExcludeEnd(long start, long end) {
+		long len = end-start+1 ;
+		long[] values = new long[(int)len] ;
+		for(int i=0; i<len-1; i++)
+			values[i] = start+i ;
+		return values ;
+	}
+
+	public static long[] rangeExcludeBeginning(long start, long end) {
+		long len = end-start+1 ;
+		long[] values = new long[(int)len] ;
+		for(int i=0; i<len-1; i++)
+			values[i] = start+1+i ;
+		return values ;
+	}
+
 	public static double[] linspace(double start, double end, int numPoints) {
 		double[] Values = new double[numPoints];
 		double Delta;

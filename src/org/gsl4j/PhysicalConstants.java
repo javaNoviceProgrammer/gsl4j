@@ -31,23 +31,94 @@ public class PhysicalConstants {
 	////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////
 
+	/**
+	 * The electromagnetic fine structure constant \alpha.
+	 */
 	public static final double GSL_CONST_NUM_FINE_STRUCTURE = (7.297352533e-3) ; /* 1 */
+
+	/**
+	 * Avogadro’s number, N_a.
+	 */
 	public static final double GSL_CONST_NUM_AVOGADRO = (6.02214199e23) ; /* 1 / mol */
+
+	/**
+	 * 10^{24}
+	 */
 	public static final double GSL_CONST_NUM_YOTTA = (1e24) ; /* 1 */
+
+	/**
+	 * 10^{21}
+	 */
 	public static final double GSL_CONST_NUM_ZETTA = (1e21) ; /* 1 */
+
+	/**
+	 * 10^{18}
+	 */
 	public static final double GSL_CONST_NUM_EXA = (1e18) ; /* 1 */
+
+	/**
+	 * 10^{15}
+	 */
 	public static final double GSL_CONST_NUM_PETA = (1e15) ; /* 1 */
+
+	/**
+	 * 10^{12}
+	 */
 	public static final double GSL_CONST_NUM_TERA = (1e12) ; /* 1 */
+
+	/**
+	 * 10^9
+	 */
 	public static final double GSL_CONST_NUM_GIGA = (1e9) ; /* 1 */
+
+	/**
+	 * 10^6
+	 */
 	public static final double GSL_CONST_NUM_MEGA = (1e6) ; /* 1 */
+
+	/**
+	 * 10^3
+	 */
 	public static final double GSL_CONST_NUM_KILO = (1e3) ; /* 1 */
+
+	/**
+	 * 10^{-3}
+	 */
 	public static final double GSL_CONST_NUM_MILLI = (1e-3) ; /* 1 */
+
+	/**
+	 * 10^{-6}
+	 */
 	public static final double GSL_CONST_NUM_MICRO = (1e-6) ; /* 1 */
+
+	/**
+	 * 10^{-9}
+	 */
 	public static final double GSL_CONST_NUM_NANO = (1e-9) ; /* 1 */
+
+	/**
+	 * 10^{-12}
+	 */
 	public static final double GSL_CONST_NUM_PICO = (1e-12) ; /* 1 */
+
+	/**
+	 * 10^{-15}
+	 */
 	public static final double GSL_CONST_NUM_FEMTO = (1e-15) ; /* 1 */
+
+	/**
+	 * 10^{-18}
+	 */
 	public static final double GSL_CONST_NUM_ATTO = (1e-18) ; /* 1 */
+
+	/**
+	 * 10^{-21}
+	 */
 	public static final double GSL_CONST_NUM_ZEPTO = (1e-21) ; /* 1 */
+
+	/**
+	 * 10^{-24}
+	 */
 	public static final double GSL_CONST_NUM_YOCTO = (1e-24) ; /* 1 */
 
 	////////////////////////////////////////////////////////
