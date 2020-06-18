@@ -314,12 +314,6 @@ public class Polynomial implements Serializable {
 
 	// ************ operator overloading **********************
 
-	/**
-	 * Operator overloading support:
-	 *
-	 * Polynomial a = 5;
-	 *
-	 */
 	public static Polynomial valueOf(double v) {
 		return new Polynomial(v, 0);
 	}
@@ -328,9 +322,6 @@ public class Polynomial implements Serializable {
 		return new Polynomial(v.coeffs);
 	}
 
-	/**
-	 * Operator overload support: a+b
-	 */
 	public Polynomial add(Polynomial v) {
 		return ofCoeffs(plus(this.coeffs, v.coeffs)) ;
 	}
@@ -347,9 +338,6 @@ public class Polynomial implements Serializable {
 		return ofCoeffs(plus(this.coeffs, v)) ;
 	}
 
-	/**
-	 * Operator overload support: a-b
-	 */
 	public Polynomial subtract(Polynomial v) {
 		return ofCoeffs(minus(this.coeffs, v.coeffs)) ;
 	}
@@ -366,9 +354,6 @@ public class Polynomial implements Serializable {
 		return ofCoeffs(plus(times(this.coeffs, -1.0), v)) ;
 	}
 
-	/**
-	 * Operator overload support: a*b
-	 */
 	public Polynomial multiply(Polynomial v) {
 		return ofCoeffs(times(this.coeffs, v.coeffs)) ;
 	}
@@ -385,15 +370,12 @@ public class Polynomial implements Serializable {
 		return ofCoeffs(times(this.coeffs, v)) ;
 	}
 
-	/**
-	 * Operator overload support: a/b
-	 */
 	public Rational divide(Polynomial v) {
 		return new Rational(this, v);
 	}
 
 	public Rational divideRev(Polynomial v) {
-		return null ;
+		return new Rational(v, this);
 	}
 
 	public Polynomial divide(double v) {
@@ -404,9 +386,6 @@ public class Polynomial implements Serializable {
 		return Rational.valueOf(v) / this;
 	}
 
-	/**
-	 * Operator overload support: -a
-	 */
 	public Polynomial negate() {
 		return ofCoeffs(times(this.coeffs, -1.0)) ;
 	}
