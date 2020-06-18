@@ -23,7 +23,7 @@ public class Zeta {
 
 	}
 
-	// Riemann Zeta Function
+	// Riemann Zeta IntegralFunction1D
 	/**
 	 * These routines compute the Riemann zeta function \zeta(n) for integer n, n \ne 1.
 	 * @param n
@@ -38,7 +38,7 @@ public class Zeta {
 	 */
 	public static native double zeta(double s) ;
 
-	// Riemann Zeta Function Minus One
+	// Riemann Zeta IntegralFunction1D Minus One
 	/**
 	 * These routines compute \zeta(n) - 1 for integer n, n \ne 1.
 	 * @param n
@@ -53,7 +53,7 @@ public class Zeta {
 	 */
 	public static native double zetam1(double x) ;
 
-	// Hurwitz Zeta Function
+	// Hurwitz Zeta IntegralFunction1D
 	/**
 	 * These routines compute the Hurwitz zeta function \zeta(s,q) for s > 1, q > 0.
 	 * @param s
@@ -62,7 +62,7 @@ public class Zeta {
 	 */
 	public static native double hzeta(double s, double q) ;
 
-	// Eta Function
+	// Eta IntegralFunction1D
 	/**
 	 * These routines compute the eta function \eta(n) for integer n.
 	 * @param n

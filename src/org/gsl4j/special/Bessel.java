@@ -48,7 +48,7 @@ public class Bessel {
 	public static native double KnScaled(int n, double x) ;
 	public static native double[] KnScaledArray(int nmin, int nmax, double x) ;
 
-	// Regular Bessel Function—Fractional Order
+	// Regular Bessel IntegralFunction1D—Fractional Order
 	public static native double Jv(double v, double x) ;
 	public static native double[] Jv(double v, double[] x) ;
 

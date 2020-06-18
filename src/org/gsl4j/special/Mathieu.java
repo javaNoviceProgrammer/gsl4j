@@ -12,7 +12,7 @@ public class Mathieu {
 
 	}
 
-	// Mathieu Function Characteristic Values
+	// Mathieu IntegralFunction1D Characteristic Values
 	public static native int mathieuA(int n, double q) ;
 	public static native int mathieuB(int n, double q) ;
 	public static native double[] mathieuAarray(int minOrder, int maxOrder, double q) ;

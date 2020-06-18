@@ -12,7 +12,7 @@ public class ExpFunction {
 
 	}
 
-	// Exponential Function
+	// Exponential IntegralFunction1D
 	public static native double exp(double x) ;
 	public static native double exp10(double x) ;
 	public static native double expMult(double x, double y) ;

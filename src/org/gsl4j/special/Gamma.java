@@ -45,7 +45,7 @@ public class Gamma {
 	public static native double lnbeta(double a, double b) ;
 
 
-	// Incomplete Beta Function
+	// Incomplete Beta IntegralFunction1D
 	public static native double betaIncomplete(double a, double b, double x) ;
 
 }

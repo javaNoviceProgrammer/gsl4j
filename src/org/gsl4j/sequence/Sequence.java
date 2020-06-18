@@ -8,6 +8,7 @@ import org.gsl4j.util.MathUtils;
 
 /**
  * interface representing a real-valued sequence
+ *
  * @author Meisam
  *
  */

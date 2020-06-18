@@ -124,35 +124,154 @@ public class PhysicalConstants {
 	////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////
 
+	/**
+	 * The speed of light in vacuum, c.
+	 */
 	public static final double GSL_CONST_MKSA_SPEED_OF_LIGHT = (2.99792458e8) ; /* m / s */
+
+	/**
+	 * The gravitational constant, G.
+	 */
 	public static final double GSL_CONST_MKSA_GRAVITATIONAL_CONSTANT = (6.673e-11) ; /* m^3 / kg s^2 */
+
+	/**
+	 * Planck’s constant, h.
+	 */
 	public static final double GSL_CONST_MKSA_PLANCKS_CONSTANT_H = (6.62606896e-34) ; /* kg m^2 / s */
+
+	/**
+	 * Planck’s constant divided by 2\pi, \hbar.
+	 */
 	public static final double GSL_CONST_MKSA_PLANCKS_CONSTANT_HBAR = (1.05457162825e-34) ; /* kg m^2 / s */
+
+	/**
+	 * The length of 1 astronomical unit (mean earth-sun distance), au.
+	 */
 	public static final double GSL_CONST_MKSA_ASTRONOMICAL_UNIT = (1.49597870691e11) ; /* m */
+
+	/**
+	 * The distance of 1 light-year, ly.
+	 */
 	public static final double GSL_CONST_MKSA_LIGHT_YEAR = (9.46053620707e15) ; /* m */
+
+	/**
+	 * The distance of 1 parsec, pc.
+	 */
 	public static final double GSL_CONST_MKSA_PARSEC = (3.08567758135e16) ; /* m */
+
+	/**
+	 * The standard gravitational acceleration on Earth, g.
+	 */
 	public static final double GSL_CONST_MKSA_GRAV_ACCEL = (9.80665e0) ; /* m / s^2 */
+
+	/**
+	 * The energy of 1 electron volt, eV.
+	 */
 	public static final double GSL_CONST_MKSA_ELECTRON_VOLT = (1.602176487e-19) ; /* kg m^2 / s^2 */
+
+	/**
+	 * The mass of the electron, m_e.
+	 */
 	public static final double GSL_CONST_MKSA_MASS_ELECTRON = (9.10938188e-31) ; /* kg */
+
+	/**
+	 * The mass of the muon, m_\mu.
+	 */
 	public static final double GSL_CONST_MKSA_MASS_MUON = (1.88353109e-28) ; /* kg */
+
+	/**
+	 * The mass of the proton, m_p.
+	 */
 	public static final double GSL_CONST_MKSA_MASS_PROTON = (1.67262158e-27) ; /* kg */
+
+	/**
+	 * The mass of the neutron, m_n.
+	 */
 	public static final double GSL_CONST_MKSA_MASS_NEUTRON = (1.67492716e-27) ; /* kg */
+
+	/**
+	 * The Rydberg constant, Ry, in units of energy. This is related to the Rydberg inverse wavelength R_\infty by Ry = h c R_\infty.
+	 */
 	public static final double GSL_CONST_MKSA_RYDBERG = (2.17987196968e-18) ; /* kg m^2 / s^2 */
+
+	/**
+	 * The Boltzmann constant, k.
+	 */
 	public static final double GSL_CONST_MKSA_BOLTZMANN = (1.3806504e-23) ; /* kg m^2 / K s^2 */
+
+	/**
+	 * The molar gas constant, R_0.
+	 */
 	public static final double GSL_CONST_MKSA_MOLAR_GAS = (8.314472e0) ; /* kg m^2 / K mol s^2 */
+
+	/**
+	 * The standard gas volume, V_0.
+	 */
 	public static final double GSL_CONST_MKSA_STANDARD_GAS_VOLUME = (2.2710981e-2) ; /* m^3 / mol */
+
+	/**
+	 * The number of seconds in 1 minute.
+	 */
 	public static final double GSL_CONST_MKSA_MINUTE = (6e1) ; /* s */
+
+	/**
+	 * The number of seconds in 1 hour.
+	 */
 	public static final double GSL_CONST_MKSA_HOUR = (3.6e3) ; /* s */
+
+	/**
+	 * The number of seconds in 1 day.
+	 */
 	public static final double GSL_CONST_MKSA_DAY = (8.64e4) ; /* s */
+
+	/**
+	 * The number of seconds in 1 week.
+	 */
 	public static final double GSL_CONST_MKSA_WEEK = (6.048e5) ; /* s */
+
+	/**
+	 * The length of 1 inch.
+	 */
 	public static final double GSL_CONST_MKSA_INCH = (2.54e-2) ; /* m */
+
+	/**
+	 * The length of 1 foot.
+	 */
 	public static final double GSL_CONST_MKSA_FOOT = (3.048e-1) ; /* m */
+
+	/**
+	 * The length of 1 yard.
+	 */
 	public static final double GSL_CONST_MKSA_YARD = (9.144e-1) ; /* m */
+
+	/**
+	 * The length of 1 mile.
+	 */
 	public static final double GSL_CONST_MKSA_MILE = (1.609344e3) ; /* m */
+
+	/**
+	 * The length of 1 nautical mile.
+	 */
 	public static final double GSL_CONST_MKSA_NAUTICAL_MILE = (1.852e3) ; /* m */
+
+	/**
+	 * The length of 1 fathom.
+	 */
 	public static final double GSL_CONST_MKSA_FATHOM = (1.8288e0) ; /* m */
+
+	/**
+	 * The length of 1 mil (1/1000th of an inch).
+	 */
 	public static final double GSL_CONST_MKSA_MIL = (2.54e-5) ; /* m */
+
+	/**
+	 * The length of 1 printer’s point (1/72 inch).
+	 */
 	public static final double GSL_CONST_MKSA_POINT = (3.52777777778e-4) ; /* m */
+
+	/**
+	 * The length of 1 TeX point (1/72.27 inch).
+	 */
 	public static final double GSL_CONST_MKSA_TEXPOINT = (3.51459803515e-4) ; /* m */
 	public static final double GSL_CONST_MKSA_MICRON = (1e-6) ; /* m */
 	public static final double GSL_CONST_MKSA_ANGSTROM = (1e-10) ; /* m */

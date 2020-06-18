@@ -1,5 +1,12 @@
 package org.gsl4j;
 
+/**
+ * Interface for enabling operator overloading of classes for JDK8
+ *
+ * @author Meisam
+ *
+ * @param <T> Class subject to operator overloading
+ */
 public interface OperatorOverloading<T> {
 
 	// addition

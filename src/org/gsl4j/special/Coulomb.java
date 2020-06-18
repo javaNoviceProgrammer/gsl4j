@@ -19,7 +19,7 @@ public class Coulomb {
 	// Coulomb Wave Functions
 	public static native double[] coulombWaveFunctions(double eta, double x, double l, int k) ;
 
-	// Coulomb Wave Function Normalization Constant
+	// Coulomb Wave IntegralFunction1D Normalization Constant
 	public static native double coulombCL(double l, double eta) ;
 
 }

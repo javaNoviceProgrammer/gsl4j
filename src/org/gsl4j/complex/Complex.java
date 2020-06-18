@@ -114,6 +114,18 @@ public class Complex implements Serializable, OperatorOverloading<Complex> {
 		return im ;
 	}
 
+	public double abs() {
+		return ComplexMath.abs(re, im) ;
+	}
+
+	public double abs2() {
+		return ComplexMath.abs2(re, im) ;
+	}
+
+	public boolean isReal() {
+		return Math.abs(im)<1e-10 ? true : false ;
+	}
+
 	public double[] toArray() {
 		return new double[] {re, im} ;
 	}
