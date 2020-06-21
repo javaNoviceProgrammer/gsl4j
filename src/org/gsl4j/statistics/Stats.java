@@ -74,15 +74,15 @@ public class Stats {
 	public static native double max(double[] data) ;
 	public static native double min(double[] data) ;
 	public static native double[] minmax(double[] data) ;
-	public static native int maxIndex(double[] data) ;
-	public static native int minIndex(double[] data) ;
-	public static native int[] minmaxIndex(double[] data) ;
+	public static native long maxIndex(double[] data) ;
+	public static native long minIndex(double[] data) ;
+	public static native long[] minmaxIndex(double[] data) ;
 
 	// Median and Percentiles
 
 	public static native double medianFromSortedData(double[] sortedData) ;
 	public static native double median(double[] data) ;
-	public static native double quantileFromSortedData(double[] sortedData) ;
+	public static native double quantileFromSortedData(double[] sortedData, double f) ;
 
 	// Order Statistics
 
