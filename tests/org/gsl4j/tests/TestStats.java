@@ -23,10 +23,18 @@ public class TestStats {
 		System.out.println("covariance = " + covar);
 	}
 
+	public static void test4() {
+		double[] data    = {1.0, 2.0, 1.0} ;
+		double[] weights = {1.0, 2.0, 1.0} ;
+		double mean = Stats.weightedMean(data, weights) ;
+		System.out.println("weighted mean = " + mean);
+	}
+
 	public static void main(String[] args) {
 		test1() ;
 		test2() ;
 		test3() ;
+		test4() ;
 	}
 
 }
