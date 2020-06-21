@@ -1,7 +1,7 @@
 package org.gsl4j.polynom;
 
 import java.util.ArrayList;
-import static org.gsl4j.polynom.Polynomial.X ;
+import static org.gsl4j.polynom.Polynomial.x ;
 
 
 public class Rational {
@@ -18,7 +18,7 @@ public class Rational {
 	// Rational R(x) = p(x)/1
 
 	public Rational(Polynomial numerator) {
-		this.q = 0 * X + 1;
+		this.q = 0 * x + 1;
 		this.p = numerator;
 	}
 
@@ -109,10 +109,10 @@ public class Rational {
 		factorsOfP.removeAll(getCommonFactors(p, q)) ;
 		factorsOfQ.removeAll(getCommonFactors(q, p)) ;
 		// reconstruct p(x) and q(x)
-		Polynomial pSimp = 0*X+1 ;
+		Polynomial pSimp = 0*x+1 ;
 		for(Polynomial w : factorsOfP)
 			pSimp = pSimp * w ;
-		Polynomial qSimp = 0*X+1 ;
+		Polynomial qSimp = 0*x+1 ;
 		for(Polynomial z : factorsOfQ)
 			qSimp = qSimp * z ;
 
@@ -120,7 +120,7 @@ public class Rational {
 	}
 
 	public static Rational toRational(Polynomial p) {
-		return new Rational(p, 0*X+1) ;
+		return new Rational(p, 0*x+1) ;
 	}
 
 	public ArrayList<Complex> zeroes() {
@@ -160,23 +160,23 @@ public class Rational {
 	 *
 	 */
 	public static Rational valueOf(int v) {
-		return new Rational(0*X+v);
+		return new Rational(0*x+v);
 	}
 
 	public static Rational valueOf(long v) {
-		return new Rational(0*X+v);
+		return new Rational(0*x+v);
 	}
 
 	public static Rational valueOf(float v) {
-		return new Rational(0*X+v);
+		return new Rational(0*x+v);
 	}
 
 	public static Rational valueOf(double v) {
-		return new Rational(0*X+v);
+		return new Rational(0*x+v);
 	}
 
 	public static Rational valueOf(Polynomial v) {
-		return new Rational(v, 0*X+1) ;
+		return new Rational(v, 0*x+1) ;
 	}
 
 	/**
@@ -356,7 +356,7 @@ public class Rational {
 	}
 
 	public Rational divideRev(int v) {
-		return (new Rational(0*X+v)).divides(this);
+		return (new Rational(0*x+v)).divides(this);
 	}
 
 	public Rational divide(long v) {
@@ -364,7 +364,7 @@ public class Rational {
 	}
 
 	public Rational divideRev(long v) {
-		return (new Rational(0*X+v)).divides(this);
+		return (new Rational(0*x+v)).divides(this);
 	}
 
 	public Rational divide(float v) {
@@ -372,7 +372,7 @@ public class Rational {
 	}
 
 	public Rational divideRev(float v) {
-		return (new Rational(0*X+v)).divides(this);
+		return (new Rational(0*x+v)).divides(this);
 	}
 
 	public Rational divide(double v) {
@@ -380,7 +380,7 @@ public class Rational {
 	}
 
 	public Rational divideRev(double v) {
-		return (new Rational(0*X+v)).divides(this);
+		return (new Rational(0*x+v)).divides(this);
 	}
 
 	/**
@@ -392,8 +392,8 @@ public class Rational {
 
 	// for test
 	public static void main(String[] args) {
-		Rational r = new Rational(X*X-1, X.pow(3)+1) ;
-		Rational s = new Rational((X-1)*(X+3), X+3) ;
+		Rational r = new Rational(x*x-1, x.pow(3)+1) ;
+		Rational s = new Rational((x-1)*(x+3), x+3) ;
 		System.out.println(r);
 		System.out.println(s);
 		Rational m = r/s ;

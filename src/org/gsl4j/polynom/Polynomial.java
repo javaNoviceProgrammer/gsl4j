@@ -8,6 +8,7 @@ import org.gsl4j.util.ArrayUtils;
 import org.gsl4j.util.NativeLibraryLoader;
 import static org.gsl4j.polynom.PolynomialMath.* ;
 
+
 public class Polynomial implements Serializable {
 
 	static {
@@ -16,7 +17,7 @@ public class Polynomial implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final Polynomial X = new Polynomial(0.0, 1.0);
+	public static final Polynomial x = new Polynomial(0.0, 1.0);
 	public static final Polynomial ZERO = new Polynomial();
 	private static double coeffEps = 1e-10;
 
@@ -70,6 +71,21 @@ public class Polynomial implements Serializable {
 			if (Math.abs(coeffs[i])>coeffEps)
 				return i;
 		return 0;
+	}
+
+	public Polynomial reduce() {
+		// remove zeros from higher order terms
+		int index = deg ;
+		while(Math.abs(coeffs[index])<1e-10) {
+			index-- ;
+			// check for p(x) = 0
+			if(index == -1)
+				return new Polynomial(null) ;
+		}
+		double[] reducedCoeffs = new double[index+1] ;
+		for(int i=0; i<index+1; i++)
+			reducedCoeffs[i] = coeffs[i] ;
+		return new Polynomial(reducedCoeffs) ;
 	}
 
 	public double[] coeffs() {
@@ -184,12 +200,12 @@ public class Polynomial implements Serializable {
 		Polynomial p = ofCoeffs(1.0) ;
 		for (Complex root : roots) {
 			if (Math.abs(root.im()) < 1e-5) {
-				p = p * (X - root.re());
+				p = p * (x - root.re());
 			}
 		}
 		for (Complex root : roots) {
 			if (root.im() > 1e-5) {
-				p = p * (X * X - 2 * root.re() * X + ComplexMath.abs2(root.re(), root.im()));
+				p = p * (x * x - 2 * root.re() * x + ComplexMath.abs2(root.re(), root.im()));
 			}
 		}
 		return p;
@@ -199,12 +215,12 @@ public class Polynomial implements Serializable {
 		Polynomial p = ofCoeffs(1.0) ;
 		for (Complex root : roots) {
 			if (Math.abs(root.im()) < 1e-5) {
-				p = p * (X - root.re());
+				p = p * (x - root.re());
 			}
 		}
 		for (Complex root : roots) {
 			if (root.im() > 1e-5) {
-				p = p * (X * X - 2 * root.re() * X + ComplexMath.abs2(root.re(), root.im()));
+				p = p * (x * x - 2 * root.re() * x + ComplexMath.abs2(root.re(), root.im()));
 			}
 		}
 		return p;
@@ -213,7 +229,7 @@ public class Polynomial implements Serializable {
 	public static Polynomial ofRoots(double... roots) {
 		Polynomial p = ofCoeffs(1.0) ;
 		for (double root : roots) {
-			p = p * (X - root) ;
+			p = p * (x - root) ;
 		}
 		return p;
 	}
