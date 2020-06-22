@@ -51,6 +51,15 @@ public class Complex implements Serializable, OperatorOverloading<Complex> {
 	}
 
 	/**
+	 * Constructs a complex number from a real number
+	 * @param re : the real part of the complex number. Imaginary part is set to zero.
+	 * @return a complex number
+	 */
+	public static Complex of(double re) {
+		return ofRect(re, 0.0) ;
+	}
+
+	/**
 	 * This function uses the rectangular Cartesian components (x,y) to return the complex number z = x + i y.
 	 * @param x : real part
 	 * @param y : imaginary part
@@ -157,6 +166,10 @@ public class Complex implements Serializable, OperatorOverloading<Complex> {
 	}
 
 	//*********** support for operator overloading *************
+
+	public static Complex valueOf(double v) {
+		return ofRect(v, 0.0) ;
+	}
 
 	@Override
 	public Complex add(double v) {

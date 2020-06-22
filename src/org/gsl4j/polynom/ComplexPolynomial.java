@@ -1,13 +1,12 @@
 package org.gsl4j.polynom;
 
-import java.util.ArrayList;
-
 import org.gsl4j.complex.Complex;
+import static org.gsl4j.complex.Complex.* ;
 
 
 public class ComplexPolynomial {
 
-	public static final ComplexPolynomial Xc = new ComplexPolynomial(new Complex[] {0, 1}) ;
+	public static final ComplexPolynomial Xc = new ComplexPolynomial(new Complex[] {0.0, 1.0}) ;
 
 	Complex[] coef; // coefficients (length = degree + 1)
 	int deg; // degree of polynomial (0 for the zero polynomial)
@@ -21,7 +20,7 @@ public class ComplexPolynomial {
 	public ComplexPolynomial(double[] coeff) {
 		coef = new Complex[coeff.length];
 		for(int i=0; i<coeff.length; i++)
-			coef[i] = new Complex(coeff[i], 0.0) ;
+			coef[i] = Complex.ofRect(coeff[i], 0.0) ;
 		deg = degree();
 	}
 
@@ -40,7 +39,7 @@ public class ComplexPolynomial {
 		for(int i=0; i<coef.length; i++) {
 			coef[i] = ZERO ;
 		}
-		coef[b] = new Complex(a, 0.0);
+		coef[b] = Complex.ofRect(a, 0.0);
 		deg = degree();
 	}
 
@@ -328,35 +327,25 @@ public class ComplexPolynomial {
 
     public Complex[] getRoots() {
     	Complex[] roots = new Complex[degree()] ;
-    	flanagan.complex.Complex[] rootsCalc = toFlanaganComplexPoly(this).rootsNoMessages() ;
-    	for(int i=0; i<roots.length; i++)
-    		roots[i] = new Complex(rootsCalc[i].getReal(), rootsCalc[i].getImag()) ;
     	return roots ;
     }
 
-    public static ComplexPoly toFlanaganComplexPoly(ComplexPolynomial p) {
-    	flanagan.complex.Complex[] coeffs = new flanagan.complex.Complex[p.degree()+1] ;
-    	for(int i=0; i<coeffs.length; i++)
-    		coeffs[i] = new flanagan.complex.Complex(p.coef[i].re(), p.coef[i].im()) ; ;
-    	return new ComplexPoly(coeffs) ;
-    }
-
-    public ArrayList<ComplexPolynomial> getFactors() {
-    	Complex[] roots = getRoots() ;
-    	ArrayList<ComplexPolynomial> factors = new ArrayList<>() ;
-    	for(Complex root : roots) {
-    		if(Math.abs(root.im())<1e-10) {
-    			ComplexPolynomial p = Xc - Fmath.truncate(root.re(), 5) ;
-    			factors.add(p) ;
-    		}
-    		else {
-    			ComplexPolynomial p = Xc - root ;
-    			factors.add(p) ;
-    		}
-    	}
-
-    	return factors ;
-    }
+//    public ArrayList<ComplexPolynomial> getFactors() {
+//    	Complex[] roots = getRoots() ;
+//    	ArrayList<ComplexPolynomial> factors = new ArrayList<>() ;
+//    	for(Complex root : roots) {
+//    		if(Math.abs(root.im())<1e-10) {
+//    			ComplexPolynomial p = Xc - Fmath.truncate(root.re(), 5) ;
+//    			factors.add(p) ;
+//    		}
+//    		else {
+//    			ComplexPolynomial p = Xc - root ;
+//    			factors.add(p) ;
+//    		}
+//    	}
+//
+//    	return factors ;
+//    }
 
 	// ************ operator overloading **********************
 
@@ -389,7 +378,7 @@ public class ComplexPolynomial {
 	public static ComplexPolynomial valueOf(Polynomial v) {
 		Complex[] coeffs = new Complex[v.coeffs.length] ;
 		for(int i=0; i<coeffs.length; i++) {
-			coeffs[i] = new Complex(v.coeffs[i], 0.0) ;
+			coeffs[i] = Complex.ofRect(v.coeffs[i], 0.0) ;
 		}
 		return new ComplexPolynomial(coeffs);
 	}
@@ -628,29 +617,6 @@ public class ComplexPolynomial {
 
 	public ComplexPolynomial divideRev(Complex v) {
 		return null ;
-	}
-
-	// for test
-	public static void main(String[] args) {
-		ComplexPolynomial p = new ComplexPolynomial(new Complex[]{1,1,1,1}) ;
-		System.out.println(p);
-//		System.out.println(p.evaluate(j));
-//		System.out.println(p.diff());
-//		System.out.println(p.diff(5));
-//		System.out.println(p.integrate());
-//		System.out.println(p.integrate(ZERO, 2+0*j));
-//		ComplexPolynomial q = Polynomial.X ;
-//		System.out.println(q+j);
-//		System.out.println(q/2*j+j);
-//		System.out.println((q/2*j+j).compose(q*q+j/2));
-
-		MathUtils.Arrays.show(p.getRoots());
-
-		Polynomial q = new Polynomial(new double[]{1,1,1,1}) ;
-		MathUtils.Arrays.show(q.getRoots());
-
-		System.out.println(p.getFactors());
-		System.out.println(q.getFactors());
 	}
 
 }
