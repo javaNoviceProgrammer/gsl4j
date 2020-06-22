@@ -28,6 +28,7 @@ public class Polynomial implements Serializable {
 	private Polynomial(double... coeffs) {
 		this.coeffs = coeffs;
 		this.deg = degree();
+		reduce() ;
 	}
 
 	// a * x^b
@@ -35,6 +36,7 @@ public class Polynomial implements Serializable {
 		coeffs = new double[n + 1];
 		coeffs[n] = a;
 		deg = degree();
+		reduce() ;
 	}
 
 	// zero polynomial
@@ -73,19 +75,42 @@ public class Polynomial implements Serializable {
 		return 0;
 	}
 
-	public Polynomial reduce() {
+	public static Polynomial reduce(Polynomial p) {
+		int index = p.coeffs.length-1 ;
 		// remove zeros from higher order terms
-		int index = deg ;
-		while(Math.abs(coeffs[index])<1e-10) {
-			index-- ;
-			// check for p(x) = 0
-			if(index == -1)
-				return new Polynomial(null) ;
+		if(Math.abs(p.coeffs[index])<coeffEps) {
+			while(Math.abs(p.coeffs[index])<coeffEps) {
+				index-- ;
+				// check for p(x) = 0
+				if(index == -1)
+					return new Polynomial() ;
+			}
+			double[] reducedCoeffs = new double[index+1] ;
+			for(int i=0; i<index+1; i++)
+				reducedCoeffs[i] = p.coeffs[i] ;
+			return of(p) ;
 		}
-		double[] reducedCoeffs = new double[index+1] ;
-		for(int i=0; i<index+1; i++)
-			reducedCoeffs[i] = coeffs[i] ;
-		return new Polynomial(reducedCoeffs) ;
+		else {
+			return p ;
+		}
+	}
+
+	public void reduce() {
+		int index = coeffs.length-1 ;
+		// remove zeros from higher order terms
+		if(Math.abs(coeffs[index])<coeffEps) {
+			while(Math.abs(coeffs[index])<coeffEps) {
+				index-- ;
+				// check for p(x) = 0
+				if(index == -1)
+					return ;
+			}
+			double[] reducedCoeffs = new double[index+1] ;
+			for(int i=0; i<index+1; i++)
+				reducedCoeffs[i] = coeffs[i] ;
+			this.coeffs = reducedCoeffs ;
+			this.deg = index ;
+		}
 	}
 
 	public double[] coeffs() {
@@ -99,6 +124,10 @@ public class Polynomial implements Serializable {
 	public double limit(double a) {
 		return evaluate(a);
 	}
+
+//	public static Polynomial parsePolynom(String s) {
+//		return null ;
+//	}
 
 	public Polynomial pow(int m) {
 		Polynomial a = this;
@@ -129,7 +158,7 @@ public class Polynomial implements Serializable {
 		if (a.deg != b.deg)
 			return false;
 		for (int i = a.deg; i >= 0; i--) {
-			if(Math.abs(a.coeffs[i]-b.coeffs[i])<coeffEps)
+			if(Math.abs(a.coeffs[i]-b.coeffs[i])>coeffEps)
 				return false;
 		}
 		return true;
@@ -290,48 +319,52 @@ public class Polynomial implements Serializable {
 		return factors;
 	}
 
-//	public static ArrayList<Complex> getCommonRoots(Polynomial p, Polynomial q) {
-//		ArrayList<Polynomial> commonFactors = getCommonFactors(p, q);
-//		ArrayList<Complex> commonRoots = new ArrayList<>();
-//		for (Polynomial pp : commonFactors)
-//			commonRoots.addAll(pp.getRootsAsList());
-//
-//		return commonRoots;
-//	}
+	public static ArrayList<Complex> getCommonRoots(Polynomial p, Polynomial q) {
+		ArrayList<Polynomial> commonFactors = getCommonFactors(p, q);
+		ArrayList<Complex> commonRoots = new ArrayList<>();
+		for (Polynomial pp : commonFactors)
+			commonRoots.addAll(pp.getRootsAsList());
 
-//	public static ArrayList<Polynomial> getCommonFactors(Polynomial p, Polynomial q) {
-//		ArrayList<Polynomial> factorsOfP = p.getFactors();
-//		ArrayList<Polynomial> factorsOfQ = q.getFactors();
-//		ArrayList<Polynomial> factors = new ArrayList<>();
-//
-//		ArrayList<String> factorsP = new ArrayList<>();
-//		for (Polynomial pp : factorsOfP)
-//			factorsP.add(pp.toString());
-//		ArrayList<String> factorsQ = new ArrayList<>();
-//		for (Polynomial qq : factorsOfQ)
-//			factorsQ.add(qq.toString());
-//
-//		ArrayList<String> commons = (ArrayList<String>) ArrayUtils.getCommonElements(factorsP, factorsQ);
-//
-//		for (String s : commons) {
-//			for (Polynomial pp : factorsOfP) {
-//				if (s.equals(pp.toString())) {
-//					factors.add(pp);
-//					break;
-//				}
-//			}
-//		}
-//		return factors;
-//	}
+		return commonRoots;
+	}
 
-//	public ArrayList<Polynomial> getCommonFactors(Polynomial p) {
-//		return getCommonFactors(this, p);
-//	}
+	public static ArrayList<Polynomial> getCommonFactors(Polynomial p, Polynomial q) {
+		ArrayList<Polynomial> factorsOfP = p.getFactors();
+		ArrayList<Polynomial> factorsOfQ = q.getFactors();
+		ArrayList<Polynomial> factors = new ArrayList<>();
+
+		ArrayList<String> factorsP = new ArrayList<>();
+		for (Polynomial pp : factorsOfP)
+			factorsP.add(pp.toString());
+		ArrayList<String> factorsQ = new ArrayList<>();
+		for (Polynomial qq : factorsOfQ)
+			factorsQ.add(qq.toString());
+
+		ArrayList<String> commons = (ArrayList<String>) ArrayUtils.getCommonElements(factorsP, factorsQ);
+
+		for (String s : commons) {
+			for (Polynomial pp : factorsOfP) {
+				if (s.equals(pp.toString())) {
+					factors.add(pp);
+					break;
+				}
+			}
+		}
+		return factors;
+	}
+
+	public ArrayList<Polynomial> getCommonFactors(Polynomial p) {
+		return getCommonFactors(this, p);
+	}
 
 	// ************ operator overloading **********************
 
 	public static Polynomial valueOf(double v) {
 		return new Polynomial(v, 0);
+	}
+
+	public static Polynomial valueOf(double[] v) {
+		return Polynomial.ofCoeffs(v) ;
 	}
 
 	public static Polynomial valueOf(Polynomial v) {

@@ -241,6 +241,18 @@ public class TestPolynom {
 		System.out.println(p);
 	}
 
+	public static void test25() {
+		// p1(x) = x^3 - x
+		Polynomial p1 = Polynomial.ofCoeffs(0.0, -1.0, 0.0, 1.0, 0.0) ;
+		System.out.println(Arrays.toString(p1.coeffs()));
+		System.out.println(p1);
+		// p2(x) = -x^5 + 0.5x
+		Polynomial p2 = Polynomial.ofCoeffs(0.0, 0.5, 0.0, 0.0, 0.0, -5.0, 0.0) ;
+		System.out.println(p2);
+		ArrayList<Polynomial> commonFactors = Polynomial.getCommonFactors(p1, p2) ;
+		System.out.println(commonFactors);
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
@@ -264,8 +276,9 @@ public class TestPolynom {
 //		test20() ;
 //		test21() ;
 //		test22() ;
-		test23() ;
+//		test23() ;
 //		test24() ;
+		test25() ;
 	}
 
 }

@@ -1,12 +1,13 @@
 package org.gsl4j.polynom;
 
 import java.util.ArrayList;
-import static org.gsl4j.polynom.Polynomial.x ;
+import org.gsl4j.complex.Complex;
+import static org.gsl4j.polynom.Polynomial.* ;
 
 
 public class Rational {
 
-	Polynomial p, q;
+	private Polynomial p, q;
 
 	// Rational R(x) = p(x)/q(x)
 
@@ -39,6 +40,14 @@ public class Rational {
 
 	public Rational LHopital() {
 		return new Rational(p.diff(), q.diff()) ;
+	}
+
+	public Polynomial numerator() {
+		return p ;
+	}
+
+	public Polynomial denominator() {
+		return q ;
 	}
 
 	public Rational plus(Rational r) {
@@ -153,24 +162,6 @@ public class Rational {
 
 	// ************ operator overloading **********************
 
-	/**
-	 * Operator overloading support:
-	 *
-	 * Object a = 5;
-	 *
-	 */
-	public static Rational valueOf(int v) {
-		return new Rational(0*x+v);
-	}
-
-	public static Rational valueOf(long v) {
-		return new Rational(0*x+v);
-	}
-
-	public static Rational valueOf(float v) {
-		return new Rational(0*x+v);
-	}
-
 	public static Rational valueOf(double v) {
 		return new Rational(0*x+v);
 	}
@@ -179,9 +170,6 @@ public class Rational {
 		return new Rational(v, 0*x+1) ;
 	}
 
-	/**
-	 * Operator overload support: a+b
-	 */
 	public Rational add(Polynomial v) {
 		return this.plus(new Rational(v)) ;
 	}
@@ -198,30 +186,6 @@ public class Rational {
 		return this.plus(v) ;
 	}
 
-	public Rational add(int v) {
-		return this.plus(v) ;
-	}
-
-	public Rational addRev(int v) {
-		return this.plus(v) ;
-	}
-
-	public Rational add(long v) {
-		return this.plus(v) ;
-	}
-
-	public Rational addRev(long v) {
-		return this.plus(v) ;
-	}
-
-	public Rational add(float v) {
-		return this.plus(v) ;
-	}
-
-	public Rational addRev(float v) {
-		return this.plus(v) ;
-	}
-
 	public Rational add(double v) {
 		return this.plus(v) ;
 	}
@@ -230,9 +194,6 @@ public class Rational {
 		return this.plus(v) ;
 	}
 
-	/**
-	 * Operator overload support: a-b
-	 */
 	public Rational subtract(Polynomial v) {
 		return this.minus(new Rational(v)) ;
 	}
@@ -249,30 +210,6 @@ public class Rational {
 		return this.times(-1).plus(v) ;
 	}
 
-	public Rational subtract(int v) {
-		return this.minus(v) ;
-	}
-
-	public Rational subtractRev(int v) {
-		return this.times(-1).plus(v) ;
-	}
-
-	public Rational subtract(long v) {
-		return this.minus(v) ;
-	}
-
-	public Rational subtractRev(long v) {
-		return this.times(-1).plus(v) ;
-	}
-
-	public Rational subtract(float v) {
-		return this.minus(v) ;
-	}
-
-	public Rational subtractRev(float v) {
-		return this.times(-1).plus(v) ;
-	}
-
 	public Rational subtract(double v) {
 		return this.minus(v) ;
 	}
@@ -281,9 +218,6 @@ public class Rational {
 		return this.times(-1).plus(v) ;
 	}
 
-	/**
-	 * Operator overload support: a*b
-	 */
 	public Rational multiply(Polynomial v) {
 		return this.times(new Rational(v));
 	}
@@ -300,30 +234,6 @@ public class Rational {
 		return v.times(this);
 	}
 
-	public Rational multiply(int v) {
-		return this.times(v);
-	}
-
-	public Rational multiplyRev(int v) {
-		return this.times(v);
-	}
-
-	public Rational multiply(long v) {
-		return this.times(v);
-	}
-
-	public Rational multiplyRev(long v) {
-		return this.times(v);
-	}
-
-	public Rational multiply(float v) {
-		return this.times(v);
-	}
-
-	public Rational multiplyRev(float v) {
-		return this.times(v);
-	}
-
 	public Rational multiply(double v) {
 		return this.times(v);
 	}
@@ -332,9 +242,6 @@ public class Rational {
 		return this.times(v);
 	}
 
-	/**
-	 * Operator overload support: a/b
-	 */
 	public Rational divide(Polynomial v) {
 		return this.divides(new Rational(v));
 	}
@@ -351,30 +258,6 @@ public class Rational {
 		return v.divides(this);
 	}
 
-	public Rational divide(int v) {
-		return this.divides(v) ;
-	}
-
-	public Rational divideRev(int v) {
-		return (new Rational(0*x+v)).divides(this);
-	}
-
-	public Rational divide(long v) {
-		return this.divides(v) ;
-	}
-
-	public Rational divideRev(long v) {
-		return (new Rational(0*x+v)).divides(this);
-	}
-
-	public Rational divide(float v) {
-		return this.divides(v) ;
-	}
-
-	public Rational divideRev(float v) {
-		return (new Rational(0*x+v)).divides(this);
-	}
-
 	public Rational divide(double v) {
 		return this.divides(v) ;
 	}
@@ -383,29 +266,8 @@ public class Rational {
 		return (new Rational(0*x+v)).divides(this);
 	}
 
-	/**
-	 * Operator overload support: -a
-	 */
 	public Rational negate() {
 		return this.times(-1) ;
-	}
-
-	// for test
-	public static void main(String[] args) {
-		Rational r = new Rational(x*x-1, x.pow(3)+1) ;
-		Rational s = new Rational((x-1)*(x+3), x+3) ;
-		System.out.println(r);
-		System.out.println(s);
-		Rational m = r/s ;
-		System.out.println(m);
-		System.out.println(m.simplify());
-		System.out.println(m.zeroes());
-		System.out.println(m.poles());
-		m.plot(-10, 10);
-		m.plotZeroPole();
-
-		System.out.println(s.evaluate(-3));
-		System.out.println(s.limit(-3));
 	}
 
 

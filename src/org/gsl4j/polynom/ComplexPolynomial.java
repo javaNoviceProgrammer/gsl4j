@@ -1,14 +1,9 @@
 package org.gsl4j.polynom;
 
-import static mathLib.numbers.Complex.ZERO;
-import static mathLib.numbers.Complex.j;
-
 import java.util.ArrayList;
 
-import flanagan.complex.ComplexPoly;
-import flanagan.math.Fmath;
-import mathLib.numbers.Complex;
-import mathLib.util.MathUtils;
+import org.gsl4j.complex.Complex;
+
 
 public class ComplexPolynomial {
 
@@ -22,7 +17,7 @@ public class ComplexPolynomial {
 		coef = coeff;
 		deg = degree();
 	}
-	
+
 	public ComplexPolynomial(double[] coeff) {
 		coef = new Complex[coeff.length];
 		for(int i=0; i<coeff.length; i++)
@@ -345,7 +340,7 @@ public class ComplexPolynomial {
     		coeffs[i] = new flanagan.complex.Complex(p.coef[i].re(), p.coef[i].im()) ; ;
     	return new ComplexPoly(coeffs) ;
     }
-    
+
     public ArrayList<ComplexPolynomial> getFactors() {
     	Complex[] roots = getRoots() ;
     	ArrayList<ComplexPolynomial> factors = new ArrayList<>() ;
@@ -359,7 +354,7 @@ public class ComplexPolynomial {
     			factors.add(p) ;
     		}
     	}
-    	
+
     	return factors ;
     }
 
@@ -653,7 +648,7 @@ public class ComplexPolynomial {
 
 		Polynomial q = new Polynomial(new double[]{1,1,1,1}) ;
 		MathUtils.Arrays.show(q.getRoots());
-		
+
 		System.out.println(p.getFactors());
 		System.out.println(q.getFactors());
 	}
