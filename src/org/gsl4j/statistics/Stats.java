@@ -107,8 +107,8 @@ public class Stats {
 	public static native double snFromSortedData(double[] sortedData, double[] work) ;
 
 	// Q_n Statistic
-	public static native double qn0FromSortedData(double[] sortedData, double[] work, double[] workInt) ;
-	public static native double qnFromSortedData(double[] sortedData, double[] work, double[] workInt) ;
+	public static native double qn0FromSortedData(double[] sortedData, double[] work, int[] workInt) ;
+	public static native double qnFromSortedData(double[] sortedData, double[] work, int[] workInt) ;
 
 
 }
