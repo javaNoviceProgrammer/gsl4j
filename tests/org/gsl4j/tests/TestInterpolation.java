@@ -1,8 +1,8 @@
 package org.gsl4j.tests;
 
+import org.gsl4j.interpolate.Interpolation1D;
 import org.gsl4j.interpolate.oned.AkimaSplineInterpolation;
 import org.gsl4j.interpolate.oned.CubicSplineInterpolation;
-import org.gsl4j.interpolate.oned.Interpolation1D;
 import org.gsl4j.interpolate.oned.LinearInterpolation;
 import org.gsl4j.interpolate.oned.PeriodicAkimaSplineInterpolation;
 import org.gsl4j.util.ArrayUtils;

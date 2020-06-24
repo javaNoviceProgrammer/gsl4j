@@ -1,4 +1,4 @@
-package org.gsl4j.interpolate.oned;
+package org.gsl4j.interpolate;
 
 import org.gsl4j.util.NativeLibraryLoader;
 
