@@ -28,7 +28,7 @@ public class TestInterpolation {
 	}
 
 	public static void test3() {
-		double[] x = MathUtils.linspace(0.0, 1.0, 10) ;
+		double[] x = MathUtils.linspace(0.0, 1.0, 10000) ;
 		double[] y = ArrayUtils.eval(t -> Math.sin(t), x) ;
 		Interpolation1D linInterp = new CubicSplineInterpolation(x, y) ;
 		System.out.println(linInterp.name());

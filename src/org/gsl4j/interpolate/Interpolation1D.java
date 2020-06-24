@@ -37,4 +37,9 @@ public class Interpolation1D {
 	public native double deriv2(double x) ;
 	public native double integrate(double a, double b) ;
 
+	@Override
+	public String toString() {
+		return name() ;
+	}
+
 }
