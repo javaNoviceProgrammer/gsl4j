@@ -28,7 +28,6 @@ public class Interpolation1D {
 	}
 
 	private native void cacheData(int type) ;
-	private native void close() ;
 
 	public native String name() ;
 	public native int minSize() ;
@@ -37,11 +36,5 @@ public class Interpolation1D {
 	public native double deriv(double x) ;
 	public native double deriv2(double x) ;
 	public native double integrate(double a, double b) ;
-
-
-	@Override
-	protected void finalize() throws Throwable {
-		close() ;
-	}
 
 }

@@ -75,6 +75,22 @@ public class TestInterpolation {
 		System.out.println(Math.sin(0.222222));
 	}
 
+	public static void test9() {
+		double[] x = MathUtils.linspace(0.0, 1.0, 1000) ;
+		double[] y = ArrayUtils.eval(t -> Math.sin(t), x) ;
+		Interpolation1D cubicSpline = new PeriodicAkimaSplineInterpolation(x, y) ;
+		double[] y2 = ArrayUtils.eval(t -> Math.cos(t), x) ;
+		Interpolation1D linearInterp = new LinearInterpolation(x, y2) ;
+		System.out.println(cubicSpline.name());
+		double z = cubicSpline.eval(0.222222) ;
+		System.out.println(z);
+		System.out.println(Math.sin(0.222222));
+		System.out.println(linearInterp.name());
+		double z2 = linearInterp.eval(0.222222) ;
+		System.out.println(z2);
+		System.out.println(Math.cos(0.222222));
+	}
+
 	public static void main(String[] args) {
 		test1() ;
 		test2() ;
@@ -84,6 +100,7 @@ public class TestInterpolation {
 		test6() ;
 		test7() ;
 		test8() ;
+		test9() ;
 	}
 
 }
