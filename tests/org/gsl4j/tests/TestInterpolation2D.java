@@ -126,7 +126,7 @@ public class TestInterpolation2D {
 		double yv = 0.2 ;
 		double zv = interp.derivXY(xv, yv) ;
 		System.out.println("interp dxdy = " + zv);
-		System.out.println("exact dxdy = " + (-Math.cos(xv)*Math.sin(yv)));
+		System.out.println("exact dxdy = " + (-cos(xv)*sin(yv)));
 	}
 
 	public static void main(String[] args) {
