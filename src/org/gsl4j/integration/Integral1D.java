@@ -112,13 +112,16 @@ public class Integral1D {
 	public native double[] qawoWithError(double a, double b, int choice, double omega) ;
 
 	// QAWF adaptive integration for Fourier integrals
-	public native double qawf(double a, double b, int choice, double omega) ;
+	public native double qawf(double a, int choice, double omega) ;
+	public native double[] qawfWithError(double a, int choice, double omega) ;
 
 	// CQUAD doubly-adaptive integration
 	public native double cquad(double a, double b) ;
+	public native double[] cquadWithError(double a, double b) ;
 
 	// Romberg integration
 	public native double romberg(double a, double b) ;
+	public native double[] rombergDetailed(double a, double b) ;
 
 	// Gauss-Legendre integration
 	public native double glfixed(double a, double b) ;

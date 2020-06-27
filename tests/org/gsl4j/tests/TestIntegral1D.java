@@ -223,10 +223,69 @@ public class TestIntegral1D {
 
 	public static void test18() {
 		double omega = 5.0 ;
-		IntegralFunction1D func = t -> t ;
+		IntegralFunction1D func = t -> 1 ;
 		Integral1D integral = new Integral1D(func) ;
-		double result = integral.qawo(0.0, 1000.0, Integral1D.GSL_INTEG_SINE, omega) ;
+		double result = integral.qawo(0.0, 10000.0, Integral1D.GSL_INTEG_SINE, omega) ;
 		System.out.println(result);
+	}
+
+	public static void test18_1() {
+		double omega = 5.0 ;
+		IntegralFunction1D func = t -> 1 ;
+		Integral1D integral = new Integral1D(func) ;
+		double[] result = integral.qawoWithError(0.0, 10000.0, Integral1D.GSL_INTEG_SINE, omega) ;
+		System.out.println(Arrays.toString(result));
+	}
+
+	public static void test19() {
+		double omega = 5.0 ;
+		IntegralFunction1D func = t -> Math.exp(-t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double result = integral.qawf(0.0, Integral1D.GSL_INTEG_SINE, omega) ;
+		System.out.println(result);
+	}
+
+	public static void test19_1() {
+		double omega = 5.0 ;
+		IntegralFunction1D func = t -> Math.exp(-t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double[] result = integral.qawfWithError(0.0, Integral1D.GSL_INTEG_SINE, omega) ;
+		System.out.println(Arrays.toString(result));
+	}
+
+	public static void test20() {
+		IntegralFunction1D func = t -> Math.exp(-t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double result = integral.cquad(0.0, 10.0) ;
+		System.out.println(result);
+	}
+
+	public static void test20_1() {
+		IntegralFunction1D func = t -> Math.exp(-t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double[] result = integral.cquadWithError(0.0, 10.0) ;
+		System.out.println(Arrays.toString(result));
+	}
+
+	public static void test21() {
+		IntegralFunction1D func = t -> Math.exp(-t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double result = integral.cquad(0.0, 1e10) ;
+		System.out.println(result);
+	}
+
+	public static void test22() {
+		IntegralFunction1D func = t -> Math.sin(t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double result = integral.romberg(0.0, 10.0) ;
+		System.out.println(result);
+	}
+
+	public static void test22_1() {
+		IntegralFunction1D func = t -> Math.sin(t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double[] result = integral.rombergDetailed(0.0, 10.0) ;
+		System.out.println(Arrays.toString(result));
 	}
 
 	public static void main(String[] args) {
@@ -260,7 +319,15 @@ public class TestIntegral1D {
 //		test16_1() ;
 //		test17() ;
 //		test17_1() ;
-		test18() ;
+//		test18() ;
+//		test18_1() ;
+//		test19() ;
+//		test19_1() ;
+//		test20() ;
+//		test20_1() ;
+//		test21() ;
+		test22() ;
+		test22_1() ;
 	}
 
 }
