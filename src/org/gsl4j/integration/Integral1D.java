@@ -83,6 +83,10 @@ public class Integral1D {
 	// QNG non-adaptive Gauss-Kronrod integration over (a,b) interval
 	/**
 	 * This function applies the Gauss-Kronrod 10-point, 21-point, 43-point and 87-point integration rules in succession until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, an estimate of the absolute error, abserr and the number of function evaluations used, neval. The Gauss-Kronrod rules are designed in such a way that each rule uses all the results of its predecessors, in order to minimize the total number of function evaluations.
+	 * <br>
+	 * Q - quadrature routine <br>
+	 * N - non-adaptive integrator <br>
+	 * G - general integrand (user-defined)
 	 *
 	 * @param a : start of interval
 	 * @param b : end of interval
@@ -92,6 +96,10 @@ public class Integral1D {
 
 	/**
 	 * Same as {@link #qng(double, double)}, but also returns the integration error and the number of evaluations.
+ 	 * <br>
+ 	 * Q - quadrature routine <br>
+	 * N - non-adaptive integrator <br>
+	 * G - general integrand (user-defined)
 	 * @param a : start of interval
 	 * @param b : end of interval
 	 * @return [numerical integration, abs error, nevals]
@@ -99,16 +107,81 @@ public class Integral1D {
 	public native double[] qngDetailed(double a, double b) ;
 
 	// QAG adaptive integration over (a,b) interval
+	/**
+	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
+	 * <br>
+	 * Q - quadrature routine <br>
+	 * A - adaptive integrator <br>
+	 * G - general integrand (user-defined) <br>
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	public native double qagGauss15(double a, double b) ;
 	public native double[] qagGauss15withError(double a, double b) ;
+
+	/**
+	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
+	 * <br>
+	 * Q - quadrature routine <br>
+	 * A - adaptive integrator <br>
+	 * G - general integrand (user-defined) <br>
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	public native double qagGauss21(double a, double b) ;
 	public native double[] qagGauss21withError(double a, double b) ;
+
+	/**
+	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
+	 * <br>
+	 * Q - quadrature routine <br>
+	 * A - adaptive integrator <br>
+	 * G - general integrand (user-defined) <br>
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	public native double qagGauss31(double a, double b) ;
 	public native double[] qagGauss31withError(double a, double b) ;
+
+	/**
+	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
+	 * <br>
+	 * Q - quadrature routine <br>
+	 * A - adaptive integrator <br>
+	 * G - general integrand (user-defined) <br>
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	public native double qagGauss41(double a, double b) ;
 	public native double[] qagGauss41withError(double a, double b) ;
+
+	/**
+	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
+	 * <br>
+	 * Q - quadrature routine <br>
+	 * A - adaptive integrator <br>
+	 * G - general integrand (user-defined) <br>
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	public native double qagGauss51(double a, double b) ;
 	public native double[] qagGauss51withError(double a, double b) ;
+
+	/**
+	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
+	 * <br>
+	 * Q - quadrature routine <br>
+	 * A - adaptive integrator <br>
+	 * G - general integrand (user-defined) <br>
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	public native double qagGauss61(double a, double b) ;
 	public native double[] qagGauss61withError(double a, double b) ;
 
