@@ -25,6 +25,7 @@ public class Complex implements Serializable, OperatorOverloading<Complex> {
 	public static final Complex ZERO = new Complex(0.0, 0.0) ;
 	public static final Complex j = new Complex(0.0, 1.0) ;
 	private static int DISPLAY_ACCURACY = 4 ;
+	private static double epsilon = 1e-10 ;
 
 	private double re ;
 	private double im ;
@@ -123,6 +124,10 @@ public class Complex implements Serializable, OperatorOverloading<Complex> {
 		return im ;
 	}
 
+	public void setComplexTolerance(double tolerance) {
+		epsilon = tolerance ;
+	}
+
 	public double abs() {
 		return ComplexMath.abs(re, im) ;
 	}
@@ -132,7 +137,7 @@ public class Complex implements Serializable, OperatorOverloading<Complex> {
 	}
 
 	public boolean isReal() {
-		return Math.abs(im)<1e-10 ? true : false ;
+		return Math.abs(im)<epsilon ? true : false ;
 	}
 
 	public double[] toArray() {
@@ -163,6 +168,34 @@ public class Complex implements Serializable, OperatorOverloading<Complex> {
 		if (im < 0)
 			return stReal + "-" + "j" + stImag;
 		return stReal + "+" + "j" + stImag;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(im);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(re);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Complex))
+			return false;
+		Complex other = (Complex) obj;
+		if (Math.abs(re-other.re)>epsilon)
+			return false;
+		if (Math.abs(im-other.im)>epsilon)
+			return false;
+		return true;
 	}
 
 	//*********** support for operator overloading *************

@@ -87,10 +87,45 @@ public class Interpolation2D {
 	 * @return
 	 */
 	public native double derivX(double x, double y) ;
+
+	/**
+	 * These functions return the interpolated value d = \partial z / \partial y for a given point (x, y), using the interpolation object interp, data arrays xa, ya, and za and the accelerators xacc and yacc. When x is outside the range of xa or y is outside the range of ya, the error code GSL_EDOM is returned.
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public native double derivY(double x, double y) ;
+
+	/**
+	 * These functions return the interpolated value d = \partial^2 z / \partial x^2 for a given point (x, y), using the interpolation object interp, data arrays xa, ya, and za and the accelerators xacc and yacc. When x is outside the range of xa or y is outside the range of ya, the error code GSL_EDOM is returned.
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public native double derivXX(double x, double y) ;
+
+	/**
+	 * These functions return the interpolated value d = \partial^2 z / \partial y^2 for a given point (x, y), using the interpolation object interp, data arrays xa, ya, and za and the accelerators xacc and yacc. When x is outside the range of xa or y is outside the range of ya, the error code GSL_EDOM is returned.
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public native double derivYY(double x, double y) ;
+
+	/**
+	 * These functions return the interpolated value d = \partial^2 z / \partial x \partial y for a given point (x, y), using the interpolation object interp, data arrays xa, ya, and za and the accelerators xacc and yacc. When x is outside the range of xa or y is outside the range of ya, the error code GSL_EDOM is returned.
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public native double derivXY(double x, double y) ;
+
+	/**
+	 * These functions return the interpolated value d = \partial^2 z / \partial y \partial x for a given point (x, y), using the interpolation object interp, data arrays xa, ya, and za and the accelerators xacc and yacc. When x is outside the range of xa or y is outside the range of ya, the error code GSL_EDOM is returned.
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public native double derivYX(double x, double y) ;
 
 	@Override
