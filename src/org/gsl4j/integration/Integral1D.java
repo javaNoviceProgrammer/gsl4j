@@ -124,7 +124,8 @@ public class Integral1D {
 	public native double[] rombergDetailed(double a, double b) ;
 
 	// Gauss-Legendre integration
-	public native double glfixed(double a, double b) ;
+	public native double glfixed(double a, double b, int numPoints) ;
+	public native double[] glfixedPointAndWeight(double a, double b, int numPoints, int index) ;
 
 	// Fixed point quadratures
 	public static final int FIXED_LEGENDRE = 2 ;
@@ -137,6 +138,8 @@ public class Integral1D {
 	public static final int FIXED_RATIONAL = 9 ;
 	public static final int FIXED_CHEBYSHEV2 = 10 ;
 
-	public native double fixed(double a, double b) ;
+	public native double qfixed(double a, double b, int numPoints, int type, double alpha, double beta) ;
+	public native double[] qfixedPoints(double a, double b, int numPoints, int type, double alpha, double beta) ;
+	public native double[] qfixedWeights(double a, double b, int numPoints, int type, double alpha, double beta) ;
 
 }

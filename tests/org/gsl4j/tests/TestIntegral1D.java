@@ -288,6 +288,41 @@ public class TestIntegral1D {
 		System.out.println(Arrays.toString(result));
 	}
 
+	public static void test23() {
+		IntegralFunction1D func = t -> Math.sin(t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double result = integral.glfixed(1.1, 2.2, 20) ;
+		System.out.println(result);
+	}
+
+	public static void test23_1() {
+		IntegralFunction1D func = t -> Math.sin(t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double[] result = integral.glfixedPointAndWeight(-1.0, 1.0, 3, 0) ;
+		System.out.println(Arrays.toString(result));
+	}
+
+	public static void test24() {
+		IntegralFunction1D func = t -> Math.sin(t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double result = integral.qfixed(1.1, 2.2, 10, Integral1D.FIXED_LEGENDRE, 0, 0) ;
+		System.out.println(result);
+	}
+
+	public static void test24_1() {
+		IntegralFunction1D func = t -> Math.sin(t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double[] result = integral.qfixedPoints(1.1, 2.2, 5, Integral1D.FIXED_LEGENDRE, 0, 0) ;
+		System.out.println(Arrays.toString(result));
+	}
+
+	public static void test24_2() {
+		IntegralFunction1D func = t -> Math.sin(t) ;
+		Integral1D integral = new Integral1D(func) ;
+		double[] result = integral.qfixedWeights(1.1, 2.2, 5, Integral1D.FIXED_LEGENDRE, 0, 0) ;
+		System.out.println(Arrays.toString(result));
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
@@ -326,8 +361,13 @@ public class TestIntegral1D {
 //		test20() ;
 //		test20_1() ;
 //		test21() ;
-		test22() ;
-		test22_1() ;
+//		test22() ;
+//		test22_1() ;
+//		test23() ;
+//		test23_1() ;
+		test24() ;
+		test24_1() ;
+		test24_2() ;
 	}
 
 }
