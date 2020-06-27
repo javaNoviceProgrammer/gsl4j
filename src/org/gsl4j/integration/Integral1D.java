@@ -11,17 +11,46 @@ public class Integral1D {
 
 	private static native void initFieldIDs() ;
 
-	// setting up the constructors
-
 	IntegralFunction1D func ;
 	double absErr = 1e-10 ;
 	double relErr = 1e-10 ;
 	int maxNumberOfIntervals = 100 ;
 
+	/**
+	 * Signature of methods: <br>
+	 * Q - quadrature routine <br>
+	 * N - non-adaptive integrator <br>
+	 * A - adaptive integrator <br>
+	 * G - general integrand (user-defined) <br>
+	 * W - weight function with integrand <br>
+	 * S - singularities can be more readily integrated <br>
+	 * P - points of special difficulty can be supplied <br>
+	 * I - infinite range of integration <br>
+	 * O - oscillatory weight function, cos or sin <br>
+	 * F - Fourier integral <br>
+	 * C - Cauchy principal value
+	 *
+	 */
 	public Integral1D() {
-
+		this.func = null ;
 	}
 
+	/**
+	 * Signature of methods: <br>
+	 * Q - quadrature routine <br>
+	 * N - non-adaptive integrator <br>
+	 * A - adaptive integrator <br>
+	 * G - general integrand (user-defined) <br>
+	 * W - weight function with integrand <br>
+	 * S - singularities can be more readily integrated <br>
+	 * P - points of special difficulty can be supplied <br>
+	 * I - infinite range of integration <br>
+	 * O - oscillatory weight function, cos or sin <br>
+	 * F - Fourier integral <br>
+	 * C - Cauchy principal value
+	 *
+	 * @param func : integral function (integrand)
+	 */
 	public Integral1D(IntegralFunction1D func) {
 		this.func = func ;
 	}
@@ -60,21 +89,30 @@ public class Integral1D {
 	public native double qagi() ;
 	public native double[] qagiWithError() ;
 	public native double qagiu(double a) ;
+	public native double[] qagiuWithError(double a) ;
 	public native double qagil(double b) ;
+	public native double[] qagilWithError(double b) ;
 
 	// QAWC adaptive integration for Cauchy principal values
 	public native double qawc(double a, double b, double c) ;
+	public native double[] qawcWithError(double a, double b, double c) ;
 
 	// QAWS adaptive integration for singular functions
-	public native double qaws(double a, double b) ;
+	public static final int WEIGHT_FUNC_TYPE_I = 100 ;
+	public static final int WEIGHT_FUNC_TYPE_II = 101 ;
+	public static final int WEIGHT_FUNC_TYPE_III = 102 ;
+	public static final int WEIGHT_FUNC_TYPE_IV = 103 ;
+	public native double qaws(double a, double b, int weightFuncType, double alpha, double beta) ;
+	public native double[] qawsWithError(double a, double b, int weightFuncType, double alpha, double beta) ;
 
 	// QAWO adaptive integration for oscillatory functions
 	public static final int GSL_INTEG_COSINE = 0 ;
 	public static final int GSL_INTEG_SINE = 1 ;
-	public native double qawo(int choice, double omega, double a, double b) ;
+	public native double qawo(double a, double b, int choice, double omega) ;
+	public native double[] qawoWithError(double a, double b, int choice, double omega) ;
 
 	// QAWF adaptive integration for Fourier integrals
-	public native double qawf(int choice, double omega, double a, double b) ;
+	public native double qawf(double a, double b, int choice, double omega) ;
 
 	// CQUAD doubly-adaptive integration
 	public native double cquad(double a, double b) ;
