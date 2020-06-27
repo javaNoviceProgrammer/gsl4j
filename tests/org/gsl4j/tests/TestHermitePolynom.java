@@ -2,7 +2,7 @@ package org.gsl4j.tests;
 
 import org.gsl4j.polynom.HermitePolynom;
 
-public class TestHermitePolynom {
+class TestHermitePolynom {
 
 	private static void test1() {
 		System.out.println(HermitePolynom.hermite(10, 1.2));

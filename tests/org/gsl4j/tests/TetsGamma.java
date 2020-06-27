@@ -2,7 +2,7 @@ package org.gsl4j.tests;
 
 import org.gsl4j.special.Gamma;
 
-public class TetsGamma {
+class TetsGamma {
 
 	private static void test1() {
 		double x = 1.1 ;

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.gsl4j.special.ExpIntegrals;
 
-public class TestExpIntegrals {
+class TestExpIntegrals {
 
 	private static void test1() {
 		double[] x = {1.1, 2.2, -1.2} ;

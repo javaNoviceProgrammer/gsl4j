@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.gsl4j.special.Gegenbauer;
 
-public class TestGegenbauer {
+class TestGegenbauer {
 
 	private static void test1() {
 		double x = 1.1 ;

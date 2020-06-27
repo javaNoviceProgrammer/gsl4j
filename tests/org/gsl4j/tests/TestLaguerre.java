@@ -2,7 +2,7 @@ package org.gsl4j.tests;
 
 import org.gsl4j.special.Laguerre;
 
-public class TestLaguerre {
+class TestLaguerre {
 
 	private static void test1() {
 		double a = 1.1 ;

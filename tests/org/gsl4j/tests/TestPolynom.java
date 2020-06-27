@@ -8,7 +8,7 @@ import org.gsl4j.polynom.Polynomial;
 import org.gsl4j.polynom.PolynomialMath;
 import static org.gsl4j.complex.Complex.j ;
 
-public class TestPolynom {
+class TestPolynom {
 
 	public static void test1() {
 		double[] coeffs = {1.0, -1.0} ;

@@ -3,7 +3,7 @@ package org.gsl4j.tests;
 import org.gsl4j.ElementaryFunctions;
 import org.gsl4j.MathConstants;
 
-public class TestElementaryFunctions {
+class TestElementaryFunctions {
 
 	private static void test1() {
 		System.out.println("acosh(1.2) = " + ElementaryFunctions.acosh(1.2));

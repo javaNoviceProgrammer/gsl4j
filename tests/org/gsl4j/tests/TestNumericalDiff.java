@@ -6,7 +6,7 @@ import java.util.function.Function;
 import org.gsl4j.diff.NumericalDiff;
 import org.gsl4j.function.MathFunction;
 
-public class TestNumericalDiff {
+class TestNumericalDiff {
 
 	public static void test1() {
 		MathFunction func = t -> Math.sin(t) ;

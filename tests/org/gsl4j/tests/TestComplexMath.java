@@ -5,7 +5,7 @@ import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexMath;
 import static org.gsl4j.complex.Complex.j ;
 
-public class TestComplexMath {
+class TestComplexMath {
 
 	private static void test1() {
 		Complex z1 = Complex.ofRect(1.1, 2.2) ;

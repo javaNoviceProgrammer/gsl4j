@@ -2,7 +2,7 @@ package org.gsl4j.tests;
 
 import org.gsl4j.statistics.Stats;
 
-public class TestStats {
+class TestStats {
 
 	public static void test1() {
 		double[] data = {1.0, 2.0, -1.0} ;

@@ -7,7 +7,7 @@ import org.gsl4j.sequence.LevinTransform;
 import org.gsl4j.sequence.Sequence;
 import org.gsl4j.util.MathUtils;
 
-public class TestLevinTransform {
+class TestLevinTransform {
 
 	private static void test1() {
 		// sequence a_n = 1/n^2

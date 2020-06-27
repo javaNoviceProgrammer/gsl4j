@@ -7,7 +7,7 @@ import static org.gsl4j.interpolate.Interpolation2D.* ;
 import static java.lang.Math.sin ;
 import static java.lang.Math.cos ;
 
-public class TestInterpolation2D {
+class TestInterpolation2D {
 
 	public static void test1() {
 		double[] x = MathUtils.linspace(0.0, 1.0, 50) ;

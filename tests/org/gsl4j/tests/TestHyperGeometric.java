@@ -2,7 +2,7 @@ package org.gsl4j.tests;
 
 import org.gsl4j.special.HyperGeometric;
 
-public class TestHyperGeometric {
+class TestHyperGeometric {
 
 	public static void test1() {
 		double x = 1.1 ;

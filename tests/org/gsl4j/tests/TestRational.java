@@ -5,7 +5,7 @@ import static org.gsl4j.polynom.Polynomial.x;
 import org.gsl4j.polynom.Polynomial;
 import org.gsl4j.polynom.Rational;
 
-public class TestRational {
+class TestRational {
 
 	public static void test1() {
 		Rational r = new Rational(x*x-1, x.pow(3)+1) ;

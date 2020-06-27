@@ -2,7 +2,7 @@ package org.gsl4j.tests;
 
 import org.gsl4j.MathConstants;
 
-public class TestMathConstants {
+class TestMathConstants {
 
 	private static void test1() {
 		System.out.println("M_E = " + MathConstants.M_E);

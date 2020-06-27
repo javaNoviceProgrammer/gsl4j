@@ -3,7 +3,7 @@ package org.gsl4j.tests;
 import org.gsl4j.roots.RealRoot;
 import org.gsl4j.roots.RealRootFunction;
 
-public class TestMethodCallBack {
+class TestMethodCallBack {
 
 	private static void test1() {
 		RealRootFunction func = x -> x*x ;

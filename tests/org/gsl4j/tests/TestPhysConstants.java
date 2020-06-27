@@ -2,7 +2,7 @@ package org.gsl4j.tests;
 
 import org.gsl4j.PhysicalConstants;
 
-public class TestPhysConstants {
+class TestPhysConstants {
 
 	private static void test1() {
 		System.out.println(PhysicalConstants.GSL_CONST_MKSA_SPEED_OF_LIGHT);

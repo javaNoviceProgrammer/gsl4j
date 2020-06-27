@@ -7,7 +7,7 @@ import org.gsl4j.integration.Integral1D;
 import org.gsl4j.integration.IntegralFunction1D;
 
 
-public class TestIntegral1D {
+class TestIntegral1D {
 
 	public static void test1() {
 		IntegralFunction1D func = t -> t*t+1.0 ;

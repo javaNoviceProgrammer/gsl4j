@@ -9,7 +9,7 @@ import org.gsl4j.util.ArrayUtils;
 import org.gsl4j.util.MathUtils;
 
 
-public class TestInterpolation {
+class TestInterpolation {
 
 	public static void test1() {
 		double[] x = MathUtils.linspace(0.0, 1.0, 10) ;

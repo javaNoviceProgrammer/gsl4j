@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.gsl4j.special.EllipticIntegrals;
 
-public class TestEllipticIntegrals {
+class TestEllipticIntegrals {
 
 	private static void test1() {
 		double x = 0.5 ;

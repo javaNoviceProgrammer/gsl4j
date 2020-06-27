@@ -7,7 +7,7 @@ import org.gsl4j.special.Debye;
 import org.gsl4j.special.Dilogarithm;
 import org.gsl4j.util.MathUtils;
 
-public class TestDebye {
+class TestDebye {
 
 	private static void test1() {
 		double[] x = MathUtils.linspace(0.0, 10.0, 5) ;
