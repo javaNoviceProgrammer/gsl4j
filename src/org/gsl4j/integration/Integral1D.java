@@ -2,6 +2,27 @@ package org.gsl4j.integration;
 
 import org.gsl4j.util.NativeLibraryLoader;
 
+/**
+ * This chapter describes routines for performing numerical integration (quadrature) of a function in one dimension. There are routines for adaptive and non-adaptive integration of general functions, with specialised routines for specific cases. These include integration over infinite and semi-infinite ranges, singular integrals, including logarithmic singularities, computation of Cauchy principal values and oscillatory integrals. The library reimplements the algorithms used in QUADPACK, a numerical integration package written by Piessens, de Doncker-Kapenga, Ueberhuber and Kahaner. Fortran code for QUADPACK is available on Netlib. Also included are non-adaptive, fixed-order Gauss-Legendre integration routines with high precision coefficients, as well as fixed-order quadrature rules for a variety of weighting functions from IQPACK.
+ * <br>
+ * The functions described in this chapter are declared in the header file {@code gsl_integration.h}.
+ * <br>
+ * Signature of methods: <br>
+ * Q - quadrature routine <br>
+ * N - non-adaptive integrator <br>
+ * A - adaptive integrator <br>
+ * G - general integrand (user-defined) <br>
+ * W - weight function with integrand <br>
+ * S - singularities can be more readily integrated <br>
+ * P - points of special difficulty can be supplied <br>
+ * I - infinite range of integration <br>
+ * O - oscillatory weight function, cos or sin <br>
+ * F - Fourier integral <br>
+ * C - Cauchy principal value
+ *
+ * @author Meisam
+ *
+ */
 public class Integral1D {
 
 	static {
@@ -60,7 +81,21 @@ public class Integral1D {
 	}
 
 	// QNG non-adaptive Gauss-Kronrod integration over (a,b) interval
+	/**
+	 * This function applies the Gauss-Kronrod 10-point, 21-point, 43-point and 87-point integration rules in succession until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, an estimate of the absolute error, abserr and the number of function evaluations used, neval. The Gauss-Kronrod rules are designed in such a way that each rule uses all the results of its predecessors, in order to minimize the total number of function evaluations.
+	 *
+	 * @param a : start of interval
+	 * @param b : end of interval
+	 * @return numerical integration
+	 */
 	public native double qng(double a, double b) ;
+
+	/**
+	 * Same as {@link #qng(double, double)}, but also returns the integration error and the number of evaluations.
+	 * @param a : start of interval
+	 * @param b : end of interval
+	 * @return [numerical integration, abs error, nevals]
+	 */
 	public native double[] qngDetailed(double a, double b) ;
 
 	// QAG adaptive integration over (a,b) interval
