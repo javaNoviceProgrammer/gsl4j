@@ -45,7 +45,14 @@ public class NativeLibraryLoader {
 
 	// linux
 	private static void loadLinuxLibraries() {
-
+		// copy gsl libs and load gsl4j library
+		try {
+			copyToLocation("/usr/local/lib", "libgsl.so.25.0.0");
+			copyToLocation("/usr/local/lib", "libgslcblas.so.0.0.0");
+			NativeUtils.loadLibraryFromJar("/libgsl4j_c.so");
+		} catch (IOException e) {
+			System.err.println("Could not load GSL4j dynamic library");
+		}
 	}
 
 	// windows
