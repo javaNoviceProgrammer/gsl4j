@@ -6,13 +6,18 @@ public class RealRoot {
 
 	static {
 		NativeLibraryLoader.loadLibraries();
+		initFieldIDs() ;
 	}
 
-	double absError ;
-	double relError ;
+	private static native void initFieldIDs() ;
+
+	double absError = 1e-10 ;
+	double relError = 10e-10 ;
 	RealRootFunction func ;
 
-	public RealRoot() {} ;
+	public RealRoot() {
+
+	}
 
 	public RealRoot(RealRootFunction func) {
 		this.func = func ;
@@ -21,9 +26,6 @@ public class RealRoot {
 	public void setFunction(RealRootFunction func) {
 		this.func = func ;
 	}
-
-	public static native double func(RealRootFunction func, double x) ;
-
 
 	// Root Bracketing Algorithms
 	public native double bisection(double start, double end) ;

@@ -177,6 +177,13 @@ public interface Sequence extends Serializable, OperatorOverloading<Sequence> {
 		return n -> 1.0/order * Series.sum(this, n, n+order-1) ;
 	}
 
+	default double[] getTerms(int numTerms) {
+		double[] values = new double[numTerms] ;
+		for(int i=0; i<values.length; i++)
+			values[i] = evaluate(i) ;
+		return values ;
+	}
+
 	//*************** operator overloading ****************
 
 	default Sequence add(int v) {
