@@ -12,7 +12,8 @@ public class RealRoot {
 	private static native void initFieldIDs() ;
 
 	double absError = 1e-10 ;
-	double relError = 10e-10 ;
+	double relError = 1e-10 ;
+	int maxNumberOfIterations = 100 ;
 	RealRootFunction func ;
 
 	public RealRoot() {
