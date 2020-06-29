@@ -1,5 +1,6 @@
 package org.gsl4j.roots;
 
+import org.gsl4j.function.MathFunction;
 import org.gsl4j.util.NativeLibraryLoader;
 
 public class RealRoot {
@@ -11,8 +12,8 @@ public class RealRoot {
 
 	private static native void initFieldIDs() ;
 
-	double absError = 1e-10 ;
-	double relError = 1e-10 ;
+	double absErr = 1e-10 ;
+	double relErr = 1e-10 ;
 	int maxNumberOfIterations = 100 ;
 	RealRootFunction func ;
 
@@ -22,6 +23,10 @@ public class RealRoot {
 
 	public RealRoot(RealRootFunction func) {
 		this.func = func ;
+	}
+
+	public RealRoot(MathFunction func) {
+		this.func = t -> func.value(t) ;
 	}
 
 	public void setFunction(RealRootFunction func) {
