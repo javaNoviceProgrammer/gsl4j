@@ -5,6 +5,7 @@ import org.gsl4j.util.NativeLibraryLoader;
 
 /**
  * The functions described in this chapter compute numerical derivatives by finite differencing. An adaptive algorithm is used to find the best choice of finite difference and to estimate the error in the derivative. These functions are declared in the header file {@code gsl_deriv.h}.
+ *
  * @author Meisam
  *
  */
