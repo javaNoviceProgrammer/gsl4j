@@ -21,7 +21,7 @@ public class OdeSolver {
 	double relErr = 1e-10 ;
 	double minStepSize = 1e-6 ;
 	double maxStepSize = 0.1 ;
-	int maxNumberOfSteps ;
+	int maxNumberOfSteps = 1000 ; // not needed for adaptive algorithms
 
 	public OdeSolver(DerivFunction func, DerivFunction dfdx, DerivFunction dfdy, double x0, double y0) {
 		this.func = func ;
