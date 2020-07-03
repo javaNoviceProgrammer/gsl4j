@@ -22,8 +22,8 @@ public class OdeSystemSolver {
 	double absErr = 1e-6 ;
 	double relErr = 1e-10 ;
 	double minStepSize = 1e-6 ;
-	double maxStepSize = 0.1 ;
-	int maxNumberOfSteps = 1000 ;
+	double maxStepSize = 0.1 ; // not needed for adaptive algorithms
+	int maxNumberOfSteps = 1000 ; // not needed for adaptive algorithms
 
 	public OdeSystemSolver(int dim, DerivnFunction func, DerivnFunction dfdx, DerivnJacobian dfdy, double x0, double... y0) {
 		this.dim = dim ;
