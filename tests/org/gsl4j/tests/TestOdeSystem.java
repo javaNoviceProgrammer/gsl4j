@@ -142,19 +142,38 @@ public class TestOdeSystem {
 		System.out.println(Arrays.toString(result));
 	}
 
+	public static void test13() {
+		DerivnFunction func = (x, y) -> new double[] { x*x, 0.0};
+		DerivnFunction dfdx = (x, y) -> new double[] { 2.0*x, 0.0 };
+		DerivnJacobian dfdy = (x, y) -> new double[][] { { 0.0, 0.0}, { 0.0, 0.0 } };
+
+		double[] y0 = {2.2, 3.3} ;
+		double x0 = 1.1 ;
+		OdeSystemSolver solver = new OdeSystemSolver(2, func, dfdx, dfdy, x0, y0) ;
+		double[] result = solver.rk2(3.0) ;
+		System.out.println(Arrays.toString(result));
+		result = solver.rk2(5.0) ;
+		System.out.println(Arrays.toString(result));
+		double[][] result2 = solver.rk2(new double[]{3.0, 5.0}) ;
+		System.out.println(Arrays.deepToString(result2));
+		System.out.println(Arrays.toString(result2[0]));
+		System.out.println(Arrays.toString(result2[1]));
+	}
+
 	public static void main(String[] args) {
-		test1() ;
-		test2() ;
-		test3() ;
-		test4() ;
-		test5() ;
-		test6() ;
-		test7() ;
-		test8() ;
-		test9() ;
-		test10() ;
-		test11() ;
-		test12() ;
+//		test1() ;
+//		test2() ;
+//		test3() ;
+//		test4() ;
+//		test5() ;
+//		test6() ;
+//		test7() ;
+//		test8() ;
+//		test9() ;
+//		test10() ;
+//		test11() ;
+//		test12() ;
+		test13() ;
 	}
 
 }
