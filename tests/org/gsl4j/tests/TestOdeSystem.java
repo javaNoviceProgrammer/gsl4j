@@ -150,14 +150,29 @@ public class TestOdeSystem {
 		double[] y0 = {2.2, 3.3} ;
 		double x0 = 1.1 ;
 		OdeSystemSolver solver = new OdeSystemSolver(2, func, dfdx, dfdy, x0, y0) ;
-		double[] result = solver.rk2(3.0) ;
+		double[] result = solver.rk4(3.0) ;
 		System.out.println(Arrays.toString(result));
-		result = solver.rk2(5.0) ;
+		result = solver.rk4(5.0) ;
 		System.out.println(Arrays.toString(result));
-		double[][] result2 = solver.rk2(new double[]{3.0, 5.0}) ;
+		double[][] result2 = solver.rk4(new double[]{3.0, 5.0}) ;
 		System.out.println(Arrays.deepToString(result2));
 		System.out.println(Arrays.toString(result2[0]));
 		System.out.println(Arrays.toString(result2[1]));
+	}
+
+	public static void test14() {
+		double x0 = 0.0 ;
+		double[] y0 = {1.0, 1.0} ;
+		DerivnFunction func = (x,y) -> new double[] {-x, 0.0} ;
+		DerivnFunction dfdx = (x,y) -> new double[] {-1.0, 0.0} ;
+		DerivnJacobian dfdy = (x,y) -> new double[][] {{0.0, 0.0}, {0.0, 0.0}} ;
+		OdeSystemSolver solver = new OdeSystemSolver(2, func, dfdx, dfdy, x0, y0) ;
+		double[] x = {0.1, 3.0, 5.0} ;
+		double[][] z = solver.rk2(x) ;
+		double[] z1 = Arrays.stream(x).map(t -> solver.rk2(t)[0]).toArray() ;
+
+		System.out.println(Arrays.toString(z[0]));
+		System.out.println(Arrays.toString(z1));
 	}
 
 	public static void main(String[] args) {
@@ -173,7 +188,8 @@ public class TestOdeSystem {
 //		test10() ;
 //		test11() ;
 //		test12() ;
-		test13() ;
+//		test13() ;
+		test14() ;
 	}
 
 }
