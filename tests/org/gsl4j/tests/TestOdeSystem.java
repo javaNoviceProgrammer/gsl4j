@@ -184,13 +184,12 @@ public class TestOdeSystem {
 		DerivnFunction dfdx = (x,y) -> new double[] {0.0, 0.0} ;
 		DerivnJacobian dfdy = (x,y) -> new double[][] {{0.0, 1.0}, {-1.0, 0.0}} ;
 		OdeSystemSolver solver = new OdeSystemSolver(2, func, dfdx, dfdy, x0, y0) ;
-		double[] x = MathUtils.linspace(0.0, 20.0, 100_000) ;
+		double[] x = MathUtils.linspace(0.0, 20.0, 1000_000) ;
 		Timer timer = new Timer() ;
 		timer.start();
 		double[][] z = solver.rkf45(x) ;
 		timer.stop();
 		timer.show();
-		System.out.println(Arrays.deepToString(z));
 	}
 
 	public static void main(String[] args) {
