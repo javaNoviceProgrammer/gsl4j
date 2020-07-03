@@ -3,6 +3,14 @@ package org.gsl4j.ode;
 import org.gsl4j.diff.NumericalDiff;
 import org.gsl4j.util.NativeLibraryLoader;
 
+/**
+ * This class describes functions for solving a system of ordinary differential equations (ODE) initial value problems. The library provides a variety of low-level methods, such as Runge-Kutta and Bulirsch-Stoer routines, and higher-level components for adaptive step-size control. The components can be combined by the user to achieve the desired solution, with full access to any intermediate steps. A driver object can be used as a high level wrapper for easy use of low level functions.
+ * <br>
+ * These functions are declared in the header file {@code gsl_odeiv2.h}. This is a new interface in version 1.15 and uses the prefix {@code gsl_odeiv2} for all functions. It is recommended over the previous {@code gsl_odeiv} implementation defined in {@code gsl_odeiv.h}. The old interface has been retained under the original name for backwards compatibility.
+ *
+ * @author Meisam
+ *
+ */
 public class OdeSystemSolver {
 
 	static {
