@@ -184,12 +184,32 @@ public class TestOdeSystem {
 		DerivnFunction dfdx = (x,y) -> new double[] {0.0, 0.0} ;
 		DerivnJacobian dfdy = (x,y) -> new double[][] {{0.0, 1.0}, {-1.0, 0.0}} ;
 		OdeSystemSolver solver = new OdeSystemSolver(2, func, dfdx, dfdy, x0, y0) ;
-		double[] x = MathUtils.linspace(0.0, 20.0, 1000_000) ;
+		double[] x = MathUtils.linspace(0.0, 200.0, 10_000) ;
 		Timer timer = new Timer() ;
 		timer.start();
-		double[][] z = solver.rkf45(x) ;
+		solver.rkf45(x) ;
 		timer.stop();
 		timer.show();
+	}
+
+	public static void test16() {
+		double x0 = 0.0 ;
+		double[] y0 = {0.0, 1.0} ;
+		DerivnFunction func = (x,y) -> new double[] {y[1], -y[0]} ;
+		DerivnFunction dfdx = (x,y) -> new double[] {0.0, 0.0} ;
+		DerivnJacobian dfdy = (x,y) -> new double[][] {{0.0, 1.0}, {-1.0, 0.0}} ;
+		OdeSystemSolver solver = new OdeSystemSolver(2, func, dfdx, dfdy, x0, y0) ;
+		double[] x = MathUtils.linspace(0.0, 2.0, 10) ;
+		double[][] z = solver.rkf45(x) ;
+		System.out.println(Arrays.toString(z[1]));
+
+		OdeSystemSolver solver2 = new OdeSystemSolver(2, func, dfdy, x0, y0) ;
+		double[][] w = solver2.rkf45(x) ;
+		System.out.println(Arrays.toString(w[1]));
+
+		OdeSystemSolver solver3 = new OdeSystemSolver(2, func, x0, y0) ;
+		double[][] s = solver3.rkf45(x) ;
+		System.out.println(Arrays.toString(s[1]));
 	}
 
 	public static void main(String[] args) {
@@ -207,7 +227,8 @@ public class TestOdeSystem {
 //		test12() ;
 //		test13() ;
 //		test14() ;
-		test15() ;
+//		test15() ;
+		test16() ;
 	}
 
 }

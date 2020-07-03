@@ -1,5 +1,6 @@
 package org.gsl4j.ode;
 
+import org.gsl4j.diff.NumericalDiff;
 import org.gsl4j.util.NativeLibraryLoader;
 
 public class OdeSystemSolver {
@@ -34,6 +35,55 @@ public class OdeSystemSolver {
 
 		if(y0.length != dim)
 			throw new IllegalStateException("Dimension does not match initial conditions") ;
+	}
+
+	public OdeSystemSolver(int dim, DerivnFunction func, DerivnJacobian dfdy, double x0, double... y0) {
+		this.dim = dim ;
+		this.func = func ;
+		this.df_dx = getdFdx(dim, func) ;
+		this.df_dy = dfdy ;
+		this.x0 = x0 ;
+		this.y0 = y0 ;
+
+		if(y0.length != dim)
+			throw new IllegalStateException("Dimension does not match initial conditions") ;
+	}
+
+	public OdeSystemSolver(int dim, DerivnFunction func, double x0, double... y0) {
+		this.dim = dim ;
+		this.func = func ;
+		this.df_dx = getdFdx(dim, func) ;
+		this.df_dy = getdFdy(dim, func) ;
+		this.x0 = x0 ;
+		this.y0 = y0 ;
+
+		if(y0.length != dim)
+			throw new IllegalStateException("Dimension does not match initial conditions") ;
+	}
+
+	private DerivnFunction getdFdx(int dim, DerivnFunction func) {
+		return (x,y) -> {
+			double[] dfdx = new double[dim] ;
+			for(int i=0; i<dim; i++) {
+				int k = i ;
+				dfdx[i] = NumericalDiff.central(t -> func.values(t, y)[k], x, 1e-3) ;
+			}
+			return dfdx ;
+		};
+	}
+
+	private DerivnJacobian getdFdy(int dim, DerivnFunction func) {
+		return (x,y) -> {
+			double[][] dfdy = new double[dim][dim] ;
+			for(int i=0; i<dim; i++) {
+				for(int j=0; j<dim; j++) {
+					int row = i ;
+					int col = j ;
+					dfdy[i][j] = NumericalDiff.central(t -> func.values(x, t)[row], y[col], 1e-3) ;
+				}
+			}
+			return dfdy ;
+		};
 	}
 
 	public void setAbsErr(double absErr) {
