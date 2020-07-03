@@ -5,6 +5,8 @@ import java.util.Arrays;
 import org.gsl4j.ode.DerivnFunction;
 import org.gsl4j.ode.DerivnJacobian;
 import org.gsl4j.ode.OdeSystemSolver;
+import org.gsl4j.util.MathUtils;
+import org.gsl4j.util.Timer;
 
 public class TestOdeSystem {
 
@@ -175,6 +177,22 @@ public class TestOdeSystem {
 		System.out.println(Arrays.toString(z1));
 	}
 
+	public static void test15() {
+		double x0 = 0.0 ;
+		double[] y0 = {0.0, 1.0} ;
+		DerivnFunction func = (x,y) -> new double[] {y[1], -y[0]} ;
+		DerivnFunction dfdx = (x,y) -> new double[] {0.0, 0.0} ;
+		DerivnJacobian dfdy = (x,y) -> new double[][] {{0.0, 1.0}, {-1.0, 0.0}} ;
+		OdeSystemSolver solver = new OdeSystemSolver(2, func, dfdx, dfdy, x0, y0) ;
+		double[] x = MathUtils.linspace(0.0, 20.0, 100_000) ;
+		Timer timer = new Timer() ;
+		timer.start();
+		double[][] z = solver.rkf45(x) ;
+		timer.stop();
+		timer.show();
+		System.out.println(Arrays.deepToString(z));
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
@@ -189,7 +207,8 @@ public class TestOdeSystem {
 //		test11() ;
 //		test12() ;
 //		test13() ;
-		test14() ;
+//		test14() ;
+		test15() ;
 	}
 
 }
