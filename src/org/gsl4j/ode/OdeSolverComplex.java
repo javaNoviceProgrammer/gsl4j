@@ -12,16 +12,25 @@ public class OdeSolverComplex {
 	double x0 ;
 	Complex y0 ;
 
-	public OdeSolverComplex(DerivFunctionComplex func, DerivFunctionComplex dfdx, DerivFunctionComplex dfdy, double x0, Complex y0) {
-		this.x0 = x0 ;
-		this.y0 = y0 ;
-		// z[0] = realpart, z[1] = imaginary part
-		this.funcSystem = (x, z) -> {
-			Complex val = func.value(x, z[0]+j*z[1]) ;
-			return new double[]{val.re(), val.im()} ;
-		} ;
-		this.odeSystemSolver = new OdeSystemSolver(2, funcSystem, x0, y0.re(), y0.im()) ;
-	}
+//	public OdeSolverComplex(DerivFunctionComplex func, DerivFunctionComplex dfdx, DerivFunctionComplex dfdy, double x0, Complex y0) {
+//		this.x0 = x0 ;
+//		this.y0 = y0 ;
+//		// z[0] = realpart, z[1] = imaginary part
+//		this.funcSystem = (x, z) -> {
+//			Complex val = func.value(x, z[0]+j*z[1]) ;
+//			return new double[]{val.re(), val.im()} ;
+//		} ;
+//		this.df_dx = (x, z) -> {
+//			Complex val = dfdx.value(x, z[0]+j*z[1]) ;
+//			return new double[]{val.re(), val.im()} ;
+//		} ;
+//		// fix this!!!
+//		this.df_dy = (x, z) -> {
+//			Complex val = dfdy.value(x, z[0]+j*z[1]) ;
+//			return new double[][]{ {val.re()}, {val.im()}} ;
+//		} ;
+//		this.odeSystemSolver = new OdeSystemSolver(2, funcSystem, df_dx, df_dy, x0, y0.re(), y0.im()) ;
+//	}
 
 	public OdeSolverComplex(DerivFunctionComplex func, double x0, Complex y0) {
 		this.x0 = x0 ;
