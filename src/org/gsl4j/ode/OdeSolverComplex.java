@@ -23,6 +23,17 @@ public class OdeSolverComplex {
 		this.odeSystemSolver = new OdeSystemSolver(2, funcSystem, x0, y0.re(), y0.im()) ;
 	}
 
+	public OdeSolverComplex(DerivFunctionComplex func, double x0, Complex y0) {
+		this.x0 = x0 ;
+		this.y0 = y0 ;
+		// z[0] = realpart, z[1] = imaginary part
+		this.funcSystem = (x, z) -> {
+			Complex val = func.value(x, z[0]+j*z[1]) ;
+			return new double[]{val.re(), val.im()} ;
+		} ;
+		this.odeSystemSolver = new OdeSystemSolver(2, funcSystem, x0, y0.re(), y0.im()) ;
+	}
+
 	/*------------- rk2 -------------*/
 
 	public double[] rk2(double x) {
@@ -36,6 +47,14 @@ public class OdeSolverComplex {
 	public Complex rk2Complex(double x) {
 		double[] z = odeSystemSolver.rk2(x) ;
 		return ofRect(z[0], z[1]) ;
+	}
+
+	public Complex[] rk2Complex(double[] x) {
+		double[][] z = odeSystemSolver.rk2(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
 	}
 
 	/*------------- rk4 -------------*/
@@ -53,6 +72,14 @@ public class OdeSolverComplex {
 		return ofRect(z[0], z[1]) ;
 	}
 
+	public Complex[] rk4Complex(double[] x) {
+		double[][] z = odeSystemSolver.rk4(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
+	}
+
 	/*------------- rkf45 -------------*/
 
 	public double[] rkf45(double x) {
@@ -66,6 +93,14 @@ public class OdeSolverComplex {
 	public Complex rkf45Complex(double x) {
 		double[] z = odeSystemSolver.rkf45(x) ;
 		return ofRect(z[0], z[1]) ;
+	}
+
+	public Complex[] rkf45Complex(double[] x) {
+		double[][] z = odeSystemSolver.rkf45(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
 	}
 
 	/*------------- rkck -------------*/
@@ -83,6 +118,14 @@ public class OdeSolverComplex {
 		return ofRect(z[0], z[1]) ;
 	}
 
+	public Complex[] rkckComplex(double[] x) {
+		double[][] z = odeSystemSolver.rkck(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
+	}
+
 	/*------------- rk8pd -------------*/
 
 	public double[] rk8pd(double x) {
@@ -96,6 +139,14 @@ public class OdeSolverComplex {
 	public Complex rk8pdComplex(double x) {
 		double[] z = odeSystemSolver.rk8pd(x) ;
 		return ofRect(z[0], z[1]) ;
+	}
+
+	public Complex[] rk8pdComplex(double[] x) {
+		double[][] z = odeSystemSolver.rk8pd(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
 	}
 
 	/*------------- rk1imp -------------*/
@@ -113,6 +164,14 @@ public class OdeSolverComplex {
 		return ofRect(z[0], z[1]) ;
 	}
 
+	public Complex[] rk1impComplex(double[] x) {
+		double[][] z = odeSystemSolver.rk1imp(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
+	}
+
 	/*------------- rk2imp -------------*/
 
 	public double[] rk2imp(double x) {
@@ -126,6 +185,14 @@ public class OdeSolverComplex {
 	public Complex rk2impComplex(double x) {
 		double[] z = odeSystemSolver.rk2imp(x) ;
 		return ofRect(z[0], z[1]) ;
+	}
+
+	public Complex[] rk2impComplex(double[] x) {
+		double[][] z = odeSystemSolver.rk2imp(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
 	}
 
 	/*------------- rk4imp -------------*/
@@ -143,6 +210,14 @@ public class OdeSolverComplex {
 		return ofRect(z[0], z[1]) ;
 	}
 
+	public Complex[] rk4impComplex(double[] x) {
+		double[][] z = odeSystemSolver.rk4imp(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
+	}
+
 	/*------------- bsimp -------------*/
 
 	public double[] bsimp(double x) {
@@ -156,6 +231,14 @@ public class OdeSolverComplex {
 	public Complex bsimpComplex(double x) {
 		double[] z = odeSystemSolver.bsimp(x) ;
 		return ofRect(z[0], z[1]) ;
+	}
+
+	public Complex[] bsimpComplex(double[] x) {
+		double[][] z = odeSystemSolver.bsimp(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
 	}
 
 	/*------------- msadams -------------*/
@@ -173,6 +256,14 @@ public class OdeSolverComplex {
 		return ofRect(z[0], z[1]) ;
 	}
 
+	public Complex[] msadamsComplex(double[] x) {
+		double[][] z = odeSystemSolver.msadams(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
+	}
+
 	/*------------- msbdf -------------*/
 
 	public double[] msbdf(double x) {
@@ -186,6 +277,14 @@ public class OdeSolverComplex {
 	public Complex msbdfComplex(double x) {
 		double[] z = odeSystemSolver.msbdf(x) ;
 		return ofRect(z[0], z[1]) ;
+	}
+
+	public Complex[] msbdfComplex(double[] x) {
+		double[][] z = odeSystemSolver.msbdf(x) ;
+		Complex[] result = new Complex[x.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = ofRect(z[0][i], z[1][i]) ;
+		return result ;
 	}
 
 }
