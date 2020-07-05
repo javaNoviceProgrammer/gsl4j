@@ -1,5 +1,5 @@
 package org.gsl4j.matrix;
 
-public class Vector {
+public class ComplexVector {
 
 }
