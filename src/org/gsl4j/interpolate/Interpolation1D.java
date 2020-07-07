@@ -89,6 +89,8 @@ public class Interpolation1D {
 	 */
 	public native double eval(double x) ;
 
+	public native double[] eval(double[] x) ;
+
 	/**
 	 * These functions return the derivative d of an interpolated function for a given point x, using the interpolation object interp, data arrays xa and ya and the accelerator acc.
 	 * @param x
@@ -96,12 +98,16 @@ public class Interpolation1D {
 	 */
 	public native double deriv(double x) ;
 
+	public native double[] deriv(double[] x) ;
+
 	/**
 	 * These functions return the second derivative d2 of an interpolated function for a given point x, using the interpolation object interp, data arrays xa and ya and the accelerator acc.
 	 * @param x
 	 * @return
 	 */
 	public native double deriv2(double x) ;
+
+	public native double[] deriv2(double[] x) ;
 
 	/**
 	 * These functions return the numerical integral result of an interpolated function over the range [a, b], using the interpolation object interp, data arrays xa and ya and the accelerator acc.

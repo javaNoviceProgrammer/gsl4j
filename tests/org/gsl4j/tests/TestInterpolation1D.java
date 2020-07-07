@@ -7,9 +7,10 @@ import org.gsl4j.interpolate.oned.LinearInterpolation;
 import org.gsl4j.interpolate.oned.PeriodicAkimaSplineInterpolation;
 import org.gsl4j.util.ArrayUtils;
 import org.gsl4j.util.MathUtils;
+import org.gsl4j.util.Timer;
 
 
-class TestInterpolation {
+class TestInterpolation1D {
 
 	public static void test1() {
 		double[] x = MathUtils.linspace(0.0, 1.0, 10) ;
@@ -91,6 +92,18 @@ class TestInterpolation {
 		System.out.println(Math.cos(0.222222));
 	}
 
+	public static void test10() {
+		double[] x = MathUtils.linspace(0.0, 1.0, 100) ;
+		double[] y = ArrayUtils.eval(t -> Math.sin(t), x) ;
+		Interpolation1D cubicSpline = new CubicSplineInterpolation(x, y) ;
+		double[] xvals = MathUtils.linspace(0.0, 1.0, 1_000_000) ;
+		Timer timer = new Timer() ;
+		timer.start();
+		cubicSpline.eval(xvals) ;
+		timer.stop();
+		System.out.println("1,000,000 interpolations => " + timer);
+	}
+
 	public static void main(String[] args) {
 		test1() ;
 		test2() ;
@@ -101,6 +114,7 @@ class TestInterpolation {
 		test7() ;
 		test8() ;
 		test9() ;
+		test10() ;
 	}
 
 }
