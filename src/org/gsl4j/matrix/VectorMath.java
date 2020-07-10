@@ -39,7 +39,7 @@ public class VectorMath {
 
 	// Vector views
 	public static native double[] subVector(double[] vec, int offset, int n) ;
-	public static native double[] subVectorWithStride(double[] vec, int offset, int stride, int in) ;
+	public static native double[] subVectorWithStride(double[] vec, int offset, int stride, int n) ;
 
 	// Copying vectors
 	public static native void memcpy(double[] dest, double[] src) ;

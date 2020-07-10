@@ -32,6 +32,14 @@ public class NumericalDiff {
 	 */
 	public static native double central(MathFunction func, double x, double h) ;
 
+	/**
+	 * Same as {@link #central(MathFunction, double, double)} but acts on an array of double values.
+	 *
+	 * @param func
+	 * @param x
+	 * @param h
+	 * @return
+	 */
 	public static native double[] central(MathFunction func, double[] x, double h) ;
 
 	/**
@@ -44,6 +52,14 @@ public class NumericalDiff {
 	 */
 	public static native double forward(MathFunction func, double x, double h) ;
 
+	/**
+	 * Same as {@link #forward(MathFunction, double, double)} but acts on an array of double values.
+	 *
+	 * @param func
+	 * @param x
+	 * @param h
+	 * @return
+	 */
 	public static native double[] forward(MathFunction func, double[] x, double h) ;
 
 	/**
@@ -56,6 +72,14 @@ public class NumericalDiff {
 	 */
 	public static native double backward(MathFunction func, double x, double h) ;
 
+	/**
+	 * Same as {@link #backward(MathFunction, double, double)} but acts on an array of double values.
+	 *
+	 * @param func
+	 * @param x
+	 * @param h
+	 * @return
+	 */
 	public static native double[] backward(MathFunction func, double[] x, double h) ;
 
 	/**
