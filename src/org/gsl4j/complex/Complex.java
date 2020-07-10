@@ -1,9 +1,9 @@
 package org.gsl4j.complex;
 
 import java.io.Serializable;
-
 import org.gsl4j.OperatorOverloading;
 import org.gsl4j.util.NativeLibraryLoader;
+import org.gsl4j.util.StringUtils;
 
 /**
  * Complex numbers are represented using the type {@code gsl_complex}.
@@ -196,6 +196,41 @@ public class Complex implements Serializable, OperatorOverloading<Complex> {
 		if (Math.abs(im-other.im)>epsilon)
 			return false;
 		return true;
+	}
+
+	public static Complex parseComplex(String st) {
+		boolean hasJ = st.contains("j");
+		boolean hasI = st.contains("i");
+		st = st.trim();
+		st = st.replaceAll("\\s+", "");
+		if (/*isNumeric(st) && */ (hasI || hasJ)) {
+			double realPart = 0;
+			double imagPart = 0;
+			String[] num = null;
+			if (!hasJ) {
+				num = st.split("i");
+			} else {
+				num = st.split("j");
+			}
+			String real = num[0];
+			String imag = num[1];
+			// the correct format is "a + j b" or " a + i b"
+			if (real.charAt(real.length() - 1) == '+') {
+				imagPart = Double.parseDouble(imag);
+			} else {
+				imagPart = -Double.parseDouble(imag);
+			}
+			if (real.charAt(0) == '-') {
+				realPart = -Double.parseDouble(real.replaceAll("[+-]", ""));
+			} else {
+				realPart = Double.parseDouble(real.replaceAll("[+-]", ""));
+			}
+			return new Complex(realPart, imagPart);
+		} else if (StringUtils.isNumeric(st)) {
+			return new Complex(Double.parseDouble(st), 0);
+		} else {
+			return null;
+		}
 	}
 
 	//*********** support for operator overloading *************

@@ -1,10 +1,19 @@
 package org.gsl4j.tests;
 
 import org.gsl4j.complex.Complex;
+import org.gsl4j.io.FileInput;
 import org.gsl4j.io.FileOutput;
 import static org.gsl4j.complex.Complex.* ;
 
-public class TestFileOutput {
+import java.util.ArrayList;
+
+public class TestFileInputOutput {
+
+	public static void test0() {
+		String s = "-1.5+j2.0" ;
+		Complex c = Complex.parseComplex(s) ;
+		System.out.println(c);
+	}
 
 	public static void test1() {
 		String[] lines = new String[2] ;
@@ -29,7 +38,7 @@ public class TestFileOutput {
 		for(int i=0; i<numbers.length; i++) {
 			numbers[i] = (0.5*i)+j*(-2.1*i*i) ;
 		}
-		FileOutput fo = new FileOutput("./tests/org/gsl4j/tests/test/file1.txt", 'a') ;
+		FileOutput fo = new FileOutput("./tests/org/gsl4j/tests/test/file1.txt", 'w') ;
 		fo.println(numbers);
 		fo.close();
 	}
@@ -38,11 +47,23 @@ public class TestFileOutput {
 		FileOutput.renameFile("./tests/org/gsl4j/tests/test/file1.txt", "./tests/org/gsl4j/tests/test/file2.txt") ;
 	}
 
+	public static void test5() {
+		FileInput fi = new FileInput("./tests/org/gsl4j/tests/test/file1.txt") ;
+		ArrayList<Complex> numbers = new ArrayList<>() ;
+		while(!fi.eof()) {
+			numbers.add(parseComplex(fi.readLine())) ;
+		}
+		fi.close();
+		System.out.println(numbers);
+	}
+
 	public static void main(String[] args) {
+//		test0() ;
 //		test1() ;
 //		test2() ;
 //		test3() ;
-		test4() ;
+//		test4() ;
+		test5() ;
 	}
 
 }
