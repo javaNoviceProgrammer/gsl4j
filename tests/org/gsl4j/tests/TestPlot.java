@@ -34,7 +34,7 @@ public class TestPlot {
 		fig.plot(x, y).setColor("r") ;
 		fig.xlabel("x values");
 		fig.ylabel("y values");
-		fig.grid(true, "major", "both");
+		fig.grid(true, "both", "both");
 		fig.run();
 	}
 
