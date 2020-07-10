@@ -34,7 +34,7 @@ public class TestFileInputOutput {
 	}
 
 	public static void test3() {
-		Complex[] numbers = new Complex[10] ;
+		Complex[] numbers = new Complex[15] ;
 		for(int i=0; i<numbers.length; i++) {
 			numbers[i] = (0.5*i)+j*(-2.1*i*i) ;
 		}
@@ -49,10 +49,14 @@ public class TestFileInputOutput {
 
 	public static void test5() {
 		FileInput fi = new FileInput("./tests/org/gsl4j/tests/test/file1.txt") ;
+		fi.setSupressMessageToTrue();
 		ArrayList<Complex> numbers = new ArrayList<>() ;
+		String s = null ;
 		while(!fi.eof()) {
-			numbers.add(parseComplex(fi.readLine())) ;
+			if(!(s=fi.readLine()).isEmpty())
+				numbers.add(parseComplex(s)) ;
 		}
+		System.out.println(fi.numberOfLines());
 		fi.close();
 		System.out.println(numbers);
 	}

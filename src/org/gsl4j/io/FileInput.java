@@ -731,6 +731,7 @@ public class FileInput {
 				System.out.println("-1 returned");
 				var3 = -1;
 			} else {
+				var1.readLine() ;
 				++var3;
 			}
 		}
