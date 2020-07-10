@@ -1,0 +1,14 @@
+hi, this is the first line.
+THIS IS THE SECOND LINE
+this is the third line.
+this is the 4th line!!
+0.0000
+0.5000-j2.1000
+1.0000-j8.4000
+1.5000-j18.9000
+2.0000-j33.6000
+2.5000-j52.5000
+3.0000-j75.6000
+3.5000-j102.9000
+4.0000-j134.4000
+4.5000-j170.1000
