@@ -1407,11 +1407,11 @@ public class FileOutput {
 	public final synchronized void printcomma(double[] var1) {
 		int var2 = var1.length;
 
-		for (int var3 = 0; var3 < var2; ++var3) {
+		for (int var3 = 0; var3 < var2-1; ++var3) {
 			this.output.print(var1[var3]);
 			this.output.print(",");
 		}
-
+		this.output.print(var1[var2-1]);
 	}
 
 	public final synchronized void printcomma(float[] var1) {
