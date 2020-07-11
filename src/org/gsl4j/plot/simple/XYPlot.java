@@ -28,36 +28,43 @@ public class XYPlot {
 		this(null) ;
 	}
 
-	public void xlabel(String xlabel) {
+	public XYPlot xlabel(String xlabel) {
 		this.xlabel = xlabel ;
+		return this ;
 	}
 
-	public void ylabel(String ylabel) {
+	public XYPlot ylabel(String ylabel) {
 		this.ylabel = ylabel ;
+		return this ;
 	}
 
-	public void title(String title) {
+	public XYPlot title(String title) {
 		this.title = title ;
+		return this ;
 	}
 
-	public void xlim(double xmin, double xmax) {
+	public XYPlot xlim(double xmin, double xmax) {
 		this.xlim = format("[%f, %f]", xmin, xmax) ;
+		return this ;
 	}
 
-	public void ylim(double ymin, double ymax) {
+	public XYPlot ylim(double ymin, double ymax) {
 		this.ylim = format("[%f, %f]", ymin, ymax) ;
+		return this ;
 	}
 
-	public void grid(boolean on, String which, String axis) {
+	public XYPlot grid(boolean on, String which, String axis) {
 		this.grid = on ;
 		this.gridWhich = which ;
 		this.gridAxis = axis ;
+		return this ;
 	}
 
-	public void grid(boolean on) {
+	public XYPlot grid(boolean on) {
 		this.grid = on ;
 		this.gridWhich = "both" ;
 		this.gridAxis = "both" ;
+		return this ;
 	}
 
 	public XYSeries plot(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
