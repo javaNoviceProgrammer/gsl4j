@@ -11,9 +11,10 @@ public class XYSeries {
 	String label ;
 	String color ;
 	String marker ;
+	String linestyle ;
 	int linewidth = 2 ;
 
-	public XYSeries(double[] x, double[] y, String xvar, String yvar, String color, String marker, int linewidth, String label) {
+	public XYSeries(double[] x, double[] y, String xvar, String yvar, String color, String marker, String linestyle, int linewidth, String label) {
 		this.x = x ;
 		this.y = y ;
 		this.xvar = (xvar!=null)? xvar.trim() : null ;
@@ -21,6 +22,7 @@ public class XYSeries {
 		this.color = (color!=null)? color.trim() : null ;
 		this.label = (label!=null)? label.trim() : null ;
 		this.marker = (marker!=null)? marker.trim() : null ;
+		this.linestyle = (linestyle!=null)? linestyle.trim() : null ;
 		this.linewidth = linewidth ;
 	}
 
@@ -49,12 +51,37 @@ public class XYSeries {
 		return this ;
 	}
 
+	public XYSeries color(String color) {
+		this.color = color ;
+		return this ;
+	}
+
 	public XYSeries setMarker(String marker) {
 		this.marker = marker ;
 		return this ;
 	}
 
-	public XYSeries setLinewidht(int linewidth) {
+	public XYSeries marker(String marker) {
+		this.marker = marker ;
+		return this ;
+	}
+
+	public XYSeries setLinestyle(String linestyle) {
+		this.linestyle = linestyle ;
+		return this ;
+	}
+
+	public XYSeries linestyle(String linestyle) {
+		this.linestyle = linestyle ;
+		return this ;
+	}
+
+	public XYSeries setLinewidth(int linewidth) {
+		this.linewidth = linewidth ;
+		return this ;
+	}
+
+	public XYSeries linewidth(int linewidth) {
 		this.linewidth = linewidth ;
 		return this ;
 	}
@@ -64,7 +91,12 @@ public class XYSeries {
 		return this ;
 	}
 
-	public String getPythonCode() {
+	public XYSeries label(String label) {
+		this.label = label ;
+		return this ;
+	}
+
+	String getPythonCode() {
 		StringBuilder sb = new StringBuilder() ;
 		sb.append("plt.plot(") ;
 		if(xvar == null)
@@ -83,7 +115,11 @@ public class XYSeries {
 			sb.append(", ") ;
 			sb.append("marker='" + marker + "'") ;
 		}
-		if(linewidth > 0) {
+		if(linestyle != null) {
+			sb.append(", ") ;
+			sb.append("linestyle='" + linestyle + "'") ;
+		}
+		if(linewidth >= 0) {
 			sb.append(", ") ;
 			sb.append("linewidth=" + linewidth) ;
 		}

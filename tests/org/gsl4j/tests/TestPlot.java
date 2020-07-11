@@ -5,10 +5,11 @@ import org.gsl4j.plot.XYPlot;
 import org.gsl4j.plot.XYSeries;
 import org.gsl4j.util.MathUtils;
 
+
 public class TestPlot {
 
 	public static void test1() {
-		XYSeries xyseries = new XYSeries(null, null, "x1", "y1", null, "o", 2, null) ;
+		XYSeries xyseries = new XYSeries(null, null, "x1", "y1", null, "o", null, 2, null) ;
 		System.out.println(xyseries);
 	}
 
@@ -24,25 +25,51 @@ public class TestPlot {
 	public static void test3() {
 		XYPlot fig = new XYPlot() ;
 		fig.plot(new double[] {1.1, 2.2}, new double[] {3.3, 4.4}) ;
-		fig.run();
+		fig.run("./tests/org/gsl4j/tests/test/fig.py");
 	}
 
 	public static void test4() {
 		XYPlot fig = new XYPlot() ;
-		double[] x = MathUtils.linspace(-Math.PI, Math.PI, 1000) ;
+		double[] x = MathUtils.linspace(-Math.PI, Math.PI, 200) ;
 		double[] y = Arrays.stream(x).map(Math::cos).toArray() ;
-		fig.plot(x, y).setColor("r") ;
+		fig.plot(x, y).setColor("b").setMarker("").setLinewidth(2).setLinestyle("--") ;
 		fig.xlabel("x values");
 		fig.ylabel("y values");
 		fig.grid(true, "both", "both");
-		fig.run();
+		fig.run("./tests/org/gsl4j/tests/test/fig.py");
+	}
+
+	public static void test5() {
+		XYPlot fig = new XYPlot() ;
+		double[] x = MathUtils.linspace(-Math.PI, Math.PI, 200) ;
+		double[] y = Arrays.stream(x).map(Math::cos).toArray() ;
+		fig.plot(x, y).color("r").marker("").linewidth(2).linestyle("--") ;
+		fig.xlabel("x values");
+		fig.ylabel("y values");
+		fig.grid(true, "both", "both");
+		fig.title("My first plot from java!!!! :)");
+		fig.savefig("./tests/org/gsl4j/tests/test/fig1.png");
+	}
+
+	public static void test6() {
+		XYPlot fig = new XYPlot() ;
+		double[] t = MathUtils.linspace(0.0, 2.0*Math.PI, 200) ;
+		double[] x = Arrays.stream(t).map(Math::cos).toArray() ;
+		double[] y = Arrays.stream(t).map(Math::sin).toArray() ;
+		fig.plot(x, y).color("b").linewidth(2).linestyle("-") ;
+		fig.xlabel("X");
+		fig.ylabel("Y");
+		fig.grid(true, "both", "both");
+		fig.savefig("./tests/org/gsl4j/tests/test/fig2.png");
 	}
 
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
 //		test3() ;
-		test4() ;
+//		test4() ;
+//		test5() ;
+		test6() ;
 	}
 
 }
