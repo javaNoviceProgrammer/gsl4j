@@ -14,6 +14,8 @@ public class XYPlot {
 	boolean clf = false ;
 	String gridWhich = null ;
 	String gridAxis = null ;
+	String xlim = null ;
+	String ylim = null ;
 	ArrayList<XYSeries> xySeriesCollection ;
 	int count = 1 ;
 
@@ -38,10 +40,24 @@ public class XYPlot {
 		this.title = title ;
 	}
 
+	public void xlim(double xmin, double xmax) {
+		this.xlim = format("[%f, %f]", xmin, xmax) ;
+	}
+
+	public void ylim(double ymin, double ymax) {
+		this.ylim = format("[%f, %f]", ymin, ymax) ;
+	}
+
 	public void grid(boolean on, String which, String axis) {
 		this.grid = on ;
 		this.gridWhich = which ;
 		this.gridAxis = axis ;
+	}
+
+	public void grid(boolean on) {
+		this.grid = on ;
+		this.gridWhich = "both" ;
+		this.gridAxis = "both" ;
 	}
 
 	public XYSeries plot(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
@@ -127,6 +143,10 @@ public class XYPlot {
 			fo.println(format("plt.xlabel('%s')", xlabel)) ;
 		if(ylabel != null)
 			fo.println(format("plt.ylabel('%s')", ylabel)) ;
+		if(xlim != null)
+			fo.println(format("plt.xlim(%s)", xlim));
+		if(ylim != null)
+			fo.println(format("plt.ylim(%s)", ylim));
 		if(grid)
 			fo.println(format("plt.grid(%s, which='%s', axis='%s')", "True", gridWhich, gridAxis)) ;
 		else

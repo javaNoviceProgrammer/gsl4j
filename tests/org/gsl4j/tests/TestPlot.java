@@ -33,9 +33,10 @@ public class TestPlot {
 		XYPlot fig = new XYPlot() ;
 		double[] x = MathUtils.linspace(-Math.PI, Math.PI, 200) ;
 		double[] y = Arrays.stream(x).map(Math::cos).toArray() ;
-		fig.plot(x, y).setColor("b").setMarker("").setLinewidth(2).setLinestyle("--") ;
+		fig.plot(x, y).setColor("b").setLinewidth(4).setLinestyle("-") ;
 		fig.xlabel("x values");
 		fig.ylabel("y values");
+		fig.xlim(-10.0, 10.0);
 		fig.grid(true, "both", "both");
 		fig.show("./tests/org/gsl4j/tests/test/fig.py");
 	}
@@ -44,7 +45,7 @@ public class TestPlot {
 		XYPlot fig = new XYPlot() ;
 		double[] x = MathUtils.linspace(-Math.PI, Math.PI, 200) ;
 		double[] y = Arrays.stream(x).map(Math::cos).toArray() ;
-		fig.plot(x, y).color("r").marker("").linewidth(2).linestyle("--") ;
+		fig.plot(x, y).color("r").linewidth(5).linestyle("-") ;
 		fig.xlabel("x values");
 		fig.ylabel("y values");
 		fig.grid(true, "both", "both");
