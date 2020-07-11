@@ -11,6 +11,7 @@ public class XYPlot {
 	String xlabel = null ;
 	String ylabel = null ;
 	boolean grid = false ;
+	boolean clf = false ;
 	String gridWhich = null ;
 	String gridAxis = null ;
 	ArrayList<XYSeries> xySeriesCollection ;
