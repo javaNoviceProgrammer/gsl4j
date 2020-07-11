@@ -2,8 +2,8 @@ package org.gsl4j.tests;
 
 import java.util.Arrays;
 
-import org.gsl4j.plot.old.XYPlot;
-import org.gsl4j.plot.old.XYSeries;
+import org.gsl4j.plot.simple.XYPlot;
+import org.gsl4j.plot.simple.XYSeries;
 import org.gsl4j.util.MathUtils;
 
 

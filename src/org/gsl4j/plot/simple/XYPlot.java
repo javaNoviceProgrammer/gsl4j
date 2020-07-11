@@ -1,4 +1,4 @@
-package org.gsl4j.plot.old;
+package org.gsl4j.plot.simple;
 
 import java.io.IOException;
 import java.util.ArrayList;
