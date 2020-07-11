@@ -1,8 +1,9 @@
 package org.gsl4j.tests;
 
 import java.util.Arrays;
-import org.gsl4j.plot.XYPlot;
-import org.gsl4j.plot.XYSeries;
+
+import org.gsl4j.plot.old.XYPlot;
+import org.gsl4j.plot.old.XYSeries;
 import org.gsl4j.util.MathUtils;
 
 
@@ -25,7 +26,7 @@ public class TestPlot {
 	public static void test3() {
 		XYPlot fig = new XYPlot() ;
 		fig.plot(new double[] {1.1, 2.2}, new double[] {3.3, 4.4}) ;
-		fig.run("./tests/org/gsl4j/tests/test/fig.py");
+		fig.show("./tests/org/gsl4j/tests/test/fig.py");
 	}
 
 	public static void test4() {
@@ -36,7 +37,7 @@ public class TestPlot {
 		fig.xlabel("x values");
 		fig.ylabel("y values");
 		fig.grid(true, "both", "both");
-		fig.run("./tests/org/gsl4j/tests/test/fig.py");
+		fig.show("./tests/org/gsl4j/tests/test/fig.py");
 	}
 
 	public static void test5() {
@@ -67,9 +68,9 @@ public class TestPlot {
 //		test1() ;
 //		test2() ;
 //		test3() ;
-//		test4() ;
+		test4() ;
 //		test5() ;
-		test6() ;
+//		test6() ;
 	}
 
 }

@@ -1,4 +1,4 @@
-package org.gsl4j.plot;
+package org.gsl4j.plot.old;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,11 +25,6 @@ public class XYPlot {
 	public XYPlot() {
 		this(null) ;
 	}
-
-//	public void addXYSeries(XYSeries xyseries) {
-//		xySeriesCollection.add(xyseries) ;
-//		++count ;
-//	}
 
 	public void xlabel(String xlabel) {
 		this.xlabel = xlabel ;
@@ -84,7 +79,7 @@ public class XYPlot {
 		}
 	}
 
-	public void run(String fileName) {
+	public void show(String fileName) {
 		if(xySeriesCollection.isEmpty())
 			throw new IllegalStateException("XYPlot data is empty") ;
 		// open the output stream
