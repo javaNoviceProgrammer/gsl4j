@@ -63,16 +63,17 @@ public class TestPlot {
 		fig.xlabel("X");
 		fig.ylabel("Y");
 		fig.grid(true, "both", "both");
-		fig.savefig("./tests/org/gsl4j/tests/test/fig2.png");
+//		fig.savefig("./tests/org/gsl4j/tests/test/fig2.png");
+		fig.show("./tests/org/gsl4j/tests/test/fig2");
 	}
 
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
 //		test3() ;
-		test4() ;
+//		test4() ;
 //		test5() ;
-//		test6() ;
+		test6() ;
 	}
 
 }
