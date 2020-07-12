@@ -11,7 +11,7 @@ public class XYPlot {
 	String xlabel = null ;
 	String ylabel = null ;
 	boolean grid = false ;
-	boolean clf = false ;
+	boolean cla = false ;
 	String gridWhich = null ;
 	String gridAxis = null ;
 	String xlim = null ;
@@ -67,6 +67,11 @@ public class XYPlot {
 		return this ;
 	}
 
+	public XYPlot cla() {
+		this.cla = true ;
+		return this ;
+	}
+
 	public XYSeries plot(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
 		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, linestyle, linewidth, label) ;
 		xySeriesCollection.add(xyseries) ;
@@ -90,6 +95,9 @@ public class XYPlot {
 		FileOutput fo = new FileOutput(pyName+".py") ;
 		pythonCode(fo);
 		// show the plot
+		if(cla) {
+			fo.println("plt.cla()");
+		}
 		fo.println(format("plt.savefig('%s')", fileName));
 		// close the output stream
 		fo.close();
@@ -109,6 +117,9 @@ public class XYPlot {
 		FileOutput fo = new FileOutput(fileName) ;
 		pythonCode(fo);
 		// show the plot
+		if(cla) {
+			fo.println("plt.cla()");
+		}
 		fo.println("plt.show()");
 		// close the output stream
 		fo.close();

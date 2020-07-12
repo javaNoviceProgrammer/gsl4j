@@ -38,6 +38,7 @@ public class TestPlot {
 		fig.ylabel("y values");
 		fig.xlim(-10.0, 10.0);
 		fig.grid(true, "both", "both");
+		fig.cla() ;
 		fig.show("./tests/org/gsl4j/tests/test/fig.py");
 	}
 
