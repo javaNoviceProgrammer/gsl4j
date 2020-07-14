@@ -4,6 +4,7 @@ import org.gsl4j.plot.kwargs.TextArgsBuilder;
 
 /**
  * matplotlib.pyplot.xscale(scale, **kwargs)
+ * <br>
  * matplotlib.pyplot.yscale(scale, **kwargs)
  */
 public interface ScaleBuilder extends Builder, TextArgsBuilder<ScaleBuilder> {

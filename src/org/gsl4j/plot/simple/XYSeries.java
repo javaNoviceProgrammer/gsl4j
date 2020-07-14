@@ -13,6 +13,8 @@ public class XYSeries {
 	String marker ;
 	String linestyle ;
 	int linewidth = 2 ;
+	boolean semilogx ;
+	boolean semilogy ;
 
 	public XYSeries(double[] x, double[] y, String xvar, String yvar, String color, String marker, String linestyle, int linewidth, String label) {
 		this.x = x ;

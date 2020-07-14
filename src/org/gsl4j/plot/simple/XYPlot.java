@@ -33,6 +33,20 @@ public class XYPlot {
 		this(null) ;
 	}
 
+	public XYSeries plot(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, linestyle, linewidth, label) ;
+		xySeriesCollection.add(xyseries) ;
+		++count ;
+		return xyseries ;
+	}
+
+	public XYSeries plot(double[] x, double[] y) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, null, 2, null) ;
+		xySeriesCollection.add(xyseries) ;
+		++count ;
+		return xyseries ;
+	}
+
 	public XYPlot xlabel(String xlabel) {
 		this.xlabel = xlabel ;
 		return this ;
@@ -75,20 +89,6 @@ public class XYPlot {
 	public XYPlot cla() {
 		this.cla = true ;
 		return this ;
-	}
-
-	public XYSeries plot(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, linestyle, linewidth, label) ;
-		xySeriesCollection.add(xyseries) ;
-		++count ;
-		return xyseries ;
-	}
-
-	public XYSeries plot(double[] x, double[] y) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, null, 2, null) ;
-		xySeriesCollection.add(xyseries) ;
-		++count ;
-		return xyseries ;
 	}
 
 	public void savefig(String fileName) {
