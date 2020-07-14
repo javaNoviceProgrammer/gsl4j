@@ -1,8 +1,13 @@
 package org.gsl4j.plot.simple;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import static java.lang.String.* ;
+
+import java.awt.Desktop;
+
 import org.gsl4j.io.FileOutput;
 
 public class XYPlot {
@@ -169,6 +174,18 @@ public class XYPlot {
 			fo.println(format("plt.grid(%s, which='%s', axis='%s')", "True", gridWhich, gridAxis)) ;
 		else
 			fo.println(format("plt.grid(%s, which='%s', axis='%s')", "False", gridWhich, gridAxis)) ;
+	}
+
+	public void help() {
+		try {
+			URI doc = new URI("https://matplotlib.org/Matplotlib.pdf") ;
+			Desktop.getDesktop().browse(doc);
+		} catch (IOException e) {
+			System.out.println("Could not open documentation for matplotlib");
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

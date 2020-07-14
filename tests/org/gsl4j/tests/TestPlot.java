@@ -67,13 +67,19 @@ public class TestPlot {
 		fig.show("./tests/org/gsl4j/tests/test/fig2");
 	}
 
+	public static void test7() {
+		XYPlot fig = new XYPlot() ;
+		fig.help();
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
 //		test3() ;
 //		test4() ;
 //		test5() ;
-		test6() ;
+//		test6() ;
+		test7() ;
 	}
 
 }
