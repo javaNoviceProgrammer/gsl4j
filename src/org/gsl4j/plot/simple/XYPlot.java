@@ -47,6 +47,54 @@ public class XYPlot {
 		return xyseries ;
 	}
 
+	public XYSeries semilogx(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, linestyle, linewidth, label) ;
+		xyseries.semilogx() ;
+		xySeriesCollection.add(xyseries) ;
+		++count ;
+		return xyseries ;
+	}
+
+	public XYSeries semilogx(double[] x, double[] y) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, null, 2, null) ;
+		xyseries.semilogx() ;
+		xySeriesCollection.add(xyseries) ;
+		++count ;
+		return xyseries ;
+	}
+
+	public XYSeries semilogy(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, linestyle, linewidth, label) ;
+		xyseries.semilogy() ;
+		xySeriesCollection.add(xyseries) ;
+		++count ;
+		return xyseries ;
+	}
+
+	public XYSeries semilogy(double[] x, double[] y) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, null, 2, null) ;
+		xyseries.semilogy() ;
+		xySeriesCollection.add(xyseries) ;
+		++count ;
+		return xyseries ;
+	}
+
+	public XYSeries loglog(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, linestyle, linewidth, label) ;
+		xyseries.loglog() ;
+		xySeriesCollection.add(xyseries) ;
+		++count ;
+		return xyseries ;
+	}
+
+	public XYSeries loglog(double[] x, double[] y) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, null, 2, null) ;
+		xyseries.loglog() ;
+		xySeriesCollection.add(xyseries) ;
+		++count ;
+		return xyseries ;
+	}
+
 	public XYPlot xlabel(String xlabel) {
 		this.xlabel = xlabel ;
 		return this ;

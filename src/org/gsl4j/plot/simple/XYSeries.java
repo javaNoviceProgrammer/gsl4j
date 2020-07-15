@@ -13,8 +13,9 @@ public class XYSeries {
 	String marker ;
 	String linestyle ;
 	int linewidth = 2 ;
-	boolean semilogx ;
-	boolean semilogy ;
+	boolean semilogx = false ;
+	boolean semilogy = false ;
+	boolean loglog = false ;
 
 	public XYSeries(double[] x, double[] y, String xvar, String yvar, String color, String marker, String linestyle, int linewidth, String label) {
 		this.x = x ;
@@ -98,9 +99,37 @@ public class XYSeries {
 		return this ;
 	}
 
+	public XYSeries semilogx() {
+		semilogx = true ;
+		semilogy = false ;
+		loglog = false ;
+		return this ;
+	}
+
+	public XYSeries semilogy() {
+		semilogx = false ;
+		semilogy = true ;
+		loglog = false ;
+		return this ;
+	}
+
+	public XYSeries loglog() {
+		semilogx = false ;
+		semilogy = false ;
+		loglog = true ;
+		return this ;
+	}
+
 	String getPythonCode() {
 		StringBuilder sb = new StringBuilder() ;
-		sb.append("plt.plot(") ;
+		if(semilogx)
+			sb.append("plt.semilogx(") ;
+		else if(semilogy)
+			sb.append("plt.semilogy(") ;
+		else if(loglog)
+			sb.append("plt.loglog(") ;
+		else
+			sb.append("plt.plot(") ;
 		if(xvar == null)
 			throw new IllegalArgumentException("x variable cannot be NULL") ;
 		else
