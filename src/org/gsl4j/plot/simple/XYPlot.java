@@ -1,5 +1,6 @@
 package org.gsl4j.plot.simple;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -183,6 +184,39 @@ public class XYPlot {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void show() {
+		if(xySeriesCollection.isEmpty())
+			throw new IllegalStateException("XYPlot data is empty") ;
+		// open the output stream
+		File file = new File("fig") ;
+		file.deleteOnExit();
+		FileOutput fo = new FileOutput(file) ;
+		pythonCode(fo);
+		// show the plot
+		if(cla) {
+			fo.println("plt.cla()");
+		}
+		fo.println("plt.show()");
+		// close the output stream
+		fo.close();
+		// run the python code
+		Runtime rt = Runtime.getRuntime() ;
+		Process process ;
+		try {
+			process = rt.exec("python " + fo.getFilename()) ;
+			while(true) {
+				if(!process.isAlive()) {
+					FileOutput.deleteFile(fo.getFilename()) ;
+					System.out.println("clean up completed.");
+					break ;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private void pythonCode(FileOutput fo) {

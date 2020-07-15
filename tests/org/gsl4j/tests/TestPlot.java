@@ -74,17 +74,17 @@ public class TestPlot {
 
 	public static void test8() {
 		XYPlot fig = new XYPlot() ;
-		double[] x = MathUtils.linspace(0.5, Math.PI, 200) ;
-		double[] y = Arrays.stream(x).map(Math::cos).toArray() ;
-		fig.plot(x, y).color("b").linewidth(2).linestyle("--") ;
-//		fig.semilogx(x, y).color("b").linewidth(2).linestyle(":") ;
+		double[] x = MathUtils.linspace(0.5, Math.PI, 2000) ;
+		double[] y = Arrays.stream(x).map(Math::cos).map(Math::abs).toArray() ;
+//		fig.plot(x, y).color("b").linewidth(2).linestyle("--") ;
+		fig.semilogx(x, y).color("b").linewidth(2).linestyle("-") ;
 //		fig.semilogy(x, y).color("b").linewidth(2).linestyle(":") ;
 //		fig.loglog(x, y).color("b").linewidth(2).linestyle(":") ;
 		fig.xlabel("x values");
 		fig.ylabel("y values");
 		fig.grid(true, "both", "both");
 		fig.title("My first plot from java!!!! :)");
-		fig.show("./tests/org/gsl4j/tests/test/fig1");
+		fig.show();
 	}
 
 	public static void main(String[] args) {
