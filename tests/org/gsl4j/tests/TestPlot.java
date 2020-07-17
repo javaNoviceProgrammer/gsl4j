@@ -76,8 +76,8 @@ public class TestPlot {
 		XYPlot fig = new XYPlot() ;
 		double[] x = MathUtils.linspace(0.5, Math.PI, 2000) ;
 		double[] y = Arrays.stream(x).map(Math::cos).map(Math::abs).toArray() ;
-//		fig.plot(x, y).color("b").linewidth(2).linestyle("--") ;
-		fig.semilogx(x, y).color("b").linewidth(2).linestyle("-") ;
+		fig.plot(x, y).color("b").linewidth(2).linestyle("-").marker("o") ;
+//		fig.semilogx(x, y).color("b").linewidth(2).linestyle("-") ;
 //		fig.semilogy(x, y).color("b").linewidth(2).linestyle(":") ;
 //		fig.loglog(x, y).color("b").linewidth(2).linestyle(":") ;
 		fig.xlabel("x values");
