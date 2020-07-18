@@ -1,19 +1,24 @@
 package org.gsl4j.plot;
 
-import java.util.Arrays;
+import org.gsl4j.plot.style.CapStyle;
+import org.gsl4j.plot.style.Color;
+import org.gsl4j.plot.style.DrawStyle;
+import org.gsl4j.plot.style.FillStyle;
+import org.gsl4j.plot.style.JoinStyle;
+import org.gsl4j.plot.style.LineStyle;
+import org.gsl4j.plot.style.Marker;
 
 public class XYSeries {
 
+	// data
 	double[] x ;
 	double[] y ;
 	String xvar ;
 	String yvar ;
+	// basic properties
 	String label ;
 	String color ;
-	String marker ;
-	String linestyle ;
-	int linewidth = 2 ;
-	int markerSize = 0 ;
+	// axis type
 	boolean semilogx = false ;
 	boolean semilogy = false ;
 	boolean loglog = false ;
@@ -24,15 +29,20 @@ public class XYSeries {
 	int markEvery = 1 ;
 	boolean rasterized ;
 	boolean snap ;
+	boolean visible = true ;
+	// marker properties
+	String marker ;
+	double markerSize = 0 ;
+	String markerEdgeColor ;
+	double markerEdgeWidth ;
+	String markerFaceColor ;
+	// linestyle
+	String linestyle ;
+	double linewidth = 2.0 ;
 	String solidCapStyle ;
 	String solidJoinStyle ;
-	boolean visible = true ;
 
-	String markerEdgeColor ;
-	int markerEdgeWidth ;
-	String markerFaceColor ;
-
-	public XYSeries(double[] x, double[] y, String xvar, String yvar, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+	public XYSeries(double[] x, double[] y, String xvar, String yvar, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
 		this.x = x ;
 		this.y = y ;
 		this.xvar = (xvar!=null)? xvar.trim() : null ;
@@ -80,7 +90,7 @@ public class XYSeries {
 		return this ;
 	}
 
-	public XYSeries markerSize(int markerSize) {
+	public XYSeries markerSize(double markerSize) {
 		this.markerSize = markerSize ;
 		return this ;
 	}
@@ -90,8 +100,23 @@ public class XYSeries {
 		return this ;
 	}
 
-	public XYSeries markerEdgeWidth(int markerEdgeWidth) {
+	public XYSeries markerEdgeColor(Color markerEdgeColor) {
+		this.markerEdgeColor = (markerEdgeColor!=null) ? markerEdgeColor.toString().trim() : null ;
+		return this ;
+	}
+
+	public XYSeries markerEdgeWidth(double markerEdgeWidth) {
 		this.markerEdgeWidth = markerEdgeWidth ;
+		return this ;
+	}
+
+	public XYSeries markerFaceColor(String markerFaceColor) {
+		this.markerFaceColor = (markerFaceColor!=null) ? markerFaceColor.trim() : null ;
+		return this ;
+	}
+
+	public XYSeries markerFaceColor(Color markerFaceColor) {
+		this.markerFaceColor = (markerFaceColor!=null) ? markerFaceColor.toString().trim() : null ;
 		return this ;
 	}
 
@@ -105,7 +130,7 @@ public class XYSeries {
 		return this ;
 	}
 
-	public XYSeries linewidth(int linewidth) {
+	public XYSeries linewidth(double linewidth) {
 		this.linewidth = linewidth ;
 		return this ;
 	}
@@ -122,6 +147,36 @@ public class XYSeries {
 
 	public XYSeries fillstyle(FillStyle fillStyle) {
 		this.fillStyle = (fillStyle!=null) ? fillStyle.toString().trim() : null ;
+		return this ;
+	}
+
+	public XYSeries drawstyle(String drawStyle) {
+		this.drawStyle = (drawStyle!=null) ? drawStyle.trim() : null ;
+		return this ;
+	}
+
+	public XYSeries drawstyle(DrawStyle drawStyle) {
+		this.drawStyle = (drawStyle!=null) ? drawStyle.toString().trim() : null ;
+		return this ;
+	}
+
+	public XYSeries solidCapStyle(String capStyle) {
+		this.solidCapStyle = (capStyle!=null) ? capStyle.trim() : null ;
+		return this ;
+	}
+
+	public XYSeries solidCapStyle(CapStyle capStyle) {
+		this.solidCapStyle = (capStyle!=null) ? capStyle.toString().trim() : null ;
+		return this ;
+	}
+
+	public XYSeries solidJoinStyle(String joinStyle) {
+		this.solidJoinStyle = (joinStyle!=null) ? joinStyle.trim() : null ;
+		return this ;
+	}
+
+	public XYSeries solidJoinStyle(JoinStyle joinStyle) {
+		this.solidJoinStyle = (joinStyle!=null) ? joinStyle.toString().trim() : null ;
 		return this ;
 	}
 
@@ -184,6 +239,10 @@ public class XYSeries {
 			sb.append(", ") ;
 			sb.append("markeredgewidth=" + markerEdgeWidth) ;
 		}
+		if(markerFaceColor != null) {
+			sb.append(", ") ;
+			sb.append("markerfacecolor='" + markerFaceColor + "'") ;
+		}
 		if(linestyle != null) {
 			sb.append(", ") ;
 			sb.append("linestyle='" + linestyle + "'") ;
@@ -200,6 +259,18 @@ public class XYSeries {
 			sb.append(", ") ;
 			sb.append("fillstyle='" + fillStyle + "'") ;
 		}
+		if(drawStyle != null) {
+			sb.append(", ") ;
+			sb.append("drawstyle='" + drawStyle + "'") ;
+		}
+		if(solidCapStyle != null) {
+			sb.append(", ") ;
+			sb.append("solid_capstyle='" + solidCapStyle + "'") ;
+		}
+		if(solidJoinStyle != null) {
+			sb.append(", ") ;
+			sb.append("solid_joinstyle='" + solidJoinStyle + "'") ;
+		}
 		sb.append(")") ;
 		return sb.toString() ;
 	}
@@ -209,58 +280,5 @@ public class XYSeries {
 		return getPythonCode() ;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((color == null) ? 0 : color.hashCode());
-		result = prime * result + ((label == null) ? 0 : label.hashCode());
-		result = prime * result + linewidth;
-		result = prime * result + ((marker == null) ? 0 : marker.hashCode());
-		result = prime * result + Arrays.hashCode(x);
-		result = prime * result + ((xvar == null) ? 0 : xvar.hashCode());
-		result = prime * result + Arrays.hashCode(y);
-		result = prime * result + ((yvar == null) ? 0 : yvar.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		XYSeries other = (XYSeries) obj;
-		if (color == null) {
-			if (other.color != null)
-				return false;
-		} else if (!color.equals(other.color))
-			return false;
-		if (label == null) {
-			if (other.label != null)
-				return false;
-		} else if (!label.equals(other.label))
-			return false;
-		if (linewidth != other.linewidth)
-			return false;
-		if (marker == null) {
-			if (other.marker != null)
-				return false;
-		} else if (!marker.equals(other.marker))
-			return false;
-		if (xvar == null) {
-			if (other.xvar != null)
-				return false;
-		} else if (!xvar.equals(other.xvar))
-			return false;
-		if (yvar == null) {
-			if (other.yvar != null)
-				return false;
-		} else if (!yvar.equals(other.yvar))
-			return false;
-		return true;
-	}
 
 }

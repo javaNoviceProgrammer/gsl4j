@@ -23,6 +23,7 @@ public class XYPlot {
 	String xlim = null ;
 	String ylim = null ;
 	boolean legend = false ;
+	boolean tightLayout = false ;
 	ArrayList<XYSeries> xySeriesCollection ;
 	int count = 1 ;
 
@@ -138,6 +139,11 @@ public class XYPlot {
 
 	public XYPlot legend(boolean on) {
 		this.legend = on ;
+		return this ;
+	}
+
+	public XYPlot tightLayout() {
+		this.tightLayout = true ;
 		return this ;
 	}
 
@@ -265,6 +271,8 @@ public class XYPlot {
 			fo.println(format("plt.grid(%s, which='%s', axis='%s')", "False", gridWhich, gridAxis)) ;
 		if(legend)
 			fo.println("plt.legend()");
+		if(tightLayout)
+			fo.println("plt.tight_layout()");
 	}
 
 	public void help() {

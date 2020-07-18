@@ -1,4 +1,4 @@
-package org.gsl4j.plot;
+package org.gsl4j.plot.style;
 
 public enum Marker {
 
@@ -23,7 +23,8 @@ public enum Marker {
 	diamond("D") ,
 	thinDimond("d") ,
 	vline("|") ,
-	hline("_") ;
+	hline("_") ,
+	none("") ;
 
 
 	private String value ;

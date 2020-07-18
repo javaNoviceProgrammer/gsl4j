@@ -2,11 +2,12 @@ package org.gsl4j.tests;
 
 import java.util.Arrays;
 
-import org.gsl4j.plot.FillStyle;
-import org.gsl4j.plot.LineStyle;
-import org.gsl4j.plot.Marker;
 import org.gsl4j.plot.XYPlot;
 import org.gsl4j.plot.XYSeries;
+import org.gsl4j.plot.style.CapStyle;
+import org.gsl4j.plot.style.DrawStyle;
+import org.gsl4j.plot.style.JoinStyle;
+import org.gsl4j.plot.style.LineStyle;
 import org.gsl4j.util.MathUtils;
 
 
@@ -81,13 +82,17 @@ public class TestPlot {
 		XYPlot fig = new XYPlot() ;
 		double[] x = MathUtils.linspace(0.5, Math.PI, 100) ;
 		double[] y = Arrays.stream(x).map(Math::cos).map(Math::abs).toArray() ;
-		fig.plot(x, y).color("r")//.linewidth(1).linestyle(":")
-					  .linestyle(LineStyle.solid).linewidth(2)
-					  .marker(Marker.circle).markerSize(10)
+		fig.plot(x, y).color("b")//.linewidth(1).linestyle(":")
+					  .linestyle(LineStyle.solid).linewidth(4)
+//					  .marker(Marker.circle).markerSize(6)
 //					  .marker("o").markerSize(10)
-					  .markerEdgeColor("b").markerEdgeWidth(1)
-					  .fillstyle(FillStyle.top)
-					  .label("XY data") ;
+//					  .markerEdgeColor("k").markerEdgeWidth(0.5)
+//					  .markerFaceColor("y")
+//					  .fillstyle(FillStyle.bottom)
+					  .label("XY data")
+					  .drawstyle(DrawStyle.defaults)
+					  .solidCapStyle(CapStyle.round)
+					  .solidJoinStyle(JoinStyle.bevel);
 //		fig.semilogx(x, y).color("b").linewidth(2).linestyle("-") ;
 //		fig.semilogy(x, y).color("b").linewidth(2).linestyle(":") ;
 //		fig.loglog(x, y).color("b").linewidth(2).linestyle(":") ;
@@ -96,6 +101,7 @@ public class TestPlot {
 		fig.grid(true, "both", "both");
 		fig.title("My first plot from java!!!! :)");
 		fig.legend(true) ;
+		fig.tightLayout() ;
 		fig.show();
 	}
 
