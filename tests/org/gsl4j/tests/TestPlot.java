@@ -2,23 +2,28 @@ package org.gsl4j.tests;
 
 import java.util.Arrays;
 
-import org.gsl4j.plot.simple.XYPlot;
-import org.gsl4j.plot.simple.XYSeries;
+import org.gsl4j.plot.FillStyle;
+import org.gsl4j.plot.LineStyle;
+import org.gsl4j.plot.Marker;
+import org.gsl4j.plot.XYPlot;
+import org.gsl4j.plot.XYSeries;
 import org.gsl4j.util.MathUtils;
 
 
 public class TestPlot {
 
 	public static void test1() {
-		XYSeries xyseries = new XYSeries(null, null, "x1", "y1", null, "o", null, 2, null) ;
+		XYSeries xyseries = new XYSeries(null, null, "x1", "y1", null, "o", 0, null, 2, null) ;
 		System.out.println(xyseries);
 	}
 
 	public static void test2() {
 		XYPlot fig = new XYPlot() ;
 		System.out.println(fig.plot(new double[] {1.0, 2.0}, new double[] {3.0, 4.0})
-								.setLabel("this is my test!!")
-								.setColor("b")
+								.label("this is my test!!")
+								.color("b")
+								.linewidth(0)
+								.marker("s")
 				);
 
 	}
@@ -33,7 +38,7 @@ public class TestPlot {
 		XYPlot fig = new XYPlot() ;
 		double[] x = MathUtils.linspace(-Math.PI, Math.PI, 200) ;
 		double[] y = Arrays.stream(x).map(Math::cos).toArray() ;
-		fig.plot(x, y).setColor("b").setLinewidth(4).setLinestyle("-") ;
+		fig.plot(x, y).color("b").linewidth(4).linestyle("-") ;
 		fig.xlabel("x values");
 		fig.ylabel("y values");
 		fig.xlim(-10.0, 10.0);
@@ -74,9 +79,15 @@ public class TestPlot {
 
 	public static void test8() {
 		XYPlot fig = new XYPlot() ;
-		double[] x = MathUtils.linspace(0.5, Math.PI, 2000) ;
+		double[] x = MathUtils.linspace(0.5, Math.PI, 100) ;
 		double[] y = Arrays.stream(x).map(Math::cos).map(Math::abs).toArray() ;
-		fig.plot(x, y).color("b").linewidth(2).linestyle("-").marker("o") ;
+		fig.plot(x, y).color("r")//.linewidth(1).linestyle(":")
+					  .linestyle(LineStyle.solid).linewidth(2)
+					  .marker(Marker.circle).markerSize(10)
+//					  .marker("o").markerSize(10)
+					  .markerEdgeColor("b").markerEdgeWidth(1)
+					  .fillstyle(FillStyle.top)
+					  .label("XY data") ;
 //		fig.semilogx(x, y).color("b").linewidth(2).linestyle("-") ;
 //		fig.semilogy(x, y).color("b").linewidth(2).linestyle(":") ;
 //		fig.loglog(x, y).color("b").linewidth(2).linestyle(":") ;
@@ -84,6 +95,7 @@ public class TestPlot {
 		fig.ylabel("y values");
 		fig.grid(true, "both", "both");
 		fig.title("My first plot from java!!!! :)");
+		fig.legend(true) ;
 		fig.show();
 	}
 

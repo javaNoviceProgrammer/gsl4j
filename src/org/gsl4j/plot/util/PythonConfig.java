@@ -1,4 +1,4 @@
-package org.gsl4j.plot;
+package org.gsl4j.plot.util;
 
 
 public class PythonConfig {

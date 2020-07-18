@@ -1,4 +1,4 @@
-package org.gsl4j.plot.simple;
+package org.gsl4j.plot;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +22,7 @@ public class XYPlot {
 	String gridAxis = null ;
 	String xlim = null ;
 	String ylim = null ;
+	boolean legend = false ;
 	ArrayList<XYSeries> xySeriesCollection ;
 	int count = 1 ;
 
@@ -34,22 +35,22 @@ public class XYPlot {
 		this(null) ;
 	}
 
-	public XYSeries plot(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, linestyle, linewidth, label) ;
+	public XYSeries plot(double[] x, double[] y, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		xySeriesCollection.add(xyseries) ;
 		++count ;
 		return xyseries ;
 	}
 
 	public XYSeries plot(double[] x, double[] y) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, null, 2, null) ;
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, 0, null, 2, null) ;
 		xySeriesCollection.add(xyseries) ;
 		++count ;
 		return xyseries ;
 	}
 
-	public XYSeries semilogx(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, linestyle, linewidth, label) ;
+	public XYSeries semilogx(double[] x, double[] y, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		xyseries.semilogx() ;
 		xySeriesCollection.add(xyseries) ;
 		++count ;
@@ -57,15 +58,15 @@ public class XYPlot {
 	}
 
 	public XYSeries semilogx(double[] x, double[] y) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, null, 2, null) ;
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, 0, null, 2, null) ;
 		xyseries.semilogx() ;
 		xySeriesCollection.add(xyseries) ;
 		++count ;
 		return xyseries ;
 	}
 
-	public XYSeries semilogy(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, linestyle, linewidth, label) ;
+	public XYSeries semilogy(double[] x, double[] y, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		xyseries.semilogy() ;
 		xySeriesCollection.add(xyseries) ;
 		++count ;
@@ -73,15 +74,15 @@ public class XYPlot {
 	}
 
 	public XYSeries semilogy(double[] x, double[] y) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, null, 2, null) ;
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, 0, null, 2, null) ;
 		xyseries.semilogy() ;
 		xySeriesCollection.add(xyseries) ;
 		++count ;
 		return xyseries ;
 	}
 
-	public XYSeries loglog(double[] x, double[] y, String color, String marker, String linestyle, int linewidth, String label) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, linestyle, linewidth, label) ;
+	public XYSeries loglog(double[] x, double[] y, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		xyseries.loglog() ;
 		xySeriesCollection.add(xyseries) ;
 		++count ;
@@ -89,7 +90,7 @@ public class XYPlot {
 	}
 
 	public XYSeries loglog(double[] x, double[] y) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, null, 2, null) ;
+		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, 0, null, 2, null) ;
 		xyseries.loglog() ;
 		xySeriesCollection.add(xyseries) ;
 		++count ;
@@ -132,6 +133,11 @@ public class XYPlot {
 		this.grid = on ;
 		this.gridWhich = "both" ;
 		this.gridAxis = "both" ;
+		return this ;
+	}
+
+	public XYPlot legend(boolean on) {
+		this.legend = on ;
 		return this ;
 	}
 
@@ -208,7 +214,8 @@ public class XYPlot {
 			process = rt.exec("python " + fo.getFilename()) ;
 			while(true) {
 				if(!process.isAlive()) {
-					FileOutput.deleteFile(fo.getFilename()) ;
+					if(file.exists())
+						file.delete() ;
 					System.out.println("clean up completed.");
 					break ;
 				}
@@ -256,6 +263,8 @@ public class XYPlot {
 			fo.println(format("plt.grid(%s, which='%s', axis='%s')", "True", gridWhich, gridAxis)) ;
 		else
 			fo.println(format("plt.grid(%s, which='%s', axis='%s')", "False", gridWhich, gridAxis)) ;
+		if(legend)
+			fo.println("plt.legend()");
 	}
 
 	public void help() {

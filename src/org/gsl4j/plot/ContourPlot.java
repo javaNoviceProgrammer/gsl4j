@@ -1,4 +1,4 @@
-package org.gsl4j.plot.simple;
+package org.gsl4j.plot;
 
 public class ContourPlot {
 

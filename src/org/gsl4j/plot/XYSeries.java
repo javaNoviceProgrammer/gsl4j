@@ -1,4 +1,4 @@
-package org.gsl4j.plot.simple;
+package org.gsl4j.plot;
 
 import java.util.Arrays;
 
@@ -13,11 +13,26 @@ public class XYSeries {
 	String marker ;
 	String linestyle ;
 	int linewidth = 2 ;
+	int markerSize = 0 ;
 	boolean semilogx = false ;
 	boolean semilogy = false ;
 	boolean loglog = false ;
+	// additional Line2D params
+	String drawStyle ;
+	String fillStyle ;
+	boolean inLayout ;
+	int markEvery = 1 ;
+	boolean rasterized ;
+	boolean snap ;
+	String solidCapStyle ;
+	String solidJoinStyle ;
+	boolean visible = true ;
 
-	public XYSeries(double[] x, double[] y, String xvar, String yvar, String color, String marker, String linestyle, int linewidth, String label) {
+	String markerEdgeColor ;
+	int markerEdgeWidth ;
+	String markerFaceColor ;
+
+	public XYSeries(double[] x, double[] y, String xvar, String yvar, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
 		this.x = x ;
 		this.y = y ;
 		this.xvar = (xvar!=null)? xvar.trim() : null ;
@@ -25,6 +40,7 @@ public class XYSeries {
 		this.color = (color!=null)? color.trim() : null ;
 		this.label = (label!=null)? label.trim() : null ;
 		this.marker = (marker!=null)? marker.trim() : null ;
+		this.markerSize = markerSize ;
 		this.linestyle = (linestyle!=null)? linestyle.trim() : null ;
 		this.linewidth = linewidth ;
 	}
@@ -40,47 +56,52 @@ public class XYSeries {
 	}
 
 	public XYSeries setXvar(String xvar) {
-		this.xvar = xvar ;
+		this.xvar = (xvar!=null) ? xvar.trim() : null ;
 		return this ;
 	}
 
 	public XYSeries setYvar(String yvar) {
-		this.yvar = yvar ;
-		return this ;
-	}
-
-	public XYSeries setColor(String color) {
-		this.color = color ;
+		this.yvar = (yvar!=null) ? yvar.trim() : null ;
 		return this ;
 	}
 
 	public XYSeries color(String color) {
-		this.color = color ;
-		return this ;
-	}
-
-	public XYSeries setMarker(String marker) {
-		this.marker = marker ;
+		this.color = (color!=null) ? color.trim() : null ;
 		return this ;
 	}
 
 	public XYSeries marker(String marker) {
-		this.marker = marker ;
+		this.marker = (marker!=null) ? marker.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries setLinestyle(String linestyle) {
-		this.linestyle = linestyle ;
+	public XYSeries marker(Marker marker) {
+		this.marker = (marker!=null) ? marker.toString().trim() : null ;
+		return this ;
+	}
+
+	public XYSeries markerSize(int markerSize) {
+		this.markerSize = markerSize ;
+		return this ;
+	}
+
+	public XYSeries markerEdgeColor(String markerEdgeColor) {
+		this.markerEdgeColor = (markerEdgeColor!=null) ? markerEdgeColor.trim() : null ;
+		return this ;
+	}
+
+	public XYSeries markerEdgeWidth(int markerEdgeWidth) {
+		this.markerEdgeWidth = markerEdgeWidth ;
 		return this ;
 	}
 
 	public XYSeries linestyle(String linestyle) {
-		this.linestyle = linestyle ;
+		this.linestyle = (linestyle!=null) ? linestyle.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries setLinewidth(int linewidth) {
-		this.linewidth = linewidth ;
+	public XYSeries linestyle(LineStyle linestyle) {
+		this.linestyle = (linestyle!=null) ? linestyle.toString().trim() : null ;
 		return this ;
 	}
 
@@ -89,13 +110,18 @@ public class XYSeries {
 		return this ;
 	}
 
-	public XYSeries setLabel(String label) {
-		this.label = label ;
+	public XYSeries label(String label) {
+		this.label = (label!=null) ? label.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries label(String label) {
-		this.label = label ;
+	public XYSeries fillstyle(String fillStyle) {
+		this.fillStyle = (fillStyle!=null) ? fillStyle.trim() : null ;
+		return this ;
+	}
+
+	public XYSeries fillstyle(FillStyle fillStyle) {
+		this.fillStyle = (fillStyle!=null) ? fillStyle.toString().trim() : null ;
 		return this ;
 	}
 
@@ -146,6 +172,18 @@ public class XYSeries {
 			sb.append(", ") ;
 			sb.append("marker='" + marker + "'") ;
 		}
+		if(markerSize > 0) {
+			sb.append(", ") ;
+			sb.append("markersize=" + markerSize) ;
+		}
+		if(markerEdgeColor != null) {
+			sb.append(", ") ;
+			sb.append("markeredgecolor='" + markerEdgeColor + "'") ;
+		}
+		if(markerEdgeWidth >= 0) {
+			sb.append(", ") ;
+			sb.append("markeredgewidth=" + markerEdgeWidth) ;
+		}
 		if(linestyle != null) {
 			sb.append(", ") ;
 			sb.append("linestyle='" + linestyle + "'") ;
@@ -157,6 +195,10 @@ public class XYSeries {
 		if(label != null) {
 			sb.append(", ") ;
 			sb.append("label='" + label + "'") ;
+		}
+		if(fillStyle != null) {
+			sb.append(", ") ;
+			sb.append("fillstyle='" + fillStyle + "'") ;
 		}
 		sb.append(")") ;
 		return sb.toString() ;
