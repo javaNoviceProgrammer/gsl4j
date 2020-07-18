@@ -10,6 +10,7 @@ import static java.lang.String.* ;
 import java.awt.Desktop;
 
 import org.gsl4j.io.FileOutput;
+import org.gsl4j.plot.style.LegendLocation;
 
 public class XYPlot {
 
@@ -22,8 +23,12 @@ public class XYPlot {
 	String gridAxis = null ;
 	String xlim = null ;
 	String ylim = null ;
+	// legend
 	boolean legend = false ;
+	String legendLocation ;
+	// other properties
 	boolean tightLayout = false ;
+	// data
 	ArrayList<XYSeries> xySeriesCollection ;
 	int count = 1 ;
 
@@ -139,6 +144,18 @@ public class XYPlot {
 
 	public XYPlot legend(boolean on) {
 		this.legend = on ;
+		return this ;
+	}
+
+	public XYPlot legend(boolean on, String loc) {
+		this.legend = on ;
+		this.legendLocation = (loc!=null) ? loc.trim() : null ;
+		return this ;
+	}
+
+	public XYPlot legend(boolean on, LegendLocation loc) {
+		this.legend = on ;
+		this.legendLocation = (loc!=null) ? loc.toString().trim() : null ;
 		return this ;
 	}
 
@@ -269,8 +286,13 @@ public class XYPlot {
 			fo.println(format("plt.grid(%s, which='%s', axis='%s')", "True", gridWhich, gridAxis)) ;
 		else
 			fo.println(format("plt.grid(%s, which='%s', axis='%s')", "False", gridWhich, gridAxis)) ;
-		if(legend)
-			fo.println("plt.legend()");
+		if(legend) {
+			if(legendLocation != null)
+				fo.println(format("plt.legend(loc='%s')", legendLocation)) ;
+			else
+				fo.println("plt.legend()");
+		}
+
 		if(tightLayout)
 			fo.println("plt.tight_layout()");
 	}

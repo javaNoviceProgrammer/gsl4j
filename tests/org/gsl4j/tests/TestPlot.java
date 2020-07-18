@@ -5,9 +5,13 @@ import java.util.Arrays;
 import org.gsl4j.plot.XYPlot;
 import org.gsl4j.plot.XYSeries;
 import org.gsl4j.plot.style.CapStyle;
+import org.gsl4j.plot.style.Color;
 import org.gsl4j.plot.style.DrawStyle;
 import org.gsl4j.plot.style.JoinStyle;
+import org.gsl4j.plot.style.LegendLocation;
 import org.gsl4j.plot.style.LineStyle;
+import org.gsl4j.plot.style.Marker;
+import org.gsl4j.special.Airy;
 import org.gsl4j.util.MathUtils;
 
 
@@ -84,18 +88,10 @@ public class TestPlot {
 		double[] y = Arrays.stream(x).map(Math::cos).map(Math::abs).toArray() ;
 		fig.plot(x, y).color("b")//.linewidth(1).linestyle(":")
 					  .linestyle(LineStyle.solid).linewidth(4)
-//					  .marker(Marker.circle).markerSize(6)
-//					  .marker("o").markerSize(10)
-//					  .markerEdgeColor("k").markerEdgeWidth(0.5)
-//					  .markerFaceColor("y")
-//					  .fillstyle(FillStyle.bottom)
 					  .label("XY data")
 					  .drawstyle(DrawStyle.defaults)
 					  .solidCapStyle(CapStyle.round)
 					  .solidJoinStyle(JoinStyle.bevel);
-//		fig.semilogx(x, y).color("b").linewidth(2).linestyle("-") ;
-//		fig.semilogy(x, y).color("b").linewidth(2).linestyle(":") ;
-//		fig.loglog(x, y).color("b").linewidth(2).linestyle(":") ;
 		fig.xlabel("x values");
 		fig.ylabel("y values");
 		fig.grid(true, "both", "both");
@@ -103,6 +99,19 @@ public class TestPlot {
 		fig.legend(true) ;
 		fig.tightLayout() ;
 		fig.show();
+	}
+
+	public static void test9() {
+		double[] x = MathUtils.linspace(-25.0, 10, 100) ;
+		double[] y = Arrays.stream(x).map(Airy::ai).toArray() ;
+		x = MathUtils.linspace(-25.0, 1, 100) ;
+		double[] z = Arrays.stream(x).map(Airy::bi).toArray() ;
+		XYPlot plt = new XYPlot("Airy Functions: Ai(x) & Bi(x)") ;
+		plt.plot(x, y).color(Color.blue).linewidth(1.0).marker(Marker.x).markerEdgeColor(Color.black).label("Ai(x)") ;
+		plt.plot(x, z).color(Color.red).linewidth(1.0).marker(Marker.square).label("Bi(x)") ;
+		plt.grid(true) ;
+		plt.legend(true, LegendLocation.lowerLeft) ;
+		plt.show();
 	}
 
 	public static void main(String[] args) {
@@ -113,7 +122,8 @@ public class TestPlot {
 //		test5() ;
 //		test6() ;
 //		test7() ;
-		test8() ;
+//		test8() ;
+		test9() ;
 	}
 
 }

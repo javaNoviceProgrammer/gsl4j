@@ -32,9 +32,9 @@ public class XYSeries {
 	boolean visible = true ;
 	// marker properties
 	String marker ;
-	double markerSize = 0 ;
+	double markerSize = 6.0 ;
 	String markerEdgeColor ;
-	double markerEdgeWidth ;
+	double markerEdgeWidth = 1.0 ;
 	String markerFaceColor ;
 	// linestyle
 	String linestyle ;
@@ -77,6 +77,11 @@ public class XYSeries {
 
 	public XYSeries color(String color) {
 		this.color = (color!=null) ? color.trim() : null ;
+		return this ;
+	}
+
+	public XYSeries color(Color color) {
+		this.color = (color!=null) ? color.toString().trim() : null ;
 		return this ;
 	}
 
