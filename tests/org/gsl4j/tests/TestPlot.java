@@ -111,7 +111,10 @@ public class TestPlot {
 		plt.plot(x, z).color(Color.red).linewidth(1.0).marker(Marker.square).label("Bi(x)") ;
 		plt.grid(true) ;
 		plt.legend(true, LegendLocation.lowerLeft) ;
+		plt.tightLayout() ;
 		plt.show();
+
+		test8() ;
 	}
 
 	public static void main(String[] args) {

@@ -14,9 +14,21 @@ public enum ColorMap {
 	hsv("hsv") ,
 	// Miscellaneous
 	flag("flag") ,
-	'prism', 'ocean', 'gist_earth', 'terrain', 'gist_stern',
-    'gnuplot', 'gnuplot2', 'CMRmap', 'cubehelix', 'brg',
-    'gist_rainbow', 'rainbow', 'jet', 'nipy_spectral', 'gist_ncar'
+	prism("prism") ,
+	ocean("ocean") ,
+	gist_earth("gist_earth") ,
+	terrain("terrain") ,
+	gist_stern("gist_stern") ,
+    gnuplot("gnuplot") ,
+    gnuplot2("gnuplot2") ,
+    cmr_map("CMRmap") ,
+    cubehelix("cubehelix") ,
+    brg("brg") ,
+    gist_rainbow("gist_rainbow") ,
+    rainbow("rainbow") ,
+    jet("jet") ,
+    nipy_spectral("nipy_spectral") ,
+    gist_ncar("gist_ncar") ;
 
 
 

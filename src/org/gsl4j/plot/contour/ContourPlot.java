@@ -37,6 +37,7 @@ public class ContourPlot {
 	// contour series
 	ArrayList<ContourSeries> contourSeriesCollection ;
 	int count = 1 ;
+	static int id = 0 ;
 
 
 	public ContourPlot(String title) {
@@ -158,8 +159,8 @@ public class ContourPlot {
 
 	public void show() {
 		// open the output stream
-		File file = new File("fig") ;
-//		file.deleteOnExit();
+		File file = new File("fig"+(id++)) ;
+		file.deleteOnExit();
 		FileOutput fo = new FileOutput(file) ;
 		pythonCode(fo);
 		// show the plot
@@ -171,18 +172,12 @@ public class ContourPlot {
 		fo.close();
 		// run the python code
 		Runtime rt = Runtime.getRuntime() ;
-		Process process ;
 		try {
-			process = rt.exec("python " + fo.getFilename()) ;
-//			while(true) {
-//				if(!process.isAlive()) {
-//					if(file.exists())
-//						file.delete() ;
-//					System.out.println("clean up completed.");
-//					break ;
-//				}
-//			}
+			rt.exec("python " + fo.getFilename()) ;
+			Thread.sleep(100L);
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

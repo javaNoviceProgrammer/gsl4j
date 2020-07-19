@@ -32,6 +32,7 @@ public class ContourSeries {
 	String extend ;
 	String origin ;
 	double[] extent ; // x0, x1, y0, y1
+	boolean colorbar = false ;
 	// labels
 	ContourLabel clabel ;
 
@@ -120,6 +121,11 @@ public class ContourSeries {
 		return this ;
 	}
 
+	public ContourSeries colorbar(boolean colorbar) {
+		this.colorbar = colorbar ;
+		return this ;
+	}
+
 
 	public ContourLabel clabel() {
 		return clabel ;
@@ -184,9 +190,14 @@ public class ContourSeries {
 
 
 		sb.append(")\n") ;
-		if(clabel != null)
-			// clable style options
+		// clable style options
+		if(clabel != null && clabel.levels != null && clabel.levels.length > 0)
 			sb.append(format("%s\n", clabel)) ;
+		// colorbar for each contour series
+		if(colorbar) {
+			sb.append("plt.colorbar()\n") ;
+		}
+		// return the result
 		return sb.toString() ;
 	}
 
@@ -200,7 +211,7 @@ public class ContourSeries {
 		double[] x = {1.1, 2.2, 3.3} ;
 		double[] y = {-1.0, -2.0, -3.0, -4.0} ;
 		ContourSeries series = new ContourSeries(x, y, (z,w)->z*w) ;
-		series.setXvar("x1").setYvar("y1").setZvar("z1") ;
+		series.setXvar("x1").setYvar("y1").setZvar("z1").colorbar(true) ;
 //		System.out.println(Arrays.deepToString(series.z));
 		System.out.println(series);
 	}
