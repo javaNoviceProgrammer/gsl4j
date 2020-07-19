@@ -2,7 +2,7 @@ package org.gsl4j.tests;
 
 import java.util.Arrays;
 
-import org.gsl4j.plot.XYPlot;
+import org.gsl4j.plot.xy.XYPlot;
 import org.gsl4j.special.Digamma;
 import org.gsl4j.util.MathUtils;
 

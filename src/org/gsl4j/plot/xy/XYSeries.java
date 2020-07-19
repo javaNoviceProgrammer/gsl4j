@@ -1,4 +1,4 @@
-package org.gsl4j.plot;
+package org.gsl4j.plot.xy;
 
 import org.gsl4j.plot.style.CapStyle;
 import org.gsl4j.plot.style.Color;

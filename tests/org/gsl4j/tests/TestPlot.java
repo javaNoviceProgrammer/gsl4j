@@ -2,8 +2,6 @@ package org.gsl4j.tests;
 
 import java.util.Arrays;
 
-import org.gsl4j.plot.XYPlot;
-import org.gsl4j.plot.XYSeries;
 import org.gsl4j.plot.style.CapStyle;
 import org.gsl4j.plot.style.Color;
 import org.gsl4j.plot.style.DrawStyle;
@@ -11,6 +9,8 @@ import org.gsl4j.plot.style.JoinStyle;
 import org.gsl4j.plot.style.LegendLocation;
 import org.gsl4j.plot.style.LineStyle;
 import org.gsl4j.plot.style.Marker;
+import org.gsl4j.plot.xy.XYPlot;
+import org.gsl4j.plot.xy.XYSeries;
 import org.gsl4j.special.Airy;
 import org.gsl4j.util.MathUtils;
 

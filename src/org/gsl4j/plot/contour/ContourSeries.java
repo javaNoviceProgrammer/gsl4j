@@ -2,6 +2,10 @@ package org.gsl4j.plot.contour;
 
 import java.util.Arrays;
 import java.util.List;
+
+import org.gsl4j.plot.style.ColorMap;
+import org.gsl4j.plot.style.LineStyle;
+
 import static java.lang.String.format;
 
 
@@ -17,11 +21,12 @@ public class ContourSeries {
 	// meshgrid function
 	MeshGrid func ;
 	// parameters
+	boolean filled = false ;
 	boolean cornerMask ;
 	double alpha = 1.0 ;
 	String colorMap ;
-	boolean antialiased ;
-	double linewidth = 2.0 ;
+	boolean antialiased = true ;
+	double linewidth = 1.5 ;
 	String linestyle ;
 	List<String> hatches ;
 	String extend ;
@@ -39,6 +44,7 @@ public class ContourSeries {
 		for(int i=0; i<y.length; i++)
 			for(int j=0; j<x.length; j++)
 				z[i][j] = func.value(x[j], y[i]) ;
+		this.clabel = new ContourLabel("") ;
 	}
 
 
@@ -67,6 +73,58 @@ public class ContourSeries {
 		return this ;
 	}
 
+	public ContourSeries filled(boolean filled) {
+		this.filled = filled ;
+		return this ;
+	}
+
+	public ContourSeries alpha(double alpha) {
+		if(alpha > 1.0 || alpha < 0.0)
+			throw new IllegalArgumentException("Valid range for alpha: 0 <= alpha <= 1") ;
+		this.alpha = alpha ;
+		return this ;
+	}
+
+	public ContourSeries cornerMask(boolean cornerMask) {
+		this.cornerMask = cornerMask ;
+		return this ;
+	}
+
+	public ContourSeries linewidth(double linewidth) {
+		this.linewidth = linewidth ;
+		return this ;
+	}
+
+	public ContourSeries linestyle(String linestyle) {
+		this.linestyle = (linestyle!=null) ? linestyle.trim() : null ;
+		return this ;
+	}
+
+	public ContourSeries linestyle(LineStyle linestyle) {
+		this.linestyle = (linestyle!=null) ? linestyle.toString().trim() : null ;
+		return this ;
+	}
+
+	public ContourSeries antialiased(boolean antialiased) {
+		this.antialiased = antialiased ;
+		return this ;
+	}
+
+	public ContourSeries cmap(String cmap) {
+		this.colorMap = (cmap!=null) ? cmap.trim() : null ;
+		return this ;
+	}
+
+	public ContourSeries cmap(ColorMap cmap) {
+		this.colorMap = (cmap!=null) ? cmap.toString().trim() : null ;
+		return this ;
+	}
+
+
+	public ContourLabel clabel() {
+		return clabel ;
+	}
+
 
 	String getPythonCode() {
 		StringBuilder sb = new StringBuilder() ;
@@ -79,11 +137,56 @@ public class ContourSeries {
 		// create z data
 		sb.append(format("%s, %s = np.meshgrid(%s, %s);\n", xvar.toUpperCase(), yvar.toUpperCase(), xvar, yvar)) ;
 		sb.append(format("%s = np.array(%s);\n", zvar.toUpperCase(), Arrays.deepToString(z))) ;
-		if(clabel==null || clabel.levels==null)
-			sb.append(format("plt.contour(%s, %s, %s)\n", xvar.toUpperCase(), yvar.toUpperCase(), zvar.toUpperCase())) ;
-		else
-			sb.append(format("plt.contour(%s, %s, %s, levels=%s)\n", xvar.toUpperCase(), yvar.toUpperCase(), zvar.toUpperCase(), Arrays.toString(clabel.levels))) ;
+		if(clabel==null || clabel.levels==null) {
+			if(filled)
+				sb.append(format("plt.contourf(%s, %s, %s", xvar.toUpperCase(), yvar.toUpperCase(), zvar.toUpperCase())) ;
+			else
+				sb.append(format("plt.contour(%s, %s, %s", xvar.toUpperCase(), yvar.toUpperCase(), zvar.toUpperCase())) ;
+		}
+		else {
+			if(filled)
+				sb.append(format("%s = plt.contourf(%s, %s, %s, levels=%s", clabel.name, xvar.toUpperCase(), yvar.toUpperCase(), zvar.toUpperCase(), Arrays.toString(clabel.levels))) ;
+			else
+				sb.append(format("%s = plt.contour(%s, %s, %s, levels=%s", clabel.name, xvar.toUpperCase(), yvar.toUpperCase(), zvar.toUpperCase(), Arrays.toString(clabel.levels))) ;
+		}
+		if(alpha >=0 ) {
+			sb.append(", ") ;
+			sb.append(format("alpha=%f", alpha)) ;
+		}
+		if(cornerMask) {
+			sb.append(", ") ;
+			sb.append(format("corner_mask=%s", "True")) ;
+		}
+		else {
+			sb.append(", ") ;
+			sb.append(format("corner_mask=%s", "False")) ;
+		}
+		if(linewidth >= 0.0 && !filled) {
+			sb.append(", ") ;
+			sb.append(format("linewidths=%f", linewidth)) ;
+		}
+		if(linestyle != null) {
+			sb.append(", ") ;
+			sb.append(format("linestyles='%s'", linestyle)) ;
+		}
+		if(antialiased) {
+			sb.append(", ") ;
+			sb.append(format("antialiased=%s", "True")) ;
+		}
+		else {
+			sb.append(", ") ;
+			sb.append(format("antialiased=%s", "False")) ;
+		}
+		if(colorMap != null) {
+			sb.append(", ") ;
+			sb.append(format("cmap='%s'", colorMap)) ;
+		}
 
+
+		sb.append(")\n") ;
+		if(clabel != null)
+			// clable style options
+			sb.append(format("%s\n", clabel)) ;
 		return sb.toString() ;
 	}
 

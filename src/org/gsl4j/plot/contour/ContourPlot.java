@@ -2,29 +2,12 @@ package org.gsl4j.plot.contour;
 
 import static java.lang.String.format;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import org.gsl4j.io.FileOutput;
 import org.gsl4j.plot.style.LegendLocation;
-
-
-/*
- * X, Yarray-like, optional
- * The coordinates of the values in Z.
- * X and Y must both be 2-D with the same shape as Z (e.g. created via numpy.meshgrid), or they must both be 1-D such that len(X) == M is the number of columns in Z and len(Y) == N is the number of rows in Z.
- * If not given, they are assumed to be integer indices, i.e. X = range(M), Y = range(N).
- *
- * Zarray-like(N, M)
- * The height values over which the contour is drawn.
- *
- */
 
 
 /**
@@ -50,6 +33,7 @@ public class ContourPlot {
 	String legendLocation ;
 	// other properties
 	boolean tightLayout = false ;
+	String style ;
 	// contour series
 	ArrayList<ContourSeries> contourSeriesCollection ;
 	int count = 1 ;
@@ -64,9 +48,17 @@ public class ContourPlot {
 	public ContourSeries contour(double[] x, double[] y, MeshGrid func) {
 		ContourSeries series = new ContourSeries(x, y, func) ;
 		series.setXvar("x"+count).setYvar("y"+count).setZvar("z"+count) ;
+		series.clabel().name("cs"+count) ;
 		contourSeriesCollection.add(series) ;
 		count++ ;
 		return series ;
+	}
+
+
+
+	// clabel of the last contour
+	public ContourLabel clabel() {
+		return contourSeriesCollection.get(count-2).clabel() ;
 	}
 
 
@@ -137,6 +129,8 @@ public class ContourPlot {
 	}
 
 
+
+
 	public void savefig(String fileName) {
 		if(contourSeriesCollection.isEmpty())
 			throw new IllegalStateException("ContourPlot data is empty") ;
@@ -180,14 +174,14 @@ public class ContourPlot {
 		Process process ;
 		try {
 			process = rt.exec("python " + fo.getFilename()) ;
-			while(true) {
-				if(!process.isAlive()) {
-					if(file.exists())
-						file.delete() ;
-					System.out.println("clean up completed.");
-					break ;
-				}
-			}
+//			while(true) {
+//				if(!process.isAlive()) {
+//					if(file.exists())
+//						file.delete() ;
+//					System.out.println("clean up completed.");
+//					break ;
+//				}
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -213,7 +207,7 @@ public class ContourPlot {
 			fo.printcomma(contourSeries.y);
 			fo.print("];") ;
 			fo.println();
-			// plot
+			// contour plot
 			fo.println(contourSeries.toString());
 		}
 		// configure the plot

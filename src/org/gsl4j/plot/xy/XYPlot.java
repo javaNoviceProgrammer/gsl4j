@@ -1,4 +1,4 @@
-package org.gsl4j.plot;
+package org.gsl4j.plot.xy;
 
 import java.io.File;
 import java.io.IOException;
