@@ -32,6 +32,8 @@ public class XYPlot {
 	ArrayList<XYSeries> xySeriesCollection ;
 	int count = 1 ;
 	static int id = 0 ;
+	// header
+	boolean isSubplot = false ;
 
 	public XYPlot(String title) {
 		this.title = title ;
@@ -241,16 +243,17 @@ public class XYPlot {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	private void pythonCode(FileOutput fo) {
-		fo.println("from sys import platform as sys_pf") ;
-		fo.println("if sys_pf == 'darwin':") ;
-		fo.println("\timport matplotlib") ;
-		fo.println("\tmatplotlib.use('TkAgg')") ;
-		fo.println("import matplotlib.pyplot as plt");
-		fo.println();
+	void pythonCode(FileOutput fo) {
+		if(!isSubplot) {
+			fo.println("from sys import platform as sys_pf") ;
+			fo.println("if sys_pf == 'darwin':") ;
+			fo.println("\timport matplotlib") ;
+			fo.println("\tmatplotlib.use('TkAgg')") ;
+			fo.println("import matplotlib.pyplot as plt");
+			fo.println();
+		}
 		// for each xy series, write the data
 		for(XYSeries xyseries: xySeriesCollection) {
 			// print x

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import org.gsl4j.complex.Complex;
 
-public class FileInput {
+public class FileInput implements AutoCloseable {
 	protected String fileName = " ";
 	protected String stemName = " ";
 	protected String extension = " ";
@@ -383,6 +383,7 @@ public class FileInput {
 		}
 	}
 
+	@Override
 	public final synchronized void close() {
 		if (this.fileFound) {
 			try {

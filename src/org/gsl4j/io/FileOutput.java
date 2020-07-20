@@ -15,7 +15,7 @@ import java.util.Date;
 
 import org.gsl4j.complex.Complex;
 
-public class FileOutput {
+public class FileOutput implements AutoCloseable {
 	private String filename = "";
 	private FileWriter fwoutput = null;
 	private PrintWriter output = null;
@@ -1773,6 +1773,7 @@ public class FileOutput {
 		this.output.print(";");
 	}
 
+	@Override
 	public final synchronized void close() {
 		this.output.close();
 	}
