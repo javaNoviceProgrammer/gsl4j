@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import static java.lang.String.* ;
 
 import java.awt.Desktop;
@@ -26,6 +28,11 @@ public class XYPlot {
 	// legend
 	boolean legend = false ;
 	String legendLocation ;
+	// ticks
+	double[] xticks ;
+	String[] xtickLabels ;
+	double[] yticks ;
+	String[] ytickLabels ;
 	// other properties
 	boolean tightLayout = false ;
 	// data
@@ -162,6 +169,26 @@ public class XYPlot {
 		return this ;
 	}
 
+	public XYPlot xticks(double... xticks) {
+		this.xticks = (xticks!=null) ? xticks : null ;
+		return this ;
+	}
+
+	public XYPlot xticks(String... xlabels) {
+		this.xtickLabels = (xlabels!=null) ? xlabels : null ;
+		return this ;
+	}
+
+	public XYPlot yticks(double... yticks) {
+		this.yticks = (yticks!=null) ? yticks : null ;
+		return this ;
+	}
+
+	public XYPlot yticks(String... ylabels) {
+		this.ytickLabels = (ylabels!=null) ? ylabels : null ;
+		return this ;
+	}
+
 	public XYPlot tightLayout() {
 		this.tightLayout = true ;
 		return this ;
@@ -290,7 +317,18 @@ public class XYPlot {
 			else
 				fo.println("plt.legend()");
 		}
-
+		if(xticks != null) {
+			if(xtickLabels == null)
+				fo.println(format("plt.xticks(ticks=%s)", Arrays.toString(xticks)));
+			else
+				fo.println(format("plt.xticks(ticks=%s, labels=%s)", Arrays.toString(xticks), Arrays.toString(xtickLabels)));
+		}
+		if(yticks != null) {
+			if(ytickLabels == null)
+				fo.println(format("plt.yticks(ticks=%s)", Arrays.toString(yticks)));
+			else
+				fo.println(format("plt.yticks(ticks=%s, labels=%s)", Arrays.toString(yticks), Arrays.toString(ytickLabels)));
+		}
 		if(tightLayout)
 			fo.println("plt.tight_layout()");
 	}

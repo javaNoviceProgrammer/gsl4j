@@ -113,8 +113,22 @@ public class TestPlot {
 		plt.legend(true, LegendLocation.lowerLeft) ;
 		plt.tightLayout() ;
 		plt.show();
+	}
 
-		test8() ;
+	public static void test10() {
+		double[] x = MathUtils.linspace(-25.0, 10, 1000) ;
+		double[] y = Arrays.stream(x).map(Airy::ai).toArray() ;
+		double[] x1 = MathUtils.linspace(-25.0, 1, 200) ;
+		double[] z = Arrays.stream(x1).map(Airy::bi).toArray() ;
+		XYPlot plt = new XYPlot("Airy Functions: Ai(x) & Bi(x)") ;
+		plt.plot(x, y).color(Color.blue).linewidth(1.0).marker(Marker.x).markerEdgeColor(Color.black).label("Ai(x)") ;
+		plt.plot(x1, z).color(Color.red).linewidth(1.0).marker(Marker.square).label("Bi(x)") ;
+		plt.grid(true) ;
+		plt.legend(true, LegendLocation.lowerLeft) ;
+		plt.xticks(0.0, -1.0, -2.0, -3.0, -10.0, -20.0)
+		   .yticks(0.0, -1.0, 1.0, 2.0, -2.0);
+		plt.tightLayout() ;
+		plt.show();
 	}
 
 	public static void main(String[] args) {
@@ -126,7 +140,8 @@ public class TestPlot {
 //		test6() ;
 //		test7() ;
 //		test8() ;
-		test9() ;
+//		test9() ;
+		test10() ;
 	}
 
 }
