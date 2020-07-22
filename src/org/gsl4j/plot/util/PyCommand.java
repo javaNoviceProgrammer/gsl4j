@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import org.gsl4j.util.StringUtils;
 
 public class PyCommand {
+
     private final PythonConfig pythonConfig;
 
     public PyCommand(PythonConfig pythonConfig) {
@@ -34,13 +35,11 @@ public class PyCommand {
 
         List<String> com;
         if (!StringUtils.isNullOrEmpty(pythonConfig.getPythonBinPath())) {
-//            com = Lists.newArrayList(pythonConfig.getPythonBinPath(), scriptPath);
             com = new ArrayList<String>() ;
             com.add(pythonConfig.getPythonBinPath()) ;
             com.add(scriptPath) ;
         } else if (shell.length() != 0) {
             // -l: Use login shell
-//            com = Lists.newArrayList("bash", "-l", "-c", shell.toString());
             com = new ArrayList<String>() ;
             com.add("bash") ;
             com.add("-l") ;
@@ -48,7 +47,6 @@ public class PyCommand {
             com.add(shell.toString()) ;
         } else {
             // system's default
-//            com = Lists.newArrayList("python", scriptPath);
         		com = new ArrayList<String>() ;
         		com.add("python") ;
         		com.add(scriptPath) ;
@@ -68,9 +66,6 @@ public class PyCommand {
             System.out.println(line);
             line = br.readLine();
         }
-
-        // stderr
-        // TODO: have a common way with stdout
 
         br = new BufferedReader(new InputStreamReader(process.getErrorStream()));
         StringBuilder sb = new StringBuilder();
@@ -100,7 +95,6 @@ public class PyCommand {
     }
 
     public void execute(String pythonScript) throws IOException, PythonExecutionException {
-//        File tmpDir = Files.createTempDir();
         File tmpDir = new File(".") ;
         tmpDir.deleteOnExit();
         File script = new File(tmpDir, "exec.py");

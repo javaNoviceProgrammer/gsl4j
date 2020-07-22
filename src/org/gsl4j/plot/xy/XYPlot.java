@@ -1,5 +1,8 @@
 package org.gsl4j.plot.xy;
 
+import static java.lang.String.format;
+
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -7,12 +10,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static java.lang.String.* ;
-
-import java.awt.Desktop;
-
 import org.gsl4j.io.FileOutput;
 import org.gsl4j.plot.style.LegendLocation;
+
 
 public class XYPlot {
 

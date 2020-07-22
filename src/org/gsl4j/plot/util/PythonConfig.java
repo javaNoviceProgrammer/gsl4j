@@ -2,6 +2,7 @@ package org.gsl4j.plot.util;
 
 
 public class PythonConfig {
+
     private final String pyenv;
     private final String virtualenv;
     private final String pythonBinPath;
