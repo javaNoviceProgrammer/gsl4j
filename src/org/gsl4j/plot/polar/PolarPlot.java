@@ -189,12 +189,12 @@ public class PolarPlot {
 		fo.println();
 		// for each xy series, write the data
 		for(PolarSeries series: polarSeriesCollection) {
-			// print x
+			// print r
 			fo.print(series.rvar + " = [");
 			fo.printcomma(series.r);
 			fo.print("];") ;
 			fo.println();
-			// print y
+			// print theta
 			fo.print(series.thetavar + " = [");
 			fo.printcomma(series.theta);
 			fo.print("];") ;

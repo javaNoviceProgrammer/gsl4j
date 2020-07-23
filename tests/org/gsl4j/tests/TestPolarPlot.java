@@ -1,5 +1,9 @@
 package org.gsl4j.tests;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+
 import java.util.Arrays;
 
 import org.gsl4j.plot.polar.PolarPlot;
@@ -22,8 +26,25 @@ class TestPolarPlot {
 
 	}
 
+	public static void test2() {
+		// step 0
+		double[] theta = MathUtils.linspace(-2.0*Math.PI, 2.0*Math.PI, 1000) ;
+		double[] r1 = Arrays.stream(theta).map(t -> abs(sin(t))).toArray() ;
+		double[] r2 = Arrays.stream(theta).map(t -> abs(cos(t))).toArray() ;
+		// step 1
+		PolarPlot plt = new PolarPlot("A polar plot from java!!!!") ;
+		plt.plot(r1, theta).color("b").linestyle("-").linewidth(2.0).label("y=sin(x)") ;
+		// step 2
+		plt.plot(r2, theta).color("r").linestyle("--").linewidth(3.0).label("y=cos(x)") ;
+		// step 3
+		plt.tightLayout() ;
+		// step 4
+		plt.show();
+	}
+
 	public static void main(String[] args) {
-		test1() ;
+//		test1() ;
+		test2() ;
 	}
 
 }
