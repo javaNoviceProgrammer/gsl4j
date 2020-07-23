@@ -33,9 +33,9 @@ class TestPolarPlot {
 		double[] r2 = Arrays.stream(theta).map(t -> abs(cos(t))).toArray() ;
 		// step 1
 		PolarPlot plt = new PolarPlot("A polar plot from java!!!!") ;
-		plt.plot(r1, theta).color("b").linestyle("-").linewidth(2.0).label("y=sin(x)") ;
+		plt.plot(theta, r1).color("b").linestyle("-").linewidth(2.0).label("y=sin(x)") ;
 		// step 2
-		plt.plot(r2, theta).color("r").linestyle("--").linewidth(3.0).label("y=cos(x)") ;
+		plt.plot(theta, r2).color("r").linestyle("--").linewidth(3.0).label("y=cos(x)") ;
 		// step 3
 		plt.tightLayout() ;
 		// step 4

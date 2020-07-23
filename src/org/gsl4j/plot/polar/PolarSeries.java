@@ -40,7 +40,7 @@ public class PolarSeries {
 	String solidCapStyle ;
 	String solidJoinStyle ;
 
-	public PolarSeries(double[] r, double[] theta) {
+	public PolarSeries(double[] theta, double[] r) {
 		this.r = r ;
 		this.theta = theta ;
 	}

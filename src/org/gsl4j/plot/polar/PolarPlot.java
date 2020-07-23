@@ -51,8 +51,8 @@ public class PolarPlot {
 		this(null) ;
 	}
 
-	public PolarSeries plot(double[] r, double[] theta) {
-		PolarSeries polarSeries = new PolarSeries(r, theta) ;
+	public PolarSeries plot(double[] theta, double[] r) {
+		PolarSeries polarSeries = new PolarSeries(theta, r) ;
 		polarSeries.setRvar("r"+count).setThetaVar("theta"+count) ;
 		polarSeriesCollection.add(polarSeries) ;
 		++count ;
