@@ -55,7 +55,14 @@ public class ContourPlot {
 		return series ;
 	}
 
-
+	public ContourSeries contour(double[] x, double[] y, double[][] z) {
+		ContourSeries series = new ContourSeries(x, y, z) ;
+		series.setXvar("x"+count).setYvar("y"+count).setZvar("z"+count) ;
+		series.clabel().name("cs"+count) ;
+		contourSeriesCollection.add(series) ;
+		count++ ;
+		return series ;
+	}
 
 	// clabel of the last contour
 	public ContourLabel clabel() {
