@@ -37,6 +37,7 @@ public class ContourPlot {
 	// contour series
 	ArrayList<ContourSeries> contourSeriesCollection ;
 	int count = 1 ;
+	public boolean isSubplot = false ;
 	static int id = 0 ;
 
 
@@ -45,6 +46,10 @@ public class ContourPlot {
 		contourSeriesCollection = new ArrayList<>() ;
 	}
 
+	public ContourPlot() {
+		this.title = null ;
+		contourSeriesCollection = new ArrayList<>() ;
+	}
 
 	public ContourSeries contour(double[] x, double[] y, MeshGrid func) {
 		ContourSeries series = new ContourSeries(x, y, func) ;
@@ -189,14 +194,16 @@ public class ContourPlot {
 		}
 	}
 
-	private void pythonCode(FileOutput fo) {
-		fo.println("from sys import platform as sys_pf") ;
-		fo.println("if sys_pf == 'darwin':") ;
-		fo.println("\timport numpy as np") ;
-		fo.println("\timport matplotlib") ;
-		fo.println("\tmatplotlib.use('TkAgg')") ;
-		fo.println("import matplotlib.pyplot as plt");
-		fo.println();
+	void pythonCode(FileOutput fo) {
+		if(!isSubplot) {
+			fo.println("from sys import platform as sys_pf") ;
+			fo.println("if sys_pf == 'darwin':") ;
+			fo.println("\timport matplotlib") ;
+			fo.println("\tmatplotlib.use('TkAgg')") ;
+			fo.println("import numpy as np") ;
+			fo.println("import matplotlib.pyplot as plt");
+			fo.println();
+		}
 		// print x and y values
 		for(ContourSeries contourSeries : contourSeriesCollection) {
 			// print x

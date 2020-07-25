@@ -76,13 +76,11 @@ class TestContourPlot {
 		plt2.grid(true) ;
 		plt2.show();
 
-		plt2.show();
-
 	}
 
 	public static void main(String[] args) {
-		test1() ;
-//		test2() ;
+//		test1() ;
+		test2() ;
 //		test3() ;
 //		test4() ;
 	}
