@@ -20,6 +20,7 @@ public class ContourLabel {
 	boolean rightsideUp = true ;
 	boolean useClabelText = false ;
 
+
 	public ContourLabel(String name) {
 		this.name = name ;
 	}
