@@ -12,6 +12,7 @@ import java.util.Arrays;
 
 import org.gsl4j.io.FileOutput;
 import org.gsl4j.plot.style.LegendLocation;
+import org.gsl4j.plot.util.TerminalExecutor;
 
 
 public class XYPlot {
@@ -215,12 +216,7 @@ public class XYPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		TerminalExecutor.execute("python", fo.getFilename());
 	}
 
 	public void show(String fileName) {
@@ -237,12 +233,7 @@ public class XYPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		TerminalExecutor.execute("python", fo.getFilename());
 	}
 
 	public void show() {
@@ -261,15 +252,7 @@ public class XYPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-			Thread.sleep(100L);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		TerminalExecutor.execute("python", fo.getFilename());
 	}
 
 	void pythonCode(FileOutput fo) {

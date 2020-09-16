@@ -2,13 +2,13 @@ package org.gsl4j.plot.contour;
 
 import static java.lang.String.format;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.gsl4j.io.FileOutput;
+import org.gsl4j.plot.util.TerminalExecutor;
 
 
 public class ContourSubPlot {
@@ -50,12 +50,13 @@ public class ContourSubPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		TerminalExecutor.execute("python", fo.getFilename());
+//		Runtime rt = Runtime.getRuntime() ;
+//		try {
+//			rt.exec("python " + fo.getFilename()) ;
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public void show(String fileName) {
@@ -69,12 +70,13 @@ public class ContourSubPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		TerminalExecutor.execute("python", fo.getFilename());
+//		Runtime rt = Runtime.getRuntime() ;
+//		try {
+//			rt.exec("python " + fo.getFilename()) ;
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public void show() {
@@ -89,15 +91,16 @@ public class ContourSubPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime() ;
-		try {
-			rt.exec("python " + fo.getFilename()) ;
-			Thread.sleep(100L);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		TerminalExecutor.execute("python", fo.getFilename());
+//		Runtime rt = Runtime.getRuntime() ;
+//		try {
+//			rt.exec("python " + fo.getFilename()) ;
+//			Thread.sleep(100L);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
 	}
 

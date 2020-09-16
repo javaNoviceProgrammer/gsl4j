@@ -73,8 +73,9 @@ public class TestXYPlot {
 		fig.xlabel("X");
 		fig.ylabel("Y");
 		fig.grid(true, "both", "both");
-//		fig.savefig("./tests/org/gsl4j/tests/test/fig2.png");
-		fig.show("./tests/org/gsl4j/tests/test/fig2");
+		fig.savefig("./tests/org/gsl4j/tests/test/fig2.png");
+//		fig.savefig("./tests/org/gsl4j/tests/test/fig2.pdf");
+//		fig.show("./tests/org/gsl4j/tests/test/fig2");
 	}
 
 	public static void test7() {
@@ -139,9 +140,9 @@ public class TestXYPlot {
 //		test5() ;
 //		test6() ;
 //		test7() ;
-		test8() ;
+//		test8() ;
 //		test9() ;
-//		test10() ;
+		test10() ;
 	}
 
 }
