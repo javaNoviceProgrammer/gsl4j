@@ -3,7 +3,6 @@ package org.gsl4j.plot;
 import static java.lang.String.format;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +12,7 @@ import org.gsl4j.io.FileOutput;
 import org.gsl4j.plot.contour.ContourSeries;
 import org.gsl4j.plot.contour.MeshGrid;
 import org.gsl4j.plot.style.LegendLocation;
+import org.gsl4j.plot.util.TerminalExecutor;
 import org.gsl4j.plot.xy.XYSeries;
 
 
@@ -183,12 +183,10 @@ public class Plot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime();
-		try {
-			rt.exec("python " + fo.getFilename());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	public void show(String fileName) {
@@ -202,19 +200,17 @@ public class Plot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime();
-		try {
-			rt.exec("python " + fo.getFilename());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	public void show() {
 		if (xyseriesCollection.isEmpty() && contourSeriesCollection.isEmpty())
 			throw new IllegalStateException("Plot data is empty");
 		// open the output stream
-		File file = new File("fig" + (id++));
+		File file = new File("plot_" + (id++));
 		file.deleteOnExit();
 		FileOutput fo = new FileOutput(file);
 		pythonCode(fo);
@@ -222,16 +218,10 @@ public class Plot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		Runtime rt = Runtime.getRuntime();
-		try {
-			rt.exec("python " + fo.getFilename());
-			Thread.sleep(100L);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	void pythonCode(FileOutput fo) {

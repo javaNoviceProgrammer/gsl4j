@@ -216,7 +216,10 @@ public class XYPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		TerminalExecutor.execute("python", fo.getFilename());
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	public void show(String fileName) {
@@ -233,14 +236,17 @@ public class XYPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		TerminalExecutor.execute("python", fo.getFilename());
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	public void show() {
 		if(xySeriesCollection.isEmpty())
 			throw new IllegalStateException("XYPlot data is empty") ;
 		// open the output stream
-		File file = new File("fig"+(id++)) ;
+		File file = new File("xy_plot_"+(id++)) ;
 		file.deleteOnExit();
 		FileOutput fo = new FileOutput(file) ;
 		pythonCode(fo);
@@ -252,7 +258,10 @@ public class XYPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		TerminalExecutor.execute("python", fo.getFilename());
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	void pythonCode(FileOutput fo) {

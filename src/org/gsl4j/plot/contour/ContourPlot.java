@@ -160,19 +160,16 @@ public class ContourPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		TerminalExecutor.execute("python", fo.getFilename());
-//		Runtime rt = Runtime.getRuntime() ;
-//		try {
-//			rt.exec("python " + fo.getFilename()) ;
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 
 	public void show() {
 		// open the output stream
-		File file = new File("fig"+(id++)) ;
+		File file = new File("contour_plot_"+(id++)) ;
 		file.deleteOnExit();
 		FileOutput fo = new FileOutput(file) ;
 		pythonCode(fo);
@@ -184,16 +181,10 @@ public class ContourPlot {
 		// close the output stream
 		fo.close();
 		// run the python code
-		TerminalExecutor.execute("python", fo.getFilename());
-//		Runtime rt = Runtime.getRuntime() ;
-//		try {
-//			rt.exec("python " + fo.getFilename()) ;
-//			Thread.sleep(100L);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
+		Thread thread = new Thread(() -> {
+			TerminalExecutor.execute("python", fo.getFilename());
+		}) ;
+		thread.start();
 	}
 
 	void pythonCode(FileOutput fo) {
